@@ -1,21 +1,23 @@
-﻿namespace GWebCache.Reponses
+﻿using GWebCache.Extensions;
+
+namespace GWebCache.Reponses
 {
-    internal class PongResponse : GWebCacheResponse, IParseable<PongResponse>
+    public class PongResponse : GWebCacheResponse
     {
         public string Message { get; set; }
 
-
-        public static async Task<PongResponse> ParseAsync(HttpResponseMessage? response)
+        public override bool IsValidResponse(HttpResponseMessage responseMessage)
         {
+            if (!responseMessage.ContentAsString().Contains("pong", StringComparison.InvariantCultureIgnoreCase)) {
+                return false;
+            }
 
-            var result = new PongResponse();
-            var content = await response?.Content.ReadAsStringAsync() ?? "";
+            return base.IsValidResponse(responseMessage);
+        }
 
-            result.WasSuccessful = GWebCacheResponse.Parse(response).WasSuccessful &&
-                (content.Contains("pong", StringComparison.InvariantCultureIgnoreCase));
-            result.Message = content;
-
-            return result;
+        public override void Parse(HttpResponseMessage? response)
+        {
+            Message = response?.ContentAsString() ?? "";
         }
     }
 }

@@ -1,37 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GWebCache.Extensions;
+using GWebCache.ReponseProcessing;
 
 namespace GWebCache.Reponses
 {
-    public class StatFileResponse : GWebCacheResponse, IParseable<StatFileResponse>
+    public class StatFileResponse : GWebCacheResponse
     {
         public int TotalNumberOfRequests { get; set; }
         public int RequestsInLastHour { get; set; }
         public int? UpdateRequestsInLastHour { get; set; }
 
-        public static async Task<StatFileResponse> ParseAsync(HttpResponseMessage? response)
+
+        public override bool IsValidResponse(HttpResponseMessage responseMessage)
         {
-            var result = new StatFileResponse();
-            var content = await response?.Content.ReadAsStringAsync() ?? "";
-            result.WasSuccessful = GWebCacheResponse.Parse(response).WasSuccessful;
-
-            var lines = content.Split("\n").Select(l=>l.Trim()).Where(l=>!string.IsNullOrEmpty(l)).ToArray();
-            result.WasSuccessful = result.WasSuccessful && lines.Length >= 2 && !lines.Any(line=> !int.TryParse(line, out var _));
-
-            if (result.WasSuccessful)
+            var lines = responseMessage.ContentAsString().Split("\n").Select(l => l.Trim()).Where(l => !string.IsNullOrEmpty(l)).ToArray();
+            if (lines.Length < 2 || lines.Any(line => !int.TryParse(line, out var _)))
             {
-                result.TotalNumberOfRequests = int.Parse(lines[0]);
-                result.RequestsInLastHour = int.Parse(lines[1]);
-                if (lines.Length > 2)
-                {
-                    result.UpdateRequestsInLastHour = int.Parse(lines[2]);
-                }
+                return false;
             }
 
-            return result;
+            return base.IsValidResponse(responseMessage);
+        }
+        public override void Parse(HttpResponseMessage? response)
+        {
+            if (response == null || !IsValidResponse(response))
+                return;
+
+
+            var lines = response.ContentAsString().Split("\n").Select(l => l.Trim()).Where(l => !string.IsNullOrEmpty(l)).ToArray();
+            TotalNumberOfRequests = int.Parse(lines[0]);
+            RequestsInLastHour = int.Parse(lines[1]);
+            if (lines.Length > 2)
+            {
+                UpdateRequestsInLastHour = int.Parse(lines[2]);
+            }
         }
     }
 }

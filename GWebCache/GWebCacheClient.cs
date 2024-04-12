@@ -1,6 +1,7 @@
-﻿using GWebCache.HelperClasses;
+﻿using GWebCache.Client;
+using GWebCache.Extensions;
+using GWebCache.ReponseProcessing;
 using GWebCache.Reponses;
-using Microsoft.AspNetCore.WebUtilities;
 
 namespace GWebCache
 {
@@ -20,39 +21,29 @@ namespace GWebCache
 
         public bool CheckIfAlive()
         {
-            var message = SendPongMessage().Result;
-            return message.WasSuccessful;
+            var pingResponse = Ping();
+            return pingResponse.WasSuccessful;
         }
 
-
-        public  StatFileResponse GetStats()
+        public Result<PongResponse> Ping()
         {
-            string url = AddToQueryString(_host, "statfile", "1");
-            var request =  gWebCacheHttpClient.GetAsync(url).Result;
-            return StatFileResponse.ParseAsync(request).Result;
+            var queryDict = new Dictionary<string, string> { { "ping", "1" } };
+            string url = _host.GetUrlWithQuery(queryDict);
+            var response = gWebCacheHttpClient.GetAsync(url).Result;
+            return new Result<PongResponse>().Execute(response);
         }
 
-        private async Task<PongResponse> SendPongMessage()
+        Result<StatFileResponse> IGWebCacheClient.GetStats()
         {
-            string url = AddToQueryString(_host, "ping", "1");
-            var request = await gWebCacheHttpClient.GetAsync(url);
-            return await PongResponse.ParseAsync(request);
+            var queryDict = new Dictionary<string, string> { { "statfile", "1" } };
+            string url = _host.GetUrlWithQuery(queryDict);
+            var response = gWebCacheHttpClient.GetAsync(url).Result;
+            return new Result<StatFileResponse>().Execute(response);
         }
 
-        private string AddToQueryString(Uri uri, string key, string value)
+        Result<HostfileResponse> IGWebCacheClient.GetHostfile()
         {
-            var parameters = QueryHelpers.ParseQuery(uri.Query);
-            parameters.Add(key, value);
-            string baseurl = !string.IsNullOrEmpty(uri.Query)?uri.AbsoluteUri.Replace(uri.Query, ""): uri.AbsoluteUri;
-            return QueryHelpers.AddQueryString(baseurl, parameters.ToDictionary(x => x.Key, x => x.Value.First()));
-        }
-
-        public HostfileResponse GetHostfile()
-        {
-            string url = AddToQueryString(_host, "hostfile", "1");
-            //var request = await gWebCacheHttpClient.GetAsync(url);
-            //return await PongResponse.ParseAsync(request);
-            return null;
+            throw new NotImplementedException();
         }
     }
 }

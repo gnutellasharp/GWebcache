@@ -1,11 +1,13 @@
-﻿using GWebCache.Reponses;
+﻿using GWebCache.ReponseProcessing;
+using GWebCache.Reponses;
 
 namespace GWebCache
 {
     public interface IGWebCacheClient
     {
        bool CheckIfAlive();
-       StatFileResponse GetStats();
-        HostfileResponse GetHostfile();
+       Result<PongResponse> Ping(); 
+       Result<StatFileResponse> GetStats();
+       Result<HostfileResponse> GetHostfile();
     }
 }

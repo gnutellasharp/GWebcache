@@ -1,14 +1,14 @@
-﻿namespace GWebCache.Reponses
+﻿using GWebCache.ReponseProcessing;
+
+namespace GWebCache.Reponses
 {
-    public class GWebCacheResponse
+    public abstract class GWebCacheResponse : IParseable<GWebCacheResponse>, IValidator
     {
-        public bool WasSuccessful { get; set; }
-        protected static GWebCacheResponse Parse(HttpResponseMessage response) {
-            GWebCacheResponse result = new()
-            {
-                WasSuccessful = response.IsSuccessStatusCode && response.Content != null
-            };
-            return result;
+        public virtual bool IsValidResponse(HttpResponseMessage? responseMessage)
+        {
+            return responseMessage != null && responseMessage.IsSuccessStatusCode && responseMessage.Content != null;
         }
+
+        public abstract void Parse(HttpResponseMessage? response);
     }
 }

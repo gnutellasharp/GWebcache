@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using GWebCache.ReponseProcessing;
 
 namespace GWebCache.Reponses
 {
@@ -12,20 +13,12 @@ namespace GWebCache.Reponses
         public IPAddress IPAddress { get; set; }
     }
 
-    public class HostfileResponse: GWebCacheResponse, IParseable<HostfileResponse>
-    {
-        public string ErrorMessage { get; set; }
+    public class HostfileResponse: GWebCacheResponse { 
         public List<HostfileLine> HostfileLines { get; set; } = new List<HostfileLine>();
 
-        public static async Task<HostfileResponse> ParseAsync(HttpResponseMessage? response)
+        public override void Parse(HttpResponseMessage? response)
         {
-            var result = new HostfileResponse();
-            var content = await response?.Content.ReadAsStringAsync() ?? "";
-            result.WasSuccessful = GWebCacheResponse.Parse(response).WasSuccessful;
-
-            result.WasSuccessful = result.WasSuccessful && !string.IsNullOrEmpty(content);
-
-            return result;
+            throw new NotImplementedException();
         }
     }
 }
