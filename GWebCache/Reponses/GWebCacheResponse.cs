@@ -6,5 +6,5 @@ public abstract class GWebCacheResponse : IParseable<GWebCacheResponse>, IValida
 		return responseMessage != null && responseMessage.IsSuccessStatusCode && responseMessage.Content != null;
 	}
 
-	public abstract void Parse(HttpResponseMessage? response);
+	public abstract void Parse(HttpResponseMessage response);
 }

@@ -3,5 +3,5 @@
 namespace GWebCache.ReponseProcessing;
 
 internal interface IParseable<T> where T : GWebCacheResponse {
-	abstract void Parse(HttpResponseMessage? response);
+	abstract void Parse(HttpResponseMessage response);
 }

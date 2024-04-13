@@ -4,7 +4,7 @@ namespace GWebCache.Extensions;
 
 public static class Extensions {
 	public static string ContentAsString(this HttpResponseMessage response) {
-		return response.Content.ReadAsStringAsync()?.Result ?? "";
+		return response.Content?.ReadAsStringAsync()?.Result ?? "";
 	}
 
 	public static string GetUrlWithQuery(this Uri uri, Dictionary<string, string> queryParams) {

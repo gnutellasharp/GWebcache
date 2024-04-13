@@ -136,3 +136,4 @@ csharp_new_line_before_open_brace = none
 csharp_new_line_before_members_in_object_initializers = false
 csharp_new_line_before_members_in_anonymous_types = false
 csharp_new_line_between_query_expression_clauses = false
+csharp_space_between_method_declaration_name_and_open_parenthesis = false
