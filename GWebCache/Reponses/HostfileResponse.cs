@@ -1,10 +1,7 @@
-﻿using System.Net;
-namespace GWebCache.Reponses;
+﻿using GWebCache.Models;
+using System.Net;
 
-public class GnutellaNode {
-	public IPAddress? IPAddress { get; set; }
-	public int port { get; set; }
-}
+namespace GWebCache.Reponses;
 
 public class HostfileResponse : GWebCacheResponse {
 	public List<GnutellaNode> HostfileLines { get; set; } = new List<GnutellaNode>();
