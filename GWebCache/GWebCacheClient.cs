@@ -35,6 +35,11 @@ public class GWebCacheClient : IGWebCacheClient {
 		return GetWithParam<HostfileResponse>("hostfile", "1");
 	}
 
+
+	public Result<UrlFileResponse> GetUrlFile() {
+		return GetWithParam<UrlFileResponse>("urlfile", "1");
+	}
+
 	private Result<T> GetWithParam<T>(string param, string value) where T : GWebCacheResponse, new() {
 		Dictionary<string, string> queryDict = new();
 		queryDict[param] = value;

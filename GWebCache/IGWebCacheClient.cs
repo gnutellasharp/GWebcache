@@ -8,4 +8,5 @@ public interface IGWebCacheClient {
 	Result<PongResponse> Ping();
 	Result<StatFileResponse> GetStats();
 	Result<HostfileResponse> GetHostfile();
+	Result<UrlFileResponse> GetUrlFile();
 }
