@@ -27,23 +27,26 @@ namespace GWebCache
 
         public Result<PongResponse> Ping()
         {
-            var queryDict = new Dictionary<string, string> { { "ping", "1" } };
-            string url = _host.GetUrlWithQuery(queryDict);
-            var response = gWebCacheHttpClient.GetAsync(url).Result;
-            return new Result<PongResponse>().Execute(response);
+            return GetWithParam<PongResponse>("ping", "1");
         }
 
-        Result<StatFileResponse> IGWebCacheClient.GetStats()
+        public Result<StatFileResponse> GetStats()
         {
-            var queryDict = new Dictionary<string, string> { { "statfile", "1" } };
-            string url = _host.GetUrlWithQuery(queryDict);
-            var response = gWebCacheHttpClient.GetAsync(url).Result;
-            return new Result<StatFileResponse>().Execute(response);
+            return GetWithParam<StatFileResponse>("stats", "1");
         }
 
-        Result<HostfileResponse> IGWebCacheClient.GetHostfile()
+        public Result<HostfileResponse> GetHostfile()
         {
-            throw new NotImplementedException();
+            return GetWithParam<HostfileResponse>("hostfile", "1");
+        }
+
+        private Result<T> GetWithParam<T>(string param, string value) where T : GWebCacheResponse, new()
+        {
+            var queryDict = new Dictionary<string, string>();
+            queryDict[param] = value;
+            string url = _host.GetUrlWithQuery(queryDict);
+            var response = gWebCacheHttpClient.GetAsync(url).Result;
+            return new Result<T>().Execute(response);
         }
     }
 }
