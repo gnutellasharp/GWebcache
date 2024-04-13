@@ -1,7 +1,5 @@
-﻿namespace GWebCache.ReponseProcessing
-{
-    internal interface IValidator
-    {
-        bool IsValidResponse(HttpResponseMessage responseMessage);
-    }
+﻿namespace GWebCache.ReponseProcessing;
+
+internal interface IValidator {
+	bool IsValidResponse(HttpResponseMessage responseMessage);
 }
