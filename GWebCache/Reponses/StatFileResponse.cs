@@ -22,11 +22,7 @@ namespace GWebCache.Reponses
         }
         public override void Parse(HttpResponseMessage? response)
         {
-            if (response == null || !IsValidResponse(response))
-                return;
-
-
-            var lines = response.ContentAsString().Split("\n").Select(l => l.Trim()).Where(l => !string.IsNullOrEmpty(l)).ToArray();
+            var lines = response?.ContentAsString().Split("\n").Select(l => l.Trim()).Where(l => !string.IsNullOrEmpty(l)).ToArray();
             TotalNumberOfRequests = int.Parse(lines[0]);
             RequestsInLastHour = int.Parse(lines[1]);
             if (lines.Length > 2)
