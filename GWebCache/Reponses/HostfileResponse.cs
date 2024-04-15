@@ -1,5 +1,5 @@
 ﻿using GWebCache.Models;
-using System.Net;
+using GWebCache.Extensions;
 
 namespace GWebCache.Reponses;
 
@@ -7,10 +7,14 @@ public class HostfileResponse : GWebCacheResponse {
 	public List<GnutellaNode> HostfileLines { get; set; } = new List<GnutellaNode>();
 
 	public override bool IsValidResponse(HttpResponseMessage? responseMessage) {
-		bool response = base.IsValidResponse(responseMessage);
-		string? content = responseMessage?.Content?.ReadAsStringAsync().Result;
-		return response && !string.IsNullOrWhiteSpace(content) && !content.Contains("error", StringComparison.InvariantCultureIgnoreCase);
+		if (!base.IsValidResponse(responseMessage))
+			return false;
+
+		// If the response contains the word "error" then it is not a valid response
+		string content = responseMessage!.ContentAsString();
+		return content.Contains("error", StringComparison.InvariantCultureIgnoreCase);
 	}
+
 	public override void Parse(HttpResponseMessage response) {
 		string content = response.Content?.ReadAsStringAsync().Result ?? "";
 		string[] lines = content.Split("\n").Select(l => l.Trim()).Where(l => !string.IsNullOrEmpty(l)).ToArray();
