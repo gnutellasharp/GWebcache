@@ -10,14 +10,20 @@ public class UrlFileResponse : GWebCacheResponse {
 		if (!base.IsValidResponse(responseMessage))
 			return false;
 
-		return !responseMessage!.ContentAsString().Contains("error", StringComparison.InvariantCultureIgnoreCase);
+		string content = responseMessage!.ContentAsString();
+		if (content.Contains("error", StringComparison.InvariantCultureIgnoreCase))
+			return false;
+
+		//validate that all urls are http
+		return GetUrlsFromResponse(responseMessage!).All(uri => uri.StartsWith("http://", StringComparison.InvariantCultureIgnoreCase));
 	}
 
 	public override void Parse(HttpResponseMessage response) {
-		string[] urls = response.ContentAsString().Split("\n")
-			.Select(l => l.Trim()).Where(l => !string.IsNullOrEmpty(l)).ToArray();
-		foreach(string url in urls) {
+		foreach(string url in GetUrlsFromResponse(response)) {
 			WebCaches.Add(new GWebCacheNode(url));
 		}
+	}
+	private string[] GetUrlsFromResponse(HttpResponseMessage response) {
+		return response!.ContentAsString().Split("\n").Select(l => l.Trim()).Where(l => !string.IsNullOrEmpty(l)).ToArray();
 	}
 }

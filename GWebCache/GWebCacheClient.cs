@@ -43,7 +43,7 @@ public class GWebCacheClient : IGWebCacheClient {
 
 	public Result<UpdateResponse> Update(UpdateRequest updateRequest) {
 		if (!updateRequest.IsValidRequest())
-			return new Result<UpdateResponse>().WithException("Specify one update node or url in your request");
+			return new Result<UpdateResponse>().WithException("This request was invalid specify you at least have one cache or node specified and the cache is http.");
 
 		Dictionary<string, string> queryDict = [];
 

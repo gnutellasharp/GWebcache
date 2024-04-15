@@ -7,6 +7,10 @@ public class UpdateRequest : GWebCacheRequest{
 	public GWebCacheNode? GWebCacheNode { get; set; }
 
 	public override bool IsValidRequest() {
-		return GnutellaNode != null || GWebCacheNode != null;
+		if (GWebCacheNode != null) {
+			return GWebCacheNode.Url != null && GWebCacheNode.Url.Scheme.Equals(Uri.UriSchemeHttp.ToLower());
+		}
+
+		return GnutellaNode != null;
 	}
 }
