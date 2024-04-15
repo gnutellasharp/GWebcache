@@ -1,19 +1,17 @@
 ﻿using GWebCache;
+using GWebCache.ReponseProcessing;
+using GWebCache.Reponses;
+using GWebCache.Requests;
+namespace GWebCacheTest;
 
-namespace GWebCacheTest
-{
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-           IGWebCacheClient client = new GWebCacheClient("http://gweb3.4octets.co.uk/gwc.php");
-            var stats = client.GetStats();
-           if(client.CheckIfAlive()  && stats.WasSuccessful && stats.ResultObject != null)
-            {
-               System.Console.WriteLine($"Total number of requests: {stats.ResultObject.TotalNumberOfRequests}");
-               System.Console.WriteLine($"Requests in last hour: {stats.ResultObject.RequestsInLastHour}");
-               System.Console.WriteLine($"Update requests in last hour: {stats.ResultObject.UpdateRequestsInLastHour}");
-           }
-        }
-    }
+internal class Program {
+	static void Main(string[] args) {
+
+		//v1 cache
+		IGWebCacheClient client = new GWebCacheClient("http://gweb3.4octets.co.uk/gwc.php");
+		Result<PongResponse> pingResponse = client.Ping();
+		//V2 cache
+		IGWebCacheClient clientV2 = new GWebCacheClient("http://www.k33bz.com/g2/bazooka.php");
+		pingResponse = clientV2.Ping();
+	}
 }

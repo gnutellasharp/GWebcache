@@ -3,6 +3,11 @@
 namespace GWebCache.Extensions;
 
 public static class Extensions {
+	public static string[] SplitContentInFields(this HttpResponseMessage response) {
+		string content = ContentAsString(response);
+		return [.. content.Split("|")];
+	}
+
 	public static string ContentAsString(this HttpResponseMessage response) {
 		return response.Content?.ReadAsStringAsync()?.Result ?? "";
 	}
