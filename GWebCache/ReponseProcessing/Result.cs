@@ -7,6 +7,13 @@ public class Result<T> where T : GWebCacheResponse {
 	public string? ErrorMessage { get; set; }
 	public T? ResultObject { get; set; }
 
+	public Result<T> WithException(string exceptionMessage) {
+		WasSuccessful = false;
+		ErrorMessage = exceptionMessage;
+		return this;
+	}
+	 
+
 	public Result<T> Execute(HttpResponseMessage? responseMessage) {
 		ResultObject = (T?)Activator.CreateInstance(typeof(T));
 		WasSuccessful = ResultObject?.IsValidResponse(responseMessage) ?? false;

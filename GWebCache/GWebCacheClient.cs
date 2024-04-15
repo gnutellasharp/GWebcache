@@ -2,6 +2,8 @@
 using GWebCache.Extensions;
 using GWebCache.ReponseProcessing;
 using GWebCache.Reponses;
+using GWebCache.Requests;
+using System.Web;
 
 namespace GWebCache;
 
@@ -35,16 +37,38 @@ public class GWebCacheClient : IGWebCacheClient {
 		return GetWithParam<HostfileResponse>("hostfile", "1");
 	}
 
-
 	public Result<UrlFileResponse> GetUrlFile() {
 		return GetWithParam<UrlFileResponse>("urlfile", "1");
 	}
 
+	public Result<UpdateResponse> Update(UpdateRequest updateRequest) {
+		if (!updateRequest.IsValidRequest())
+			return new Result<UpdateResponse>().WithException("Specify one update node or url in your request");
+
+		Dictionary<string, string> queryDict = [];
+
+		if (updateRequest.GnutellaNode != null) {
+			queryDict.Add("ip", updateRequest.GnutellaNode.ToString());
+		} 
+		
+		if (updateRequest.GWebCacheNode != null) {
+			queryDict.Add("url", updateRequest.GWebCacheNode.ToString());
+		}
+
+		return PreformGetWithQueryDict<UpdateResponse>(queryDict);
+	}
+
 	private Result<T> GetWithParam<T>(string param, string value) where T : GWebCacheResponse, new() {
-		Dictionary<string, string> queryDict = new();
-		queryDict[param] = value;
+		Dictionary<string, string> queryDict = new() {
+			[param] = value
+		};
+		return PreformGetWithQueryDict<T>(queryDict);
+	}
+
+	private Result<T> PreformGetWithQueryDict<T>(Dictionary<string, string> queryDict) where T : GWebCacheResponse, new() {
 		string url = _host.GetUrlWithQuery(queryDict);
 		HttpResponseMessage? response = gWebCacheHttpClient.GetAsync(url).Result;
 		return new Result<T>().Execute(response);
 	}
+
 }

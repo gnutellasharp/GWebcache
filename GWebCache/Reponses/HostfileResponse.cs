@@ -18,10 +18,7 @@ public class HostfileResponse : GWebCacheResponse {
 		foreach (string line in lines) {
 			string[] parts = line.Split(":");
 			if (parts.Length == 2) {
-				HostfileLines.Add(new GnutellaNode {
-					IPAddress = IPAddress.Parse(parts[0]),
-					port = int.Parse(parts[1])
-				});
+				HostfileLines.Add(new GnutellaNode(parts[0], int.Parse(parts[1])));
 			}
 		}
 	}

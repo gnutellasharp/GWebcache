@@ -17,11 +17,7 @@ public class UrlFileResponse : GWebCacheResponse {
 		string[] urls = response.ContentAsString().Split("\n")
 			.Select(l => l.Trim()).Where(l => !string.IsNullOrEmpty(l)).ToArray();
 		foreach(string url in urls) {
-			if(Uri.TryCreate(url, UriKind.Absolute, out Uri? uri)) {
-				WebCaches.Add(new GWebCacheNode {
-					Url = uri
-				});
-			}
+			WebCaches.Add(new GWebCacheNode(url));
 		}
 	}
 }
