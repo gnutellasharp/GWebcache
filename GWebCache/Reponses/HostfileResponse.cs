@@ -26,4 +26,8 @@ public class HostfileResponse : GWebCacheResponse {
 			}
 		}
 	}
+
+	public override void ParseV2(HttpResponseMessage response) {
+		throw new NotImplementedException();
+	}
 }

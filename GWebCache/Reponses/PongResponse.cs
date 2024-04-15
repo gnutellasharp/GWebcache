@@ -14,4 +14,8 @@ public class PongResponse : GWebCacheResponse {
 	public override void Parse(HttpResponseMessage response) {
 		Message = response?.ContentAsString() ?? "";
 	}
+
+	public override void ParseV2(HttpResponseMessage response) {
+		throw new NotImplementedException();
+	}
 }

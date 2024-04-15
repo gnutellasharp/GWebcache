@@ -23,6 +23,11 @@ public class UrlFileResponse : GWebCacheResponse {
 			WebCaches.Add(new GWebCacheNode(url));
 		}
 	}
+
+	public override void ParseV2(HttpResponseMessage response) {
+		throw new NotImplementedException();
+	}
+
 	private string[] GetUrlsFromResponse(HttpResponseMessage response) {
 		return response!.ContentAsString().Split("\n").Select(l => l.Trim()).Where(l => !string.IsNullOrEmpty(l)).ToArray();
 	}

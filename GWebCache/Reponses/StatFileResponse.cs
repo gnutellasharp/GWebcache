@@ -22,4 +22,8 @@ public class StatFileResponse : GWebCacheResponse {
 			UpdateRequestsInLastHour = int.Parse(lines[2]);
 		}
 	}
+
+	public override void ParseV2(HttpResponseMessage response) {
+		throw new NotImplementedException();
+	}
 }

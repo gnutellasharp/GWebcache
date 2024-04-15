@@ -3,13 +3,12 @@ using GWebCache.Extensions;
 using GWebCache.ReponseProcessing;
 using GWebCache.Reponses;
 using GWebCache.Requests;
-using System.Web;
 
 namespace GWebCache;
 
 public class GWebCacheClient : IGWebCacheClient {
-	private GWebCacheHttpClient gWebCacheHttpClient;
-	private Uri _host;
+	private readonly GWebCacheHttpClient gWebCacheHttpClient;
+	private readonly Uri _host;
 
 	public GWebCacheClient(string host, GWebCacheClientConfig? config = null) {
 		if (!string.IsNullOrWhiteSpace(host) && Uri.TryCreate(host, new UriCreationOptions(), out Uri? uri)) {
