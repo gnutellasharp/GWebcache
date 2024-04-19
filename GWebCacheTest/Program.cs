@@ -1,4 +1,5 @@
 ﻿using GWebCache;
+using GWebCache.Models.Enums;
 using GWebCache.ReponseProcessing;
 using GWebCache.Reponses;
 using GWebCache.Requests;
@@ -12,6 +13,7 @@ internal class Program {
 		Result<PongResponse> pingResponse = client.Ping();
 		//V2 cache
 		IGWebCacheClient clientV2 = new GWebCacheClient("http://www.k33bz.com/g2/bazooka.php");
-		pingResponse = clientV2.Ping();
+		Result<GetResponse> response = clientV2.Get(GnutellaNetwork.Gnutella);
+
 	}
 }

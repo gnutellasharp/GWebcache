@@ -3,6 +3,7 @@ namespace GWebCache.Reponses;
 
 public class PongResponse : GWebCacheResponse {
 	public string? CacheVersion { get; set; }
+	public string? SupportedNet { get; set; }
 
 	public override bool IsValidResponse(HttpResponseMessage? responseMessage) {
 		if (!base.IsValidResponse(responseMessage))
@@ -28,7 +29,7 @@ public class PongResponse : GWebCacheResponse {
 
 	public override void ParseV2(HttpResponseMessage response) {
 		string[] fields = response.SplitContentInFields();
-		if(fields.Length >= 3)
-			CacheVersion = fields[2];
+		CacheVersion = fields.Length > 2 ? fields[2] : "";
+		SupportedNet = fields.Length > 3 ? fields[3] : "";
 	}
 }

@@ -3,6 +3,7 @@
 namespace GWebCache.Models;
 public class GWebCacheNode {
 	public Uri? Url { get; set; }
+	public TimeSpan ActiveSince { get; set; }
 
 	public GWebCacheNode(string url) {
 		Uri.TryCreate(url, UriKind.Absolute, out Uri? uri);

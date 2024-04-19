@@ -6,9 +6,10 @@ namespace GWebCache.Models;
 public class GnutellaNode {
 	public IPAddress? IPAddress { get; set; }
 	public int Port { get; set; }
+	public TimeSpan ActiveSince { get; set; }
 
 	public GnutellaNode(string ipAddress, int port) {
-		IPAddress.TryParse(ipAddress, out IPAddress? ip);
+		_ = IPAddress.TryParse(ipAddress, out IPAddress? ip);
 		IPAddress = ip;
 		Port = port;
 	}

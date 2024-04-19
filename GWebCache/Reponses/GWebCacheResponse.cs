@@ -8,7 +8,7 @@ public abstract class GWebCacheResponse : IParseable<GWebCacheResponse>, IRespon
 	}
 
 	public virtual bool IsValidV2Response(HttpResponseMessage? responseMessage) {
-		if (IsValidResponse(responseMessage)) 
+		if (!IsValidResponse(responseMessage)) 
 			return false;
 
 		//V2 permits "empty" responses
