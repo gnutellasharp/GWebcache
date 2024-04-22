@@ -4,7 +4,7 @@ using GWebCache.Models;
 namespace GWebCache.Reponses;
 
 public class UrlFileResponse : GWebCacheResponse {
-	public List<GWebCacheNode> WebCaches { get; } = new();
+	public List<GWebCacheNode> WebCaches { get; set; } = new();
 
 	public override bool IsValidResponse(HttpResponseMessage? responseMessage) {
 		if (!base.IsValidResponse(responseMessage))
@@ -23,6 +23,11 @@ public class UrlFileResponse : GWebCacheResponse {
 			WebCaches.Add(new GWebCacheNode(url));
 		}
 	}
+
+	public override void ParseV2(HttpResponseMessage response) {
+		throw new NotImplementedException();
+	}
+
 	private string[] GetUrlsFromResponse(HttpResponseMessage response) {
 		return response!.ContentAsString().Split("\n").Select(l => l.Trim()).Where(l => !string.IsNullOrEmpty(l)).ToArray();
 	}
