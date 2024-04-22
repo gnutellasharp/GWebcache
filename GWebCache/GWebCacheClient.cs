@@ -60,10 +60,10 @@ public class GWebCacheClient : IGWebCacheClient {
 		return GetWithParam<HostfileResponse>("hostfile", "1");
 	}
 
-	public Result<UrlFileResponse> GetUrlFile(GnutellaNetwork? gnutellaNetwork = null) {
+	public Result<UrlFileResponse> GetUrlFile(GnutellaNetwork? network = null) {
 		if (WebCacheIsV2()) {
 			Result<UrlFileResponse> result = new();
-			Result<GetResponse> response = Get(gnutellaNetwork);
+			Result<GetResponse> response = Get(network);
 
 			if (!response.WasSuccessful || response.ResultObject == null)
 				return result.WithException(response.ErrorMessage ?? "Something went wrong getting the correct response");
