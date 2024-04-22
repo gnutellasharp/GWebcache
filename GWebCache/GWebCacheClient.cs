@@ -45,11 +45,34 @@ public class GWebCacheClient : IGWebCacheClient {
 		return GetWithParam<StatFileResponse>("stats", "1");
 	}
 
-	public Result<HostfileResponse> GetHostfile() {
+	public Result<HostfileResponse> GetHostfile(GnutellaNetwork gnutellaNetwork = GnutellaNetwork.Gnutella2) {
+		if (WebCacheIsV2()) {
+			Result<HostfileResponse> result = new();
+			Result<GetResponse> response = Get(gnutellaNetwork);
+
+			if (!response.WasSuccessful || response.ResultObject == null)
+				return result.WithException(response.ErrorMessage ?? "Something went wrong getting the correct response");
+
+			result.WasSuccessful = response.WasSuccessful;
+			result.ResultObject = new HostfileResponse() { HostfileLines = response.ResultObject!.Nodes};
+			return result;
+		}
 		return GetWithParam<HostfileResponse>("hostfile", "1");
 	}
 
-	public Result<UrlFileResponse> GetUrlFile() {
+	public Result<UrlFileResponse> GetUrlFile(GnutellaNetwork gnutellaNetwork = GnutellaNetwork.Gnutella2) {
+		if (WebCacheIsV2()) {
+			Result<UrlFileResponse> result = new();
+			Result<GetResponse> response = Get(gnutellaNetwork);
+
+			if (!response.WasSuccessful || response.ResultObject == null)
+				return result.WithException(response.ErrorMessage ?? "Something went wrong getting the correct response");
+
+			result.WasSuccessful = response.WasSuccessful;
+			result.ResultObject = new UrlFileResponse() { WebCaches = response.ResultObject!.WebCacheNodes };
+			return result;
+		}
+
 		return GetWithParam<UrlFileResponse>("urlfile", "1");
 	}
 

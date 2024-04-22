@@ -13,7 +13,8 @@ internal class Program {
 		Result<PongResponse> pingResponse = client.Ping();
 		//V2 cache
 		IGWebCacheClient clientV2 = new GWebCacheClient("http://www.k33bz.com/g2/bazooka.php");
-		Result<GetResponse> response = clientV2.Get(GnutellaNetwork.Gnutella);
-
+		Result<GetResponse> response = clientV2.Get(GnutellaNetwork.Gnutella2);
+		Result<HostfileResponse> response2 = clientV2.GetHostfile();
+		Result<UrlFileResponse> response3 = clientV2.GetUrlFile();
 	}
 }

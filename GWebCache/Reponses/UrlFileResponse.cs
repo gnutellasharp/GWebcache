@@ -4,7 +4,7 @@ using GWebCache.Models;
 namespace GWebCache.Reponses;
 
 public class UrlFileResponse : GWebCacheResponse {
-	public List<GWebCacheNode> WebCaches { get; } = new();
+	public List<GWebCacheNode> WebCaches { get; set; } = new();
 
 	public override bool IsValidResponse(HttpResponseMessage? responseMessage) {
 		if (!base.IsValidResponse(responseMessage))
