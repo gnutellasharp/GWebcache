@@ -45,7 +45,7 @@ public class GWebCacheClient : IGWebCacheClient {
 		return GetWithParam<StatFileResponse>("stats", "1");
 	}
 
-	public Result<HostfileResponse> GetHostfile(GnutellaNetwork gnutellaNetwork = GnutellaNetwork.Gnutella2) {
+	public Result<HostfileResponse> GetHostfile(GnutellaNetwork? gnutellaNetwork = null) {
 		if (WebCacheIsV2()) {
 			Result<HostfileResponse> result = new();
 			Result<GetResponse> response = Get(gnutellaNetwork);
