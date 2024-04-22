@@ -8,8 +8,16 @@ public class UpdateResponse : GWebCacheResponse {
 	override public bool IsValidResponse(HttpResponseMessage? responseMessage) {
 		if (!base.IsValidResponse(responseMessage))
 			return false;
+		string content = responseMessage!.ContentAsString();
+		return !content.Contains("error", StringComparison.InvariantCultureIgnoreCase);
+	}
 
-		return responseMessage!.ContentAsString().Contains("ok", StringComparison.InvariantCultureIgnoreCase);
+	override public bool IsValidV2Response(HttpResponseMessage? responseMessage) {
+		if (!IsValidResponse(responseMessage))
+			return false;
+
+		string[] fields = responseMessage!.SplitContentInFields();
+		return fields.Length >= 2 && fields[0].Equals("I", StringComparison.InvariantCultureIgnoreCase);
 	}
 
 	public override void Parse(HttpResponseMessage response) {
@@ -17,6 +25,7 @@ public class UpdateResponse : GWebCacheResponse {
 	}
 
 	public override void ParseV2(HttpResponseMessage response) {
-		throw new NotImplementedException();
+		string[] fields = response!.SplitContentInFields();
+		Message = fields.Length > 2? fields[2] : "OK";
 	}
 }

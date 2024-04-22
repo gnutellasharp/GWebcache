@@ -60,7 +60,7 @@ public class GWebCacheClient : IGWebCacheClient {
 		return GetWithParam<HostfileResponse>("hostfile", "1");
 	}
 
-	public Result<UrlFileResponse> GetUrlFile(GnutellaNetwork gnutellaNetwork = GnutellaNetwork.Gnutella2) {
+	public Result<UrlFileResponse> GetUrlFile(GnutellaNetwork? gnutellaNetwork = null) {
 		if (WebCacheIsV2()) {
 			Result<UrlFileResponse> result = new();
 			Result<GetResponse> response = Get(gnutellaNetwork);
@@ -81,14 +81,19 @@ public class GWebCacheClient : IGWebCacheClient {
 			return new Result<UpdateResponse>().WithException("This request was invalid specify you at least have one cache or node specified and the cache is http.");
 
 		Dictionary<string, string> queryDict = [];
+		if(WebCacheIsV2())
+			queryDict.Add("update", "1");
 
-		if (updateRequest.GnutellaNode != null) {
+		string? networkName = updateRequest.Network.HasValue? Enum.GetName(typeof(GnutellaNetwork), updateRequest.Network.Value) : "";
+		if (!string.IsNullOrEmpty(networkName)) 
+			queryDict.Add("net", networkName);
+
+		if (updateRequest.GnutellaNode != null) 
 			queryDict.Add("ip", updateRequest.GnutellaNode.ToString());
-		} 
 		
-		if (updateRequest.GWebCacheNode != null) {
+		
+		if (updateRequest.GWebCacheNode != null) 
 			queryDict.Add("url", updateRequest.GWebCacheNode.ToString());
-		}
 
 		return PreformGetWithQueryDict<UpdateResponse>(queryDict);
 	}
@@ -106,14 +111,14 @@ public class GWebCacheClient : IGWebCacheClient {
 		return new Result<T>().Execute(response);
 	}
 
-	public Result<GetResponse> Get(GnutellaNetwork network) {
+	public Result<GetResponse> Get(GnutellaNetwork? network) {
 		if (!gWebCacheClientConfig.IsV2!.Value) {
 			return new Result<GetResponse>().WithException("This method is not supported on a V1 WebCache");
 		}
 
 		Dictionary<string, string> queryDict = [];
-
-		string? networkName = Enum.GetName(typeof(GnutellaNetwork), network);
+		
+		string? networkName = network.HasValue? Enum.GetName(typeof(GnutellaNetwork), network.Value):"";
 		if (!string.IsNullOrEmpty(networkName))
 			queryDict.Add("net", networkName);
 

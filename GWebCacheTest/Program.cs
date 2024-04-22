@@ -16,5 +16,7 @@ internal class Program {
 		Result<GetResponse> response = clientV2.Get(GnutellaNetwork.Gnutella2);
 		Result<HostfileResponse> response2 = clientV2.GetHostfile();
 		Result<UrlFileResponse> response3 = clientV2.GetUrlFile();
+		UpdateRequest updateRequest = new() { GnutellaNode = new GWebCache.Models.GnutellaNode("41.96.246.173", 43624), Network = GnutellaNetwork.Gnutella2 };
+		Result<UpdateResponse> response4 = clientV2.Update(updateRequest);
 	}
 }

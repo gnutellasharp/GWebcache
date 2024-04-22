@@ -17,7 +17,7 @@ public class PongResponse : GWebCacheResponse {
 			return false;
 
 		string[] fields = responseMessage!.SplitContentInFields();
-		return fields.Count() >= 2 && fields[0].Equals("I", StringComparison.InvariantCultureIgnoreCase) 
+		return fields.Length >= 2 && fields[0].Equals("I", StringComparison.InvariantCultureIgnoreCase) 
 			&& fields[1].Equals("pong", StringComparison.InvariantCultureIgnoreCase);
 	}
 
