@@ -81,6 +81,9 @@ $(function() {
   <div class="headertitle"><div class="title">GWebCache.GWebCacheClient Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Concrete implementation of IGWebCacheClient  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for GWebCache.GWebCacheClient:</div>
 <div class="dyncontent">
@@ -93,8 +96,8 @@ Inheritance diagram for GWebCache.GWebCacheClient:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4bcc7193d784825a7505f652fd2c85eb" id="r_a4bcc7193d784825a7505f652fd2c85eb"><td class="memItemLeft" align="right" valign="top"><a id="a4bcc7193d784825a7505f652fd2c85eb" name="a4bcc7193d784825a7505f652fd2c85eb"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>GWebCacheClient</b> (string host, <a class="el" href="classGWebCache_1_1Client_1_1GWebCacheClientConfig.html">GWebCacheClientConfig</a>? config=null)</td></tr>
+<tr class="memitem:a4bcc7193d784825a7505f652fd2c85eb" id="r_a4bcc7193d784825a7505f652fd2c85eb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4bcc7193d784825a7505f652fd2c85eb">GWebCacheClient</a> (string host, <a class="el" href="classGWebCache_1_1Client_1_1GWebCacheClientConfig.html">GWebCacheClientConfig</a>? config=null)</td></tr>
+<tr class="memdesc:a4bcc7193d784825a7505f652fd2c85eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the GWebCacheClient.  <br /></td></tr>
 <tr class="separator:a4bcc7193d784825a7505f652fd2c85eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a261d5f41070e02578b8e792fc627b29d" id="r_a261d5f41070e02578b8e792fc627b29d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a261d5f41070e02578b8e792fc627b29d">CheckIfAlive</a> ()</td></tr>
 <tr class="memdesc:a261d5f41070e02578b8e792fc627b29d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Preforms a ping request to the server to check if it is alive.  <br /></td></tr>
@@ -121,6 +124,56 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a58ef2616695f4e0f50d12c0f5e2b98bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the property <em>GWebCacheClientConfig.IsV2</em>   <br /></td></tr>
 <tr class="separator:a58ef2616695f4e0f50d12c0f5e2b98bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Concrete implementation of IGWebCacheClient </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a4bcc7193d784825a7505f652fd2c85eb" name="a4bcc7193d784825a7505f652fd2c85eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4bcc7193d784825a7505f652fd2c85eb">&#9670;&#160;</a></span>GWebCacheClient()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GWebCache.GWebCacheClient.GWebCacheClient </td>
+          <td>(</td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>host</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classGWebCache_1_1Client_1_1GWebCacheClientConfig.html">GWebCacheClientConfig</a>?</td>          <td class="paramname"><span class="paramname"><em>config</em><span class="paramdefsep"> = </span><span class="paramdefval">null</span></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor for the GWebCacheClient. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">host</td><td>The url of the webcache in string format</td></tr>
+    <tr><td class="paramname">config</td><td>Optional configuration object</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ArgumentException</td><td>If the url can't be parsed an argument exception is thrown</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>It's recommended that you use http even if the webcache supports https.</p>
+<p>The constructor will invoke the default configuration if not specified GWebCacheClientConfig</p>
+<p>The constructor will also check if the webcache is a V2 webcache in case it's not explicitely provided in the configuration</p>
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a261d5f41070e02578b8e792fc627b29d" name="a261d5f41070e02578b8e792fc627b29d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a261d5f41070e02578b8e792fc627b29d">&#9670;&#160;</a></span>CheckIfAlive()</h2>
@@ -226,7 +279,7 @@ Public Member Functions</h2></td></tr>
 <p>You can use this method on both versions. It is however recommended to use the <em>Get(GnutellaNetwork?)</em>  method for version 2 of the specification. </p>
 <p>&lt;example </p><div class="fragment"><div class="line"><a class="code hl_interface" href="interfaceGWebCache_1_1IGWebCacheClient.html">IGWebCacheClient</a> client = <span class="keyword">new</span> <a class="code hl_class" href="classGWebCache_1_1GWebCacheClient.html">GWebCacheClient</a>(<span class="stringliteral">&quot;url&quot;</span>);</div>
 <div class="line">client.<a class="code hl_function" href="interfaceGWebCache_1_1IGWebCacheClient.html#a2e09f208ba543f8c3ffa4d0a1b812411">GetHostfile</a>(GnutellaNetwork.Gnutella2);</div>
-<div class="ttc" id="aclassGWebCache_1_1GWebCacheClient_html"><div class="ttname"><a href="classGWebCache_1_1GWebCacheClient.html">GWebCache.GWebCacheClient</a></div><div class="ttdef"><b>Definition</b> GWebCacheClient.cs:10</div></div>
+<div class="ttc" id="aclassGWebCache_1_1GWebCacheClient_html"><div class="ttname"><a href="classGWebCache_1_1GWebCacheClient.html">GWebCache.GWebCacheClient</a></div><div class="ttdoc">Concrete implementation of IGWebCacheClient</div><div class="ttdef"><b>Definition</b> GWebCacheClient.cs:13</div></div>
 <div class="ttc" id="ainterfaceGWebCache_1_1IGWebCacheClient_html"><div class="ttname"><a href="interfaceGWebCache_1_1IGWebCacheClient.html">GWebCache.IGWebCacheClient</a></div><div class="ttdoc">Client for interacting with a GWebCache server. Supports Version 1 and 2 of the protocol.</div><div class="ttdef"><b>Definition</b> IGWebCacheClient.cs:12</div></div>
 <div class="ttc" id="ainterfaceGWebCache_1_1IGWebCacheClient_html_a2e09f208ba543f8c3ffa4d0a1b812411"><div class="ttname"><a href="interfaceGWebCache_1_1IGWebCacheClient.html#a2e09f208ba543f8c3ffa4d0a1b812411">GWebCache.IGWebCacheClient.GetHostfile</a></div><div class="ttdeci">Result&lt; HostfileResponse &gt; GetHostfile(GnutellaNetwork? network=null)</div><div class="ttdoc">Retrieves a list of Gnutella Nodes from the webcache.</div></div>
 </div><!-- fragment --> <p>Result&lt;T&gt; </p><dl class="section see"><dt>See also</dt><dd>HostfileResponse, GnutellaNetwork, Get(GnutellaNetwork?), GnutellaNode</dd></dl>
@@ -377,7 +430,7 @@ Public Member Functions</h2></td></tr>
 <div class="line">client.<a class="code hl_function" href="interfaceGWebCache_1_1IGWebCacheClient.html#aff7ece2cce7a01ed6f06ab779de56d7f">Update</a>(updateRequest);</div>
 <div class="ttc" id="aclassGWebCache_1_1Models_1_1GWebCacheNode_html"><div class="ttname"><a href="classGWebCache_1_1Models_1_1GWebCacheNode.html">GWebCache.Models.GWebCacheNode</a></div><div class="ttdef"><b>Definition</b> GWebCacheNode.cs:4</div></div>
 <div class="ttc" id="aclassGWebCache_1_1Models_1_1GnutellaNode_html"><div class="ttname"><a href="classGWebCache_1_1Models_1_1GnutellaNode.html">GWebCache.Models.GnutellaNode</a></div><div class="ttdef"><b>Definition</b> GnutellaNode.cs:6</div></div>
-<div class="ttc" id="aclassGWebCache_1_1Requests_1_1UpdateRequest_html"><div class="ttname"><a href="classGWebCache_1_1Requests_1_1UpdateRequest.html">GWebCache.Requests.UpdateRequest</a></div><div class="ttdef"><b>Definition</b> UpdateRequest.cs:6</div></div>
+<div class="ttc" id="aclassGWebCache_1_1Requests_1_1UpdateRequest_html"><div class="ttname"><a href="classGWebCache_1_1Requests_1_1UpdateRequest.html">GWebCache.Requests.UpdateRequest</a></div><div class="ttdoc">Request model to update the webcache with a new gnutella node or a WebCache Url.</div><div class="ttdef"><b>Definition</b> UpdateRequest.cs:11</div></div>
 <div class="ttc" id="ainterfaceGWebCache_1_1IGWebCacheClient_html_aff7ece2cce7a01ed6f06ab779de56d7f"><div class="ttname"><a href="interfaceGWebCache_1_1IGWebCacheClient.html#aff7ece2cce7a01ed6f06ab779de56d7f">GWebCache.IGWebCacheClient.Update</a></div><div class="ttdeci">Result&lt; UpdateResponse &gt; Update(UpdateRequest updateRequest)</div><div class="ttdoc">Sends an Update request to the webcache. Indicating a new gnutella node, or webcache url or both.</div></div>
 </div><!-- fragment --> <p>UpdateResponse"
 &lt;seealso cref="Result{T}"/&gt;

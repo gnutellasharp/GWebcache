@@ -82,6 +82,9 @@ $(function() {
   <div class="headertitle"><div class="title">GWebCache.Requests.UpdateRequest Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Request model to update the webcache with a new gnutella node or a WebCache Url.  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for GWebCache.Requests.UpdateRequest:</div>
 <div class="dyncontent">
@@ -96,6 +99,7 @@ Inheritance diagram for GWebCache.Requests.UpdateRequest:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:accb5ea0a3aaeb969d1b24a9d9b29b1de" id="r_accb5ea0a3aaeb969d1b24a9d9b29b1de"><td class="memItemLeft" align="right" valign="top"><a id="accb5ea0a3aaeb969d1b24a9d9b29b1de" name="accb5ea0a3aaeb969d1b24a9d9b29b1de"></a>
 override bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsValidRequest</b> ()</td></tr>
+<tr class="memdesc:accb5ea0a3aaeb969d1b24a9d9b29b1de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Request is valid if either the GnutellaNode or GWebCacheNode is not null. If the GWebCacheNode is not null the Url must start with http. <br /></td></tr>
 <tr class="separator:accb5ea0a3aaeb969d1b24a9d9b29b1de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classGWebCache_1_1Requests_1_1GWebCacheRequest"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classGWebCache_1_1Requests_1_1GWebCacheRequest')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classGWebCache_1_1Requests_1_1GWebCacheRequest.html">GWebCache.Requests.GWebCacheRequest</a></td></tr>
 <tr class="memitem:aac00c911bd758bb7a03e40d98e88a879 inherit pub_methods_classGWebCache_1_1Requests_1_1GWebCacheRequest" id="r_aac00c911bd758bb7a03e40d98e88a879"><td class="memItemLeft" align="right" valign="top">
@@ -110,10 +114,37 @@ Properties</h2></td></tr>
 <tr class="memitem:a1db55bcd490649e56c818d1869065daa" id="r_a1db55bcd490649e56c818d1869065daa"><td class="memItemLeft" align="right" valign="top"><a id="a1db55bcd490649e56c818d1869065daa" name="a1db55bcd490649e56c818d1869065daa"></a>
 <a class="el" href="classGWebCache_1_1Models_1_1GWebCacheNode.html">GWebCacheNode</a>?&#160;</td><td class="memItemRight" valign="bottom"><b>GWebCacheNode</b><code> [get, set]</code></td></tr>
 <tr class="separator:a1db55bcd490649e56c818d1869065daa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e1533fc6ea6a571a286b0321e4c3f9c" id="r_a0e1533fc6ea6a571a286b0321e4c3f9c"><td class="memItemLeft" align="right" valign="top"><a id="a0e1533fc6ea6a571a286b0321e4c3f9c" name="a0e1533fc6ea6a571a286b0321e4c3f9c"></a>
-GnutellaNetwork?&#160;</td><td class="memItemRight" valign="bottom"><b>Network</b><code> [get, set]</code></td></tr>
+<tr class="memitem:a0e1533fc6ea6a571a286b0321e4c3f9c" id="r_a0e1533fc6ea6a571a286b0321e4c3f9c"><td class="memItemLeft" align="right" valign="top">GnutellaNetwork?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e1533fc6ea6a571a286b0321e4c3f9c">Network</a><code> [get, set]</code></td></tr>
 <tr class="separator:a0e1533fc6ea6a571a286b0321e4c3f9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Request model to update the webcache with a new gnutella node or a WebCache Url. </p>
+<p>GnutellaNode </p><dl class="section see"><dt>See also</dt><dd>GWebCacheNode</dd></dl>
+</div><h2 class="groupheader">Property Documentation</h2>
+<a id="a0e1533fc6ea6a571a286b0321e4c3f9c" name="a0e1533fc6ea6a571a286b0321e4c3f9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e1533fc6ea6a571a286b0321e4c3f9c">&#9670;&#160;</a></span>Network</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GnutellaNetwork? GWebCache.Requests.UpdateRequest.Network</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Indicating which GnutellaNetwork the Webcache or Gnutella node belongs to.</p>
+<p>Usually only necessary in case you're providing an update to a V2 cache.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>GWebCache/Requests/<b>UpdateRequest.cs</b></li>
 </ul>
