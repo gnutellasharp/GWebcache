@@ -7,11 +7,23 @@ using GWebCache.Requests;
 
 namespace GWebCache;
 
+/// <summary>
+/// Concrete implementation of <see cref="IGWebCacheClient"/>
+/// </summary>
 public class GWebCacheClient : IGWebCacheClient {
 	private readonly GWebCacheHttpClient gWebCacheHttpClient;
 	private readonly GWebCacheClientConfig gWebCacheClientConfig;
 	private readonly Uri _host;
 
+	/// <summary>
+	/// Constructor for the GWebCacheClient
+	/// </summary>
+	/// <param name="host">The url of the webcache in string format</param>
+	/// <param name="config">Optional configuration object</param>
+	/// <exception cref="ArgumentException">If the url can't be parsed an argument exception is thrown</exception>
+	/// <remarks>It's recommended that you use http even if the webcache supports https.</remarks>
+	/// <remarks>The constructor will invoke the default configuration if not specified <see cref="GWebCacheClientConfig"/></remarks>
+	/// <remarks>The constructor will also check if the webcache is a V2 webcache in case it's not explicitely provided in the configuration</remarks>
 	public GWebCacheClient(string host, GWebCacheClientConfig? config = null) {
 		if (!string.IsNullOrWhiteSpace(host) && Uri.TryCreate(host, new UriCreationOptions(), out Uri? uri)) {
 			this.gWebCacheClientConfig = config ?? GWebCacheClientConfig.Default;
@@ -19,9 +31,8 @@ public class GWebCacheClient : IGWebCacheClient {
 			_host = uri;
 
 			//Determine cache version if the parameter is filled in not applicable
-			if (this.gWebCacheClientConfig.IsV2 == null) { 
+			if (!this.gWebCacheClientConfig.IsV2.HasValue)
 				DetermineIfCacheIsV2();
-			}
 		} else {
 			throw new ArgumentException("Invalid host");
 		}
