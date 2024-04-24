@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['network_0',['Network',['../classGWebCache_1_1Requests_1_1UpdateRequest.html#a0e1533fc6ea6a571a286b0321e4c3f9c',1,'GWebCache::Requests::UpdateRequest']]]
+  ['clientname_0',['ClientName',['../classGWebCache_1_1Client_1_1GWebCacheClientConfig.html#aff065f0957fbf123422de6d3cf83506a',1,'GWebCache::Client::GWebCacheClientConfig']]]
 ];
