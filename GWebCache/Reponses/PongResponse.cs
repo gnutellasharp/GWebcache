@@ -5,14 +5,14 @@ public class PongResponse : GWebCacheResponse {
 	public string? CacheVersion { get; set; }
 	public string? SupportedNet { get; set; }
 
-	public override bool IsValidResponse(HttpResponseMessage? responseMessage) {
+	internal override bool IsValidResponse(HttpResponseMessage? responseMessage) {
 		if (!base.IsValidResponse(responseMessage))
 			return false;
 
 		return responseMessage!.ContentAsString().Contains("pong", StringComparison.InvariantCultureIgnoreCase);
 	}
 
-	public override bool IsValidV2Response(HttpResponseMessage? responseMessage) {
+	internal override bool IsValidV2Response(HttpResponseMessage? responseMessage) {
 		if (!IsValidResponse(responseMessage))
 			return false;
 
@@ -21,13 +21,13 @@ public class PongResponse : GWebCacheResponse {
 			&& fields[1].Equals("pong", StringComparison.InvariantCultureIgnoreCase);
 	}
 
-	public override void Parse(HttpResponseMessage response) {
+	internal override void Parse(HttpResponseMessage response) {
 		//Get the version of the cache v1 requests are typically -> "pong" "cache version"
 		CacheVersion = response.ContentAsString().Replace("pong", "", StringComparison.InvariantCultureIgnoreCase).Trim();
 	}
 
 
-	public override void ParseV2(HttpResponseMessage response) {
+	internal override void ParseV2(HttpResponseMessage response) {
 		string[] fields = response.SplitContentInFields();
 		CacheVersion = fields.Length > 2 ? fields[2] : "";
 		SupportedNet = fields.Length > 3 ? fields[3] : "";

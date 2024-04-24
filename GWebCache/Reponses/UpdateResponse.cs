@@ -5,14 +5,14 @@ namespace GWebCache.Reponses;
 public class UpdateResponse : GWebCacheResponse {
 	public string? Message { get; set; }
 
-	override public bool IsValidResponse(HttpResponseMessage? responseMessage) {
+	internal override bool IsValidResponse(HttpResponseMessage? responseMessage) {
 		if (!base.IsValidResponse(responseMessage))
 			return false;
 		string content = responseMessage!.ContentAsString();
 		return !content.Contains("error", StringComparison.InvariantCultureIgnoreCase);
 	}
 
-	override public bool IsValidV2Response(HttpResponseMessage? responseMessage) {
+	internal override bool IsValidV2Response(HttpResponseMessage? responseMessage) {
 		if (!IsValidResponse(responseMessage))
 			return false;
 
@@ -20,11 +20,11 @@ public class UpdateResponse : GWebCacheResponse {
 		return fields.Length >= 2 && fields[0].Equals("I", StringComparison.InvariantCultureIgnoreCase);
 	}
 
-	public override void Parse(HttpResponseMessage response) {
+	internal override void Parse(HttpResponseMessage response) {
 		Message = response?.ContentAsString() ?? "";
 	}
 
-	public override void ParseV2(HttpResponseMessage response) {
+	internal override void ParseV2(HttpResponseMessage response) {
 		string[] fields = response!.SplitContentInFields();
 		Message = fields.Length > 2? fields[2] : "OK";
 	}

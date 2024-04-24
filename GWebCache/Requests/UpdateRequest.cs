@@ -21,8 +21,8 @@ public class UpdateRequest : GWebCacheRequest{
 	/// Request is valid if either the GnutellaNode or GWebCacheNode is not null.
 	/// If the GWebCacheNode is not null the Url must start with http.
 	/// </summary>
-	public override bool IsValidRequest() {
-		bool result = GWebCacheNode != null || GWebCacheNode != null;
+	internal override bool IsValidRequest() {
+		bool result = GWebCacheNode != null || GnutellaNode != null;
 
 		if (GWebCacheNode != null) {
 			result  = result && GWebCacheNode.Url != null && GWebCacheNode.Url.Scheme.Equals(Uri.UriSchemeHttp.ToLower());

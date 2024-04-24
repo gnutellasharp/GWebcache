@@ -1,7 +1,9 @@
-﻿using GWebCache.ReponseProcessing;
+﻿namespace GWebCache.Requests;
 
-namespace GWebCache.Requests;
-
-public abstract class GWebCacheRequest : IRequestValidator {
-	public abstract bool IsValidRequest();
+/// <summary>
+/// Base class for all GWebCache requests.
+/// </summary>
+/// <see cref="IRequestValidator"/>
+public abstract class GWebCacheRequest {
+	internal abstract bool IsValidRequest();
 }

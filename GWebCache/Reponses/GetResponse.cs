@@ -8,7 +8,7 @@ public  class GetResponse : GWebCacheResponse {
 	public List<GnutellaNode> Nodes { get; set; } = [];
 	public List<GWebCacheNode> WebCacheNodes { get; set; } = [];
 
-	public override bool IsValidResponse(HttpResponseMessage? responseMessage) {
+	internal override bool IsValidResponse(HttpResponseMessage? responseMessage) {
 		if (!base.IsValidResponse(responseMessage))
 			return false;
 
@@ -17,18 +17,18 @@ public  class GetResponse : GWebCacheResponse {
 			|| content.StartsWith("i", StringComparison.InvariantCultureIgnoreCase);
 	}
 
-	public override bool IsValidV2Response(HttpResponseMessage? responseMessage) {
+	internal override bool IsValidV2Response(HttpResponseMessage? responseMessage) {
 		if(!base.IsValidV2Response(responseMessage))
 			return false;
 
 		return true;
 	}
 
-	public override void Parse(HttpResponseMessage response) {
+	internal override void Parse(HttpResponseMessage response) {
 		throw new NotImplementedException();
 	}
 
-	public override void ParseV2(HttpResponseMessage response) {
+	internal override void ParseV2(HttpResponseMessage response) {
 		string[] lines = response.ContentAsString().Split("\n").Select(l => l.Trim()).Where(l => !string.IsNullOrEmpty(l)).ToArray();
 		foreach(string line in lines) {
 			string[] fields = [..line.Split("|")];

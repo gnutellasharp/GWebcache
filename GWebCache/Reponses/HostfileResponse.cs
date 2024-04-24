@@ -6,7 +6,7 @@ namespace GWebCache.Reponses;
 public class HostfileResponse : GWebCacheResponse {
 	public List<GnutellaNode> HostfileLines { get; set; } = new List<GnutellaNode>();
 
-	public override bool IsValidResponse(HttpResponseMessage? responseMessage) {
+	internal override bool IsValidResponse(HttpResponseMessage? responseMessage) {
 		if (!base.IsValidResponse(responseMessage))
 			return false;
 
@@ -15,7 +15,7 @@ public class HostfileResponse : GWebCacheResponse {
 		return content.Contains("error", StringComparison.InvariantCultureIgnoreCase);
 	}
 
-	public override void Parse(HttpResponseMessage response) {
+	internal override void Parse(HttpResponseMessage response) {
 		string content = response.Content?.ReadAsStringAsync().Result ?? "";
 		string[] lines = content.Split("\n").Select(l => l.Trim()).Where(l => !string.IsNullOrEmpty(l)).ToArray();
 
@@ -27,7 +27,7 @@ public class HostfileResponse : GWebCacheResponse {
 		}
 	}
 
-	public override void ParseV2(HttpResponseMessage response) {
+	internal override void ParseV2(HttpResponseMessage response) {
 		throw new NotImplementedException();
 	}
 }

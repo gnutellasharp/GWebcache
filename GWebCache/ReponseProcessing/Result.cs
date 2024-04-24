@@ -8,14 +8,14 @@ public class Result<T> where T : GWebCacheResponse {
 	public string? ErrorMessage { get; set; }
 	public T? ResultObject { get; set; }
 
-	public Result<T> WithException(string exceptionMessage) {
+	internal Result<T> WithException(string exceptionMessage) {
 		WasSuccessful = false;
 		ErrorMessage = exceptionMessage;
 		return this;
 	}
-	 
 
-	public Result<T> Execute(HttpResponseMessage? responseMessage) {
+
+	internal Result<T> Execute(HttpResponseMessage? responseMessage) {
 		ResultObject = (T?)Activator.CreateInstance(typeof(T));
 		WasSuccessful = ResultObject?.IsValidResponse(responseMessage) ?? false;
 		IsV2Response = WasSuccessful && ResultObject!.IsValidV2Response(responseMessage);
@@ -31,13 +31,5 @@ public class Result<T> where T : GWebCacheResponse {
 			ResultObject?.Parse(responseMessage!);
 
 		return this;
-	}
-
-	/// <summary>
-	/// Overidable method for custom response validation
-	/// </summary>
-	/// <returns></returns>
-	public virtual bool IsValidResponse() {
-		return true;
 	}
 }

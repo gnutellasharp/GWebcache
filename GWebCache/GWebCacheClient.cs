@@ -24,6 +24,7 @@ public class GWebCacheClient : IGWebCacheClient {
 	/// <remarks>It's recommended that you use http even if the webcache supports https.</remarks>
 	/// <remarks>The constructor will invoke the default configuration if not specified <see cref="GWebCacheClientConfig"/></remarks>
 	/// <remarks>The constructor will also check if the webcache is a V2 webcache in case it's not explicitely provided in the configuration</remarks>
+	/// <see cref="DetermineIfCacheIsV2"/>
 	public GWebCacheClient(string host, GWebCacheClientConfig? config = null) {
 		if (!string.IsNullOrWhiteSpace(host) && Uri.TryCreate(host, new UriCreationOptions(), out Uri? uri)) {
 			this.gWebCacheClientConfig = config ?? GWebCacheClientConfig.Default;

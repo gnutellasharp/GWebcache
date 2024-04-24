@@ -2,12 +2,16 @@
 using GWebCache.ReponseProcessing;
 namespace GWebCache.Reponses;
 
-public abstract class GWebCacheResponse : IParseable<GWebCacheResponse>, IResponseValidator {
-	public virtual bool IsValidResponse(HttpResponseMessage? responseMessage) {
+/// <summary>
+/// Base class for all GWebCache responses.
+/// </summary>
+public abstract class GWebCacheResponse{
+
+	internal virtual bool IsValidResponse(HttpResponseMessage? responseMessage) {
 		return responseMessage != null && responseMessage.IsSuccessStatusCode && responseMessage.Content != null;
 	}
 
-	public virtual bool IsValidV2Response(HttpResponseMessage? responseMessage) {
+	internal virtual bool IsValidV2Response(HttpResponseMessage? responseMessage) {
 		if (!IsValidResponse(responseMessage)) 
 			return false;
 
@@ -15,6 +19,6 @@ public abstract class GWebCacheResponse : IParseable<GWebCacheResponse>, IRespon
 		return !string.IsNullOrEmpty(responseMessage!.ContentAsString().Trim());
 	}
 
-	public abstract void Parse(HttpResponseMessage response);
-	public abstract void ParseV2(HttpResponseMessage response);
+	internal abstract void Parse(HttpResponseMessage response);
+	internal abstract void ParseV2(HttpResponseMessage response);
 }

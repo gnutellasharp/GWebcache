@@ -7,14 +7,14 @@ public class StatFileResponse : GWebCacheResponse {
 	public int? UpdateRequestsInLastHour { get; set; }
 
 
-	public override bool IsValidResponse(HttpResponseMessage? responseMessage) {
+	internal override bool IsValidResponse(HttpResponseMessage? responseMessage) {
 		if (!base.IsValidResponse(responseMessage))
 			return false;
 
 		string[] lines = responseMessage!.ContentAsString().Split("\n").Select(l => l.Trim()).Where(l => !string.IsNullOrEmpty(l)).ToArray();
 		return lines.Length < 2 || lines.Any(line => !int.TryParse(line, out int _));
 	}
-	public override void Parse(HttpResponseMessage response) {
+	internal override void Parse(HttpResponseMessage response) {
 		string[] lines = response.ContentAsString().Split("\n").Select(l => l.Trim()).Where(l => !string.IsNullOrEmpty(l)).ToArray();
 		TotalNumberOfRequests = int.Parse(lines[0]);
 		RequestsInLastHour = int.Parse(lines[1]);
@@ -23,7 +23,7 @@ public class StatFileResponse : GWebCacheResponse {
 		}
 	}
 
-	public override void ParseV2(HttpResponseMessage response) {
+	internal override void ParseV2(HttpResponseMessage response) {
 		throw new NotImplementedException();
 	}
 }
