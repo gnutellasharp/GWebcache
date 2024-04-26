@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['ping_0',['Ping',['../d2/df6/classGWebCache_1_1GWebCacheClient.html#afd09036d47440c034b19eccee246efb1',1,'GWebCache.GWebCacheClient.Ping()'],['../d5/d77/interfaceGWebCache_1_1IGWebCacheClient.html#af9968ee75824eb20eb55eb666b57d73e',1,'GWebCache.IGWebCacheClient.Ping()']]],
-  ['pongresponse_1',['PongResponse',['../d0/d39/classGWebCache_1_1Reponses_1_1PongResponse.html',1,'GWebCache::Reponses']]]
+  ['igwebcacheclient_0',['IGWebCacheClient',['../d5/d77/interfaceGWebCache_1_1IGWebCacheClient.html',1,'GWebCache']]],
+  ['important_20models_1',['Important models',['../d3/dcb/md_Examples.html#autotoc_md3',1,'']]],
+  ['isv2_2',['IsV2',['../dd/dde/classGWebCache_1_1Client_1_1GWebCacheClientConfig.html#aeabd8743ab21d1f88286ccd79155bfdd',1,'GWebCache::Client::GWebCacheClientConfig']]]
 ];
