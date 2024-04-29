@@ -40,7 +40,7 @@
       <tab type="filelist" visible="yes" title="" intro=""/>
       <tab type="globals" visible="yes" title="" intro=""/>
     </tab>
-	<tab type="user" visible="yes" title="Examples" url="@ref md__examples"/>
+	<tab type="user" visible="yes" title="Examples" url="@ref Examples.md"/>
     <tab type="examples" visible="yes" title="" intro="" />
   </navindex>
 
