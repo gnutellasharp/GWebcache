@@ -7,7 +7,7 @@ var searchData=
   ['geturlfile_4',['GetUrlFile',['../d2/df6/classGWebCache_1_1GWebCacheClient.html#a770b5ff9a11a83803226b4bb1b19c37d',1,'GWebCache.GWebCacheClient.GetUrlFile()'],['../d5/d77/interfaceGWebCache_1_1IGWebCacheClient.html#abc771d1ab8028f7a55393de928264cc4',1,'GWebCache.IGWebCacheClient.GetUrlFile()']]],
   ['gnutellanode_5',['GnutellaNode',['../d6/dd8/classGWebCache_1_1Models_1_1GnutellaNode.html',1,'GWebCache::Models']]],
   ['gwebcache_6',['GWebCache',['../db/dea/namespaceGWebCache.html',1,'']]],
-  ['gwebcache_20wip_7',['GWebcache WIP',['../index.html',1,'']]],
+  ['gwebcache_7',['GWebcache',['../index.html',1,'']]],
   ['gwebcache_3a_3aclient_8',['Client',['../d8/de1/namespaceGWebCache_1_1Client.html',1,'GWebCache']]],
   ['gwebcache_3a_3aextensions_9',['Extensions',['../d4/d9e/namespaceGWebCache_1_1Extensions.html',1,'GWebCache']]],
   ['gwebcache_3a_3amodels_10',['Models',['../d7/d47/namespaceGWebCache_1_1Models.html',1,'GWebCache']]],
