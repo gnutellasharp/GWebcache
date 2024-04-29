@@ -4,7 +4,36 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PackageId>GnutellaSharp.GWebcache</PackageId>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>GnutellaSharp GWebcache</Title>
+    <Version>1.0.0-beta</Version>
+    <Authors>GnutellaSharp</Authors>
+    <Company>GnutellaSharp</Company>
+    <Description>A client for interacting with a GWebcache. Compatible with both the V1 and V2 specifications.</Description>
+    <RepositoryUrl>https://github.com/gnutellasharp/GWebcache</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageIcon>logo.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>gnutella;peerdiscovery;gwebcache;p2p;initialpeerproblem</PackageTags>
+    <PackAsTool>False</PackAsTool>
+    <AssemblyVersion></AssemblyVersion>
+    <PackageProjectUrl>https://gnutellasharp.github.io/GWebcache/</PackageProjectUrl>
+    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+    <IncludeSymbols>False</IncludeSymbols>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\static_files\logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="8.0.3" />
