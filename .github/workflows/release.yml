@@ -1,8 +1,8 @@
 name: Action to build and publish the project as a nuget package to github package registry
 
 on:
-  push:
-    branches: [ "main" ]
+  release:
+    types: [published]
       
 jobs:
   build:
