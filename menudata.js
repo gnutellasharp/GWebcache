@@ -32,4 +32,4 @@ var menudata={children:[
 {text:"All",url:"functions.html"},
 {text:"Functions",url:"functions_func.html"},
 {text:"Properties",url:"functions_prop.html"}]}]},
-{text:"Examples",url:"@ref md__examples"}]}
+{text:"Examples",url:"d3/dcb/md_Examples.html"}]}
