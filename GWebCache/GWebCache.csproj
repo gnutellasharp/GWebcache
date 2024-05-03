@@ -7,7 +7,7 @@
     <PackageId>GnutellaSharp.GWebcache</PackageId>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>GnutellaSharp GWebcache</Title>
-    <Version>1.0.0-beta</Version>
+    <Version>1.0.0-beta1</Version>
     <Authors>GnutellaSharp</Authors>
     <Company>GnutellaSharp</Company>
     <Description>A client for interacting with a GWebcache. Compatible with both the V1 and V2 specifications.</Description>
