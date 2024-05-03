@@ -4,7 +4,7 @@ using GWebCache.Extensions;
 namespace GWebCache.Reponses;
 
 public class HostfileResponse : GWebCacheResponse {
-	public List<GnutellaNode> HostfileLines { get; set; } = new List<GnutellaNode>();
+	public List<GnutellaNode> GnutellaNodes { get; set; } = new List<GnutellaNode>();
 
 	internal override bool IsValidResponse(HttpResponseMessage? responseMessage) {
 		if (!base.IsValidResponse(responseMessage))
