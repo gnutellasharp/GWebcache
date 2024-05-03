@@ -1,0 +1,26 @@
+name: Action to build and publish the project as a nuget package to github package registry
+
+on:
+  release:
+    types: [published]
+      
+jobs:
+  build:
+    runs-on: windows-latest 
+
+    steps:
+    #Install and calculate the new version with GitVersion  
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build -c Release --no-restore
+    - name: Pack nugets
+      run: dotnet pack GWebCache/GWebCache.csproj -c Release --no-build --output . 
+    - name: Push to NuGet
+      run: dotnet nuget push "*.nupkg" --skip-duplicate --api-key ${{secrets.nuget_api_key}} --source https://api.nuget.org/v3/index.json
