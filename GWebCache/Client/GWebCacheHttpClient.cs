@@ -31,7 +31,7 @@ class GWebCacheHttpClient {
 	/// <summary>
 	/// Preforms a get call with the given <paramref name="uri"/> and adds the default parameters if they don't exist.
 	/// </summary>
-	/// <returns>The HttpResponse resulting from the get call.</returns>
+	/// <returns>The <see cref="HttpResponseMessage"/> resulting from the get call.</returns>
 	/// <see cref="AddDefaultParamsIfNotExist(Uri)"/>
 	internal async Task<HttpResponseMessage?> GetAsync(Uri uri) {
 		Uri url = AddDefaultParamsIfNotExist(uri);

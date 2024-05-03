@@ -4,10 +4,28 @@ using System.Net;
 
 namespace GWebCache.Reponses;
 
+/// <summary>
+/// A response class containing the Nodes and Webcache valid for V2 compliant webcaches.
+/// </summary>
+/// <remarks>This is basically the combination of a <see cref="HostfileResponse"/> and <see cref="UrlFileResponse"/></remarks>
 public  class GetResponse : GWebCacheResponse {
+
+	/// <summary>
+	/// List of know gnutella nodes on the network
+	/// </summary>
 	public List<GnutellaNode> Nodes { get; set; } = [];
+
+	/// <summary>
+	/// List of other webcaches
+	/// </summary>
 	public List<GWebCacheNode> WebCacheNodes { get; set; } = [];
 
+	/// <summary>
+	/// A message is valid if it complies with <see cref="GWebCacheResponse.IsValidResponse(HttpResponseMessage?)"/> 
+	/// and the content of the body can't start with error or i (indicating an warning or an error)
+	/// </summary>
+	/// <param name="responseMessage">The HTTP response returned from the request</param>
+	/// <returns>Boolean indicating if the webresponse can be parsed</returns>
 	internal override bool IsValidResponse(HttpResponseMessage? responseMessage) {
 		if (!base.IsValidResponse(responseMessage))
 			return false;
@@ -17,6 +35,9 @@ public  class GetResponse : GWebCacheResponse {
 			|| content.StartsWith("i", StringComparison.InvariantCultureIgnoreCase);
 	}
 
+	/// <summary>
+	/// Check if message complies with <see cref="GWebCacheResponse.IsValidV2Response(HttpResponseMessage?)"/>
+	/// </summary>
 	internal override bool IsValidV2Response(HttpResponseMessage? responseMessage) {
 		if(!base.IsValidV2Response(responseMessage))
 			return false;
@@ -24,10 +45,19 @@ public  class GetResponse : GWebCacheResponse {
 		return true;
 	}
 
+	/// <summary>
+	/// Not relevant, Get Responses are only returned by webcaches following the V2 specification
+	/// </summary>
+	/// <param name="responseMessage">The HTTP response returned from the request</param>
+	/// <exception cref="NotImplementedException">Will always be thrown</exception>
 	internal override void Parse(HttpResponseMessage response) {
 		throw new NotImplementedException();
 	}
 
+	/// <summary>
+	/// Parses the HTTP Response message into a get response.
+	/// </summary>
+	/// <param name="response">The HTTP response returned from the request</param>
 	internal override void ParseV2(HttpResponseMessage response) {
 		string[] lines = response.ContentAsString().Split("\n").Select(l => l.Trim()).Where(l => !string.IsNullOrEmpty(l)).ToArray();
 		foreach(string line in lines) {
@@ -36,6 +66,7 @@ public  class GetResponse : GWebCacheResponse {
 			if (fields.Length < 2)
 				continue;
 
+			//if the line starts with u it's a node, fields are | seperated
 			if (fields[0].Equals("u",StringComparison.InvariantCultureIgnoreCase) 
 				&& Uri.TryCreate(fields[1], UriKind.Absolute, out Uri? uri)) {
 				GWebCacheNode webcache = new GWebCacheNode(uri);

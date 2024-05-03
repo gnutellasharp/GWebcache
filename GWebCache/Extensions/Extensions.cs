@@ -7,7 +7,7 @@ namespace GWebCache.Extensions;
 /// </summary>
 static class Extensions {
 	/// <summary>
-	/// Gets the Content from an Http Response as a string and splits it up with | as a seperator
+	/// Gets the Content from an HTTP Response as a string and splits it up with | as a seperator
 	/// </summary>
 	/// <see cref="ContentAsString(HttpResponseMessage)"/>
 	internal static string[] SplitContentInFields(this HttpResponseMessage response) {
