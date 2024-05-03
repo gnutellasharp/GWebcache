@@ -1,7 +1,7 @@
 var searchData=
 [
   ['get_0',['Get',['../d2/df6/classGWebCache_1_1GWebCacheClient.html#a93f6eae9e5ad0edd6c63bd1b858cd0d1',1,'GWebCache.GWebCacheClient.Get()'],['../d5/d77/interfaceGWebCache_1_1IGWebCacheClient.html#a11ff8192bc81774dfb02f48a5faf5aae',1,'GWebCache.IGWebCacheClient.Get()']]],
-  ['gethashcode_1',['GetHashCode',['../d6/dd8/classGWebCache_1_1Models_1_1GnutellaNode.html#afa6472acd9d07ad1ac3a8d6d26308677',1,'GWebCache::Models::GnutellaNode']]],
+  ['gethashcode_1',['GetHashCode',['../d6/dd8/classGWebCache_1_1Models_1_1GnutellaNode.html#afa6472acd9d07ad1ac3a8d6d26308677',1,'GWebCache.Models.GnutellaNode.GetHashCode()'],['../d1/da5/classGWebCache_1_1Models_1_1GWebCacheNode.html#a1de25bca333eaf76a05827090d914211',1,'GWebCache.Models.GWebCacheNode.GetHashCode()']]],
   ['gethostfile_2',['GetHostfile',['../d2/df6/classGWebCache_1_1GWebCacheClient.html#ad90bb69cd91b04a6f5a8a9c7ecd89103',1,'GWebCache.GWebCacheClient.GetHostfile()'],['../d5/d77/interfaceGWebCache_1_1IGWebCacheClient.html#a2e09f208ba543f8c3ffa4d0a1b812411',1,'GWebCache.IGWebCacheClient.GetHostfile()']]],
   ['getresponse_3',['GetResponse',['../d0/df5/classGWebCache_1_1Reponses_1_1GetResponse.html',1,'GWebCache::Reponses']]],
   ['getstats_4',['GetStats',['../d2/df6/classGWebCache_1_1GWebCacheClient.html#a138ed7c7bcd38cab6cf0ce6b1553c493',1,'GWebCache.GWebCacheClient.GetStats()'],['../d5/d77/interfaceGWebCache_1_1IGWebCacheClient.html#a187d05747bad4bd99eac1cda99db29ce',1,'GWebCache.IGWebCacheClient.GetStats()']]],
@@ -20,7 +20,7 @@ var searchData=
   ['gwebcacheclient_17',['GWebCacheClient',['../d2/df6/classGWebCache_1_1GWebCacheClient.html',1,'GWebCache.GWebCacheClient'],['../d2/df6/classGWebCache_1_1GWebCacheClient.html#a4bcc7193d784825a7505f652fd2c85eb',1,'GWebCache.GWebCacheClient.GWebCacheClient()']]],
   ['gwebcacheclientconfig_18',['GWebCacheClientConfig',['../dd/dde/classGWebCache_1_1Client_1_1GWebCacheClientConfig.html',1,'GWebCache::Client']]],
   ['gwebcachehttpclient_19',['GWebCacheHttpClient',['../dc/daa/classGWebCache_1_1Client_1_1GWebCacheHttpClient.html',1,'GWebCache::Client']]],
-  ['gwebcachenode_20',['GWebCacheNode',['../d1/da5/classGWebCache_1_1Models_1_1GWebCacheNode.html',1,'GWebCache::Models']]],
+  ['gwebcachenode_20',['GWebCacheNode',['../d1/da5/classGWebCache_1_1Models_1_1GWebCacheNode.html',1,'GWebCache.Models.GWebCacheNode'],['../d1/da5/classGWebCache_1_1Models_1_1GWebCacheNode.html#abf7522de8c32caae5545904c696ab3c6',1,'GWebCache.Models.GWebCacheNode.GWebCacheNode(string url)'],['../d1/da5/classGWebCache_1_1Models_1_1GWebCacheNode.html#abab9b9f063235fc3aab9e82884ba07fd',1,'GWebCache.Models.GWebCacheNode.GWebCacheNode(Uri uri)']]],
   ['gwebcacherequest_21',['GWebCacheRequest',['../db/dc4/classGWebCache_1_1Requests_1_1GWebCacheRequest.html',1,'GWebCache::Requests']]],
   ['gwebcacheresponse_22',['GWebCacheResponse',['../df/deb/classGWebCache_1_1Reponses_1_1GWebCacheResponse.html',1,'GWebCache::Reponses']]],
   ['gwebcachetest_23',['GWebCacheTest',['../d6/da3/namespaceGWebCacheTest.html',1,'']]]
