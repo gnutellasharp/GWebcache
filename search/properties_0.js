@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['clientname_0',['ClientName',['../dd/dde/classGWebCache_1_1Client_1_1GWebCacheClientConfig.html#aff065f0957fbf123422de6d3cf83506a',1,'GWebCache::Client::GWebCacheClientConfig']]]
+  ['activesince_0',['ActiveSince',['../d6/dd8/classGWebCache_1_1Models_1_1GnutellaNode.html#a4f5450afb82e4fc02fa69bf9a9a70cb2',1,'GWebCache::Models::GnutellaNode']]]
 ];

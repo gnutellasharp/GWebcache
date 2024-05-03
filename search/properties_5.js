@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['version_0',['Version',['../dd/dde/classGWebCache_1_1Client_1_1GWebCacheClientConfig.html#a5208ed6bfdb6dd9f625746c8bb62d708',1,'GWebCache::Client::GWebCacheClientConfig']]]
+  ['network_0',['Network',['../db/ded/classGWebCache_1_1Requests_1_1UpdateRequest.html#a0e1533fc6ea6a571a286b0321e4c3f9c',1,'GWebCache::Requests::UpdateRequest']]]
 ];

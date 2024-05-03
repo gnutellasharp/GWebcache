@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['update_0',['Update',['../d2/df6/classGWebCache_1_1GWebCacheClient.html#ac195f0a27eb5895f5c157315ae297d75',1,'GWebCache.GWebCacheClient.Update()'],['../d5/d77/interfaceGWebCache_1_1IGWebCacheClient.html#aff7ece2cce7a01ed6f06ab779de56d7f',1,'GWebCache.IGWebCacheClient.Update()']]]
+  ['ping_0',['Ping',['../d2/df6/classGWebCache_1_1GWebCacheClient.html#afd09036d47440c034b19eccee246efb1',1,'GWebCache.GWebCacheClient.Ping()'],['../d5/d77/interfaceGWebCache_1_1IGWebCacheClient.html#af9968ee75824eb20eb55eb666b57d73e',1,'GWebCache.IGWebCacheClient.Ping()']]]
 ];
