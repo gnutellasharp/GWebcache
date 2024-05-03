@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['wassuccessful_0',['WasSuccessful',['../d0/d9d/classGWebCache_1_1ReponseProcessing_1_1Result.html#ab4c28358fd3743e959bde73487463c57',1,'GWebCache::ReponseProcessing::Result']]]
+  ['version_0',['Version',['../dd/dde/classGWebCache_1_1Client_1_1GWebCacheClientConfig.html#a5208ed6bfdb6dd9f625746c8bb62d708',1,'GWebCache::Client::GWebCacheClientConfig']]]
 ];
