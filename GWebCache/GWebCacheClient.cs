@@ -4,6 +4,7 @@ using GWebCache.Models.Enums;
 using GWebCache.ReponseProcessing;
 using GWebCache.Reponses;
 using GWebCache.Requests;
+using System.Web;
 
 namespace GWebCache;
 
@@ -101,7 +102,7 @@ public class GWebCacheClient : IGWebCacheClient {
 			queryDict.Add("net", networkName);
 
 		if (updateRequest.GnutellaNode != null) 
-			queryDict.Add("ip", updateRequest.GnutellaNode.ToString());
+			queryDict.Add("ip", HttpUtility.UrlEncode(updateRequest.GnutellaNode.ToString()));
 		
 		
 		if (updateRequest.GWebCacheNode != null) 

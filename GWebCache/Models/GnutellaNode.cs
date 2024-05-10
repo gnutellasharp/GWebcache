@@ -11,7 +11,7 @@ public class GnutellaNode {
 	/// <summary>
 	/// The ip adress of the node
 	/// </summary>
-	public IPAddress? IPAddress { get; set; }
+	public IPAddress IPAddress { get; set; }
 
 	/// <summary>
 	/// Listening port of the node
@@ -30,9 +30,15 @@ public class GnutellaNode {
 	/// <param name="ipAddress">string representation of the IP</param>
 	/// <param name="port">Listening port of the node</param>
 	public GnutellaNode(string ipAddress, int port) {
-		_ = IPAddress.TryParse(ipAddress, out IPAddress? ip);
-		IPAddress = ip;
-		Port = port;
+		if (port <= 0)
+			throw new ArgumentException("Port can't be negative");
+
+		bool parsed = IPAddress.TryParse(ipAddress, out IPAddress? ip);
+		if (!parsed || ip == null)
+			throw new ArgumentException("Invalid IP address");
+
+		this.IPAddress = ip;
+		this.Port = port;
 	}
 
 	/// <summary>
@@ -41,6 +47,9 @@ public class GnutellaNode {
 	/// <param name="ipAddress">IPaddress of the node</param>
 	/// <param name="port">Listening port of the node</param>
 	public GnutellaNode(IPAddress IPAddress, int port) {
+		if (port <= 0)
+			throw new ArgumentException("Port can't be negative");
+
 		this.IPAddress = IPAddress;
 		Port = port;
 	}
@@ -50,7 +59,7 @@ public class GnutellaNode {
 	/// </summary>
 	/// <remarks>The reason for the url encoding is that we can then immeaditely send it on to the webcache</remarks>
 	override public string ToString() {
-		return HttpUtility.UrlEncode($"{IPAddress}:{Port}");
+		return $"{IPAddress}:{Port}";
 	}
 
 	/// <summary>
@@ -59,7 +68,7 @@ public class GnutellaNode {
 	/// <returns>An indication if two nodes are equal</returns>
 	override public bool Equals(object? obj) {
 		if (obj != null && obj is GnutellaNode node)
-			return node.IPAddress == IPAddress && node.Port == Port;
+			return node.IPAddress!.Equals(IPAddress) && node.Port == Port;
 
 		return false;
 	}

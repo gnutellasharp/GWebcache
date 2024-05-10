@@ -80,7 +80,7 @@ public  class GetResponse : GWebCacheResponse {
 				string[] nodeParts = fields[1].Split(':');
 				if (nodeParts.Length < 2 || 
 					!IPAddress.TryParse(nodeParts[0], out IPAddress? iPAddress) || 
-					!int.TryParse(nodeParts[1],out int port))
+					!int.TryParse(nodeParts[1],out int port) || port<=0)
 					continue;
 
 				GnutellaNode node = new(iPAddress, port);

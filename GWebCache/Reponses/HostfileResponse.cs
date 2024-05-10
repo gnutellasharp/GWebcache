@@ -1,5 +1,6 @@
 ﻿using GWebCache.Models;
 using GWebCache.Extensions;
+using System.Net;
 
 namespace GWebCache.Reponses;
 
@@ -42,6 +43,9 @@ public class HostfileResponse : GWebCacheResponse {
 		foreach (string line in lines) {
 			string[] parts = line.Split(":");
 			if (parts.Length == 2) {
+				if (!IPAddress.TryParse(parts[0], out IPAddress? ip) || !int.TryParse(parts[1], out int port) || port < 0)
+					continue;
+
 				GnutellaNodes.Add(new GnutellaNode(parts[0], int.Parse(parts[1])));
 			}
 		}
