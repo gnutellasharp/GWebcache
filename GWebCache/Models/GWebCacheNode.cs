@@ -21,7 +21,9 @@ public class GWebCacheNode {
 	/// </summary>
 	/// <param name="url">string representation of the url</param>
 	public GWebCacheNode(string url) {
-		Uri.TryCreate(url, UriKind.Absolute, out Uri? uri);
+		if (!Uri.TryCreate(url, UriKind.Absolute, out Uri? uri))
+			throw new ArgumentException($"{url} is not a valid url");
+
 		this.Url = uri;
 	}
 
@@ -38,7 +40,7 @@ public class GWebCacheNode {
 	/// </summary>
 	/// <returns>UrlEncoded Url of the webcache</returns>
 	public override string ToString() {
-		return HttpUtility.UrlEncode(Url?.ToString() ?? "");
+		return Url?.ToString() ?? "";
 	}
 
 	/// <summary>

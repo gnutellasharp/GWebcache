@@ -1,6 +1,6 @@
 using GWebCache.Extensions;
 
-namespace GWebCache.Test;
+namespace GWebCache.Test.Models;
 [TestClass]
 public class ExtensionsTest {
 

@@ -1,8 +1,7 @@
 ﻿using GWebCache.Models;
 using System.Net;
-using System.Xml.Linq;
 
-namespace GWebCache.Test;
+namespace GWebCache.Test.Models;
 
 [TestClass]
 public class GnutellaNodeTests {

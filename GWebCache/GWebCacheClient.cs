@@ -106,7 +106,7 @@ public class GWebCacheClient : IGWebCacheClient {
 		
 		
 		if (updateRequest.GWebCacheNode != null) 
-			queryDict.Add("url", updateRequest.GWebCacheNode.ToString());
+			queryDict.Add("url", HttpUtility.UrlEncode(updateRequest.GWebCacheNode.ToString()));
 
 		return PreformGetWithQueryDict<UpdateResponse>(queryDict);
 	}

@@ -29,7 +29,10 @@ public class UrlFileResponse : GWebCacheResponse {
 	/// <param name="response">The HTTP response from the server</param>
 	internal override void Parse(HttpResponseMessage response) {
 		foreach(string url in GetUrlsFromResponse(response)) {
-			WebCaches.Add(new GWebCacheNode(url));
+			if (!Uri.TryCreate(url, UriKind.Absolute, out Uri? uri))
+				continue;
+
+			WebCaches.Add(new GWebCacheNode(uri));
 		}
 	}
 

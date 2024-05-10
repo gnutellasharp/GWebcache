@@ -69,7 +69,7 @@ public  class GetResponse : GWebCacheResponse {
 			//if the line starts with u it's a node, fields are | seperated
 			if (fields[0].Equals("u",StringComparison.InvariantCultureIgnoreCase) 
 				&& Uri.TryCreate(fields[1], UriKind.Absolute, out Uri? uri)) {
-				GWebCacheNode webcache = new GWebCacheNode(uri);
+				GWebCacheNode webcache = new(uri);
 
 				if (fields.Length >= 3 && double.TryParse(fields[2], out double seconds))
 					webcache.ActiveSince = TimeSpan.FromSeconds(seconds);
