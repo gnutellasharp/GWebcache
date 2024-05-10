@@ -1,6 +1,6 @@
 # GWebcache
 ![NuGet Downloads](https://img.shields.io/nuget/dt/GnutellaSharp.GWebcache) ![GitHub Release](https://img.shields.io/github/v/release/GnutellaSharp/GWebcache?include_prereleases)
-
+![Build Succeeding](https://github.com/gnutellasharp/GWebcache/actions/workflows/build-testing.yml/badge.svg)
 
 C# library and nuget package to interact with a Gnutella Webcache
 
