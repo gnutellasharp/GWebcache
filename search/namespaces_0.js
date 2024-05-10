@@ -9,6 +9,7 @@ var searchData=
   ['gwebcache_3a_3areponses_6',['Reponses',['../d1/d02/namespaceGWebCache_1_1Reponses.html',1,'GWebCache']]],
   ['gwebcache_3a_3arequests_7',['Requests',['../db/df8/namespaceGWebCache_1_1Requests.html',1,'GWebCache']]],
   ['gwebcache_3a_3atest_8',['Test',['../d5/d23/namespaceGWebCache_1_1Test.html',1,'GWebCache']]],
-  ['gwebcache_3a_3atest_3a_3amodels_9',['Models',['../d8/de4/namespaceGWebCache_1_1Test_1_1Models.html',1,'GWebCache::Test']]],
-  ['gwebcachetest_10',['GWebCacheTest',['../d6/da3/namespaceGWebCacheTest.html',1,'']]]
+  ['gwebcache_3a_3atest_3a_3aclients_9',['Clients',['../dd/d97/namespaceGWebCache_1_1Test_1_1Clients.html',1,'GWebCache::Test']]],
+  ['gwebcache_3a_3atest_3a_3amodels_10',['Models',['../d8/de4/namespaceGWebCache_1_1Test_1_1Models.html',1,'GWebCache::Test']]],
+  ['gwebcachetest_11',['GWebCacheTest',['../d6/da3/namespaceGWebCacheTest.html',1,'']]]
 ];
