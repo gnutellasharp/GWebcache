@@ -33,11 +33,6 @@ public class GWebCacheHttpClientTests {
 	}
 
 	[TestMethod]
-	public void FailTest() {
-		Assert.Fail();
-	}
-
-	[TestMethod]
 	public void TestThatThereIsQueryParameters() {
 		SetupGenericCalls();
 		client.GetAsync("http://test.com").Wait();
