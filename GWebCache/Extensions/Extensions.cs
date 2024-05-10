@@ -30,11 +30,11 @@ static class Extensions {
 	/// <param name="queryParams">A dictionary containing the query parameters as key value pairs</param>
 	/// <returns>A url with the query parameters appended</returns>
 	/// <remarks>If the queryparameter is already part of the uri it will not add it a second time.</remarks>
-	internal static string GetUrlWithQuery(this Uri uri, Dictionary<string, string> queryParams) {
+	internal static string GetUrlWithQuery(this Uri uri, Dictionary<string, object> queryParams) {
 		Dictionary<string, string?> parameters = QueryHelpers.ParseQuery(uri.Query).ToDictionary(x => x.Key, x => x.Value.First());
-		foreach (KeyValuePair<string, string> param in queryParams) {
+		foreach (KeyValuePair<string, object> param in queryParams) {
 			if (!parameters.ContainsKey(param.Key)) {
-				parameters.Add(param.Key, param.Value);
+				parameters.Add(param.Key, param.Value.ToString());
 			}
 		}
 

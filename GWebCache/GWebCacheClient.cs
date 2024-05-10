@@ -92,7 +92,7 @@ public class GWebCacheClient : IGWebCacheClient {
 		if (!updateRequest.IsValidRequest())
 			return new Result<UpdateResponse>().WithException("This request was invalid specify you at least have one cache or node specified and the cache is http.");
 
-		Dictionary<string, string> queryDict = [];
+		Dictionary<string, object> queryDict = [];
 		if(WebCacheIsV2())
 			queryDict.Add("update", "1");
 
@@ -111,13 +111,13 @@ public class GWebCacheClient : IGWebCacheClient {
 	}
 
 	private Result<T> GetWithParam<T>(string param, string value) where T : GWebCacheResponse, new() {
-		Dictionary<string, string> queryDict = new() {
+		Dictionary<string, object> queryDict = new() {
 			[param] = value
 		};
 		return PreformGetWithQueryDict<T>(queryDict);
 	}
 
-	private Result<T> PreformGetWithQueryDict<T>(Dictionary<string, string> queryDict) where T : GWebCacheResponse, new() {
+	private Result<T> PreformGetWithQueryDict<T>(Dictionary<string, object> queryDict) where T : GWebCacheResponse, new() {
 		string url = _host.GetUrlWithQuery(queryDict);
 		HttpResponseMessage? response = gWebCacheHttpClient.GetAsync(url).Result;
 		return new Result<T>().Execute(response);
@@ -128,7 +128,7 @@ public class GWebCacheClient : IGWebCacheClient {
 			return new Result<GetResponse>().WithException("This method is not supported on a V1 WebCache");
 		}
 
-		Dictionary<string, string> queryDict = [];
+		Dictionary<string, object> queryDict = [];
 		
 		string? networkName = network.HasValue? Enum.GetName(typeof(GnutellaNetwork), network.Value):"";
 		if (!string.IsNullOrEmpty(networkName))
