@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['result_0',['Result',['../d0/d9d/classGWebCache_1_1ReponseProcessing_1_1Result.html',1,'GWebCache::ReponseProcessing']]]
+  ['pongresponse_0',['PongResponse',['../d0/d39/classGWebCache_1_1Reponses_1_1PongResponse.html',1,'GWebCache::Reponses']]]
 ];

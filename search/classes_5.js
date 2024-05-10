@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['statfileresponse_0',['StatFileResponse',['../de/dc1/classGWebCache_1_1Reponses_1_1StatFileResponse.html',1,'GWebCache::Reponses']]]
+  ['result_0',['Result',['../d0/d9d/classGWebCache_1_1ReponseProcessing_1_1Result.html',1,'GWebCache::ReponseProcessing']]]
 ];

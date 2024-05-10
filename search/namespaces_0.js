@@ -8,5 +8,6 @@ var searchData=
   ['gwebcache_3a_3areponseprocessing_5',['ReponseProcessing',['../d5/d0f/namespaceGWebCache_1_1ReponseProcessing.html',1,'GWebCache']]],
   ['gwebcache_3a_3areponses_6',['Reponses',['../d1/d02/namespaceGWebCache_1_1Reponses.html',1,'GWebCache']]],
   ['gwebcache_3a_3arequests_7',['Requests',['../db/df8/namespaceGWebCache_1_1Requests.html',1,'GWebCache']]],
-  ['gwebcachetest_8',['GWebCacheTest',['../d6/da3/namespaceGWebCacheTest.html',1,'']]]
+  ['gwebcache_3a_3atest_8',['Test',['../d5/d23/namespaceGWebCache_1_1Test.html',1,'GWebCache']]],
+  ['gwebcachetest_9',['GWebCacheTest',['../d6/da3/namespaceGWebCacheTest.html',1,'']]]
 ];
