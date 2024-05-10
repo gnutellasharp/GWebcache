@@ -29,6 +29,7 @@ public class GnutellaNode {
 	/// </summary>
 	/// <param name="ipAddress">string representation of the IP</param>
 	/// <param name="port">Listening port of the node</param>
+	/// <exception cref="ArgumentException">If the ipadress is not valid or the port number is below zero</exception>
 	public GnutellaNode(string ipAddress, int port) {
 		if (port <= 0)
 			throw new ArgumentException("Port can't be negative");
@@ -46,6 +47,7 @@ public class GnutellaNode {
 	/// </summary>
 	/// <param name="ipAddress">IPaddress of the node</param>
 	/// <param name="port">Listening port of the node</param>
+	/// <exception cref="ArgumentException">If the port number is below zero</exception>
 	public GnutellaNode(IPAddress IPAddress, int port) {
 		if (port <= 0)
 			throw new ArgumentException("Port can't be negative");

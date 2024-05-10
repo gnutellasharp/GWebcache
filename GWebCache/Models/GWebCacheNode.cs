@@ -20,6 +20,7 @@ public class GWebCacheNode {
 	///  Constructs a new GWebCacheNode
 	/// </summary>
 	/// <param name="url">string representation of the url</param>
+	/// <exception cref="ArgumentException">If the url could not be parsed to an absolute URI</exception>
 	public GWebCacheNode(string url) {
 		if (!Uri.TryCreate(url, UriKind.Absolute, out Uri? uri))
 			throw new ArgumentException($"{url} is not a valid url");
