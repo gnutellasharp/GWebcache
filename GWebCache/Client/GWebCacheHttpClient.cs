@@ -13,9 +13,12 @@ class GWebCacheHttpClient {
    /// <summary>
    /// Initializes the HttpClient and sets the <see cref="GWebCacheClientConfig.UserAgent"/> as the default User-Agent.
    /// </summary>
-	internal GWebCacheHttpClient(GWebCacheClientConfig config) {
+	internal GWebCacheHttpClient(GWebCacheClientConfig config) : this(config, new HttpClient()) {
+	}
+
+	internal GWebCacheHttpClient(GWebCacheClientConfig config, HttpClient client) {
 		this.config = config;
-		_client = new HttpClient();
+		_client = client;
 		_client.DefaultRequestHeaders.Add("User-Agent", config.UserAgent);
 	}
 
@@ -24,7 +27,9 @@ class GWebCacheHttpClient {
 	/// </summary>
 	/// <param name="url">url to call in string format</param>
 	internal async Task<HttpResponseMessage?> GetAsync(string url) {
-		Uri uri = new(url);
+		if(!Uri.TryCreate(url, UriKind.Absolute, out Uri? uri))
+			throw new ArgumentException($"{url} is not a valid url");
+
 		return await GetAsync(uri);
 	}
 
