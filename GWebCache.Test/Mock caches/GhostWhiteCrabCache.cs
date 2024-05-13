@@ -30,12 +30,31 @@ internal class GhostWhiteCrabCache : IMockCache {
 			"127.202.152.57:5786\r\n";
 	}
 
+
+	public string[] GetHosts() {
+		return ["127.0.218.247:37937", "127.190.57.33:15750", "127.191.191.250:36594", "127.67.13.167:43586", "127.202.152.57:5786"];
+	}
+
+
+	public string[] GetUrls() {
+		return ["http://test.net/skulls.php", "http://test.net:3558/", "http://test.net/skulls.php", "http://test.net/g2/bazooka.php"];
+	}
+
+
+	public bool SupportsV1() {
+		return true;
+	}
+
 	public string GetPongRespone() {
 		return "PONG GhostWhiteCrab/0.9.7\r\n";
 	}
 
 	public string GetStatFileResponse() {
 		return "";
+	}
+
+	public string[] GetSupportedNetworks() {
+		return [];
 	}
 
 	public string GetUpdateReponse(GnutellaNetwork? net) {
@@ -52,5 +71,9 @@ internal class GhostWhiteCrabCache : IMockCache {
 
 	public string GetVersion() {
 		return "GhostWhiteCrab/0.9.7";
+	}
+
+	public bool IsV2Cache() {
+		return false;
 	}
 }

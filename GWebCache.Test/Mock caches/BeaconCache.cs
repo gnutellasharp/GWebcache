@@ -18,15 +18,15 @@ internal class BeaconCache : IMockCache {
 	}
 
 	public string GetHostfileResponse() {
-		return "127.193.147.7:45710\r\n" +
-			"127.33.201.187:19218\r\n" +
-			"127.195.122.147:4190\r\n" +
-			"127.191.191.250:36594\r\n" +
-			"127.202.152.57:5786\r\n" +
-			"127.67.13.167:43586\r\n" +
+		return "127.0.218.247:37937\r\n" +
 			"127.190.57.33:15750\r\n" +
-			"127.0.218.247:37937\r\n" +
-			"127.4.143.89:31626\r\n";
+			"127.191.191.250:36594\r\n" +
+			"127.67.13.167:43586\r\n" +
+			"127.202.152.57:5786\r\n";
+	}
+
+	public string[] GetHosts() {
+		return ["127.0.218.247:37937", "127.190.57.33:15750", "127.191.191.250:36594", "127.67.13.167:43586", "127.202.152.57:5786"];
 	}
 
 	public string GetPongRespone() {
@@ -38,6 +38,15 @@ internal class BeaconCache : IMockCache {
 			"784569\r\n" +
 			"11\r\n" +
 			"2";
+	}
+
+
+	public bool SupportsV1() {
+		return true;
+	}
+
+	public string[] GetSupportedNetworks() {
+		return [];
 	}
 
 	public string GetUpdateReponse(GnutellaNetwork? net) { 
@@ -53,7 +62,16 @@ internal class BeaconCache : IMockCache {
 			"http://test.net:3558/\r\n";
 	}
 
+	public string[] GetUrls() {
+		return ["http://test.net/skulls.php", "http://test.net:3558/", "http://test.net/skulls.php", "http://test.net/g2/bazooka.php"];
+	}
+
+
 	public string GetVersion() {
 		return "Beacon Cache II 0.8.0.1";
+	}
+
+	public bool IsV2Cache() {
+		return false;
 	}
 }

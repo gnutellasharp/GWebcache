@@ -12,8 +12,7 @@ internal class SkullsCache : IMockCache {
 	"U|http://test.net/skulls.php|35098\r\n" +
 	"U|http://test.net:3558/|41992\r\n" +
 	"U|http://test.net/skulls.php|76603\r\n" +
-	"U|http://test.net/g2/bazooka.php|31124\r\n" +
-	"U|http://test.net:3558/|83716";
+	"U|http://test.net/g2/bazooka.php|31124\r\n";
 	}
 
 	public string GetHostfileResponse() {
@@ -24,6 +23,10 @@ internal class SkullsCache : IMockCache {
 			"127.191.191.250:36594\r\n" +
 			"127.202.152.57:5786\r\n";
 	}
+	public string[] GetHosts() {
+		return ["127.0.218.247:37937", "127.190.57.33:15750", "127.191.191.250:36594", "127.67.13.167:43586", "127.202.152.57:5786"];
+	}
+
 
 	public string GetPongRespone() {
 		return "PONG Skulls 0.3.6\r\n" +
@@ -34,6 +37,14 @@ internal class SkullsCache : IMockCache {
 		return "8896543\r\n" +
 			"46\r\n" +
 			"5";
+	}
+
+	public bool SupportsV1() {
+		return true;
+	}
+
+	public string[] GetSupportedNetworks() {
+		return ["gnutella2", "gnutella", "mute", "antsnet", "pastella", "kad", "foxy"];
 	}
 
 	public string GetUpdateReponse(GnutellaNetwork? net){ 
@@ -48,7 +59,15 @@ internal class SkullsCache : IMockCache {
 		"http://test.net/g2/bazooka.php\r\n";
 	}
 
+	public string[] GetUrls() {
+		return ["http://test.net/skulls.php", "http://test.net:3558/", "http://test.net/skulls.php", "http://test.net/g2/bazooka.php"];
+	}
+
 	public string GetVersion() {
 		return "Skulls 0.3.6";
+	}
+
+	public bool IsV2Cache() {
+		return true;
 	}
 }

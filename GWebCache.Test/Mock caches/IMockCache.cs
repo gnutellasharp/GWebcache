@@ -11,4 +11,9 @@ public interface IMockCache  {
 
 	//property for test
 	public string GetVersion();
+	public string[] GetSupportedNetworks();
+	public bool IsV2Cache();
+	public string[] GetHosts();
+	public string[] GetUrls();
+	public bool SupportsV1();
 }

@@ -17,7 +17,7 @@ public class PongResponse : GWebCacheResponse {
 	/// The <see cref="GnutellaNetwork"/> the cache supports
 	/// </summary>
 	/// <remarks>Again it's a miniority of the caches who actually supply this info. Don't rely on it being there.</remarks>
-	public string? SupportedNet { get; set; }
+	public string[] SupportedNetworks { get; set; } = [];
 
 	/// <summary>
 	/// A message is valid if it complies with <see cref="GWebCacheResponse.IsValidResponse(HttpResponseMessage?)"/> 
@@ -42,9 +42,14 @@ public class PongResponse : GWebCacheResponse {
 		if (!IsValidResponse(responseMessage))
 			return false;
 
-		string[] fields = responseMessage!.SplitContentInFields();
-		return fields.Length >= 2 && fields[0].Equals("I", StringComparison.InvariantCultureIgnoreCase) 
-			&& fields[1].Equals("pong", StringComparison.InvariantCultureIgnoreCase);
+		string[] lines = responseMessage!.ContentAsString().Split("\n").Select(line=>line.Trim()).ToArray();
+
+		if (lines.Length == 0)
+			return false;
+
+		string? informationLine = lines.FirstOrDefault(line => line.StartsWith("I", StringComparison.InvariantCultureIgnoreCase));
+		string[] fields = informationLine?.Split("|") ?? [];
+		return fields.Length >=2 && fields[1].Equals("pong", StringComparison.InvariantCultureIgnoreCase);
 	}
 
 	/// <summary>
@@ -59,8 +64,11 @@ public class PongResponse : GWebCacheResponse {
 
 
 	internal override void ParseV2(HttpResponseMessage response) {
-		string[] fields = response.SplitContentInFields();
+		string[] lines = response!.ContentAsString().Split("\n").Select(line => line.Trim()).ToArray();
+		string informationLine = lines.First(line => line.StartsWith("I", StringComparison.InvariantCultureIgnoreCase));
+		string[] fields = informationLine.Split("|");
+
 		CacheVersion = fields.Length > 2 ? fields[2] : "";
-		SupportedNet = fields.Length > 3 ? fields[3] : "";
+		SupportedNetworks = fields.Length > 3 ? fields[3].Split("-") : [];
 	}
 }
