@@ -10,6 +10,12 @@ namespace GWebCache.Reponses;
 public class UrlFileResponse : GWebCacheResponse {
 	public List<GWebCacheNode> WebCaches { get; set; } = new();
 
+	/// <summary>
+	/// A message is valid if it complies with <see cref="GWebCacheResponse.IsValidResponse(HttpResponseMessage?)"/> 
+	/// and the content doesn't contain error. All urls also have to be http 
+	/// </summary>
+	/// <param name="responseMessage">The HTTP response returned from the request</param>
+	/// <returns>Boolean indicating if the webresponse can be parsed</returns>
 	internal override bool IsValidResponse(HttpResponseMessage? responseMessage) {
 		if (!base.IsValidResponse(responseMessage))
 			return false;
