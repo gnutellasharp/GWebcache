@@ -83,6 +83,9 @@ $(function() {
   <div class="headertitle"><div class="title">GWebCache.Reponses.PongResponse Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Represents a pong response from a <a class="el" href="../../db/dea/namespaceGWebCache.html">GWebCache</a> server. This is mainly used to check if the server is alive. In rare cases this also provides suplimental information about the cache.  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for GWebCache.Reponses.PongResponse:</div>
 <div class="dyncontent">
@@ -95,13 +98,66 @@ Inheritance diagram for GWebCache.Reponses.PongResponse:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:af69ca89b0cbf57bb5e325de5c5c861e9" id="r_af69ca89b0cbf57bb5e325de5c5c861e9"><td class="memItemLeft" align="right" valign="top"><a id="af69ca89b0cbf57bb5e325de5c5c861e9" name="af69ca89b0cbf57bb5e325de5c5c861e9"></a>
-string?&#160;</td><td class="memItemRight" valign="bottom"><b>CacheVersion</b><code> [get, set]</code></td></tr>
+<tr class="memitem:af69ca89b0cbf57bb5e325de5c5c861e9" id="r_af69ca89b0cbf57bb5e325de5c5c861e9"><td class="memItemLeft" align="right" valign="top">string?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af69ca89b0cbf57bb5e325de5c5c861e9">CacheVersion</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:af69ca89b0cbf57bb5e325de5c5c861e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This can contain which vendor the cache is running.  <br /></td></tr>
 <tr class="separator:af69ca89b0cbf57bb5e325de5c5c861e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a854ba3c8d70b4ebf75824439eacc1b3f" id="r_a854ba3c8d70b4ebf75824439eacc1b3f"><td class="memItemLeft" align="right" valign="top"><a id="a854ba3c8d70b4ebf75824439eacc1b3f" name="a854ba3c8d70b4ebf75824439eacc1b3f"></a>
-string?&#160;</td><td class="memItemRight" valign="bottom"><b>SupportedNet</b><code> [get, set]</code></td></tr>
+<tr class="memitem:a854ba3c8d70b4ebf75824439eacc1b3f" id="r_a854ba3c8d70b4ebf75824439eacc1b3f"><td class="memItemLeft" align="right" valign="top">string?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a854ba3c8d70b4ebf75824439eacc1b3f">SupportedNet</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a854ba3c8d70b4ebf75824439eacc1b3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The GnutellaNetwork the cache supports.  <br /></td></tr>
 <tr class="separator:a854ba3c8d70b4ebf75824439eacc1b3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents a pong response from a <a class="el" href="../../db/dea/namespaceGWebCache.html">GWebCache</a> server. This is mainly used to check if the server is alive. In rare cases this also provides suplimental information about the cache. </p>
+</div><h2 class="groupheader">Property Documentation</h2>
+<a id="af69ca89b0cbf57bb5e325de5c5c861e9" name="af69ca89b0cbf57bb5e325de5c5c861e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af69ca89b0cbf57bb5e325de5c5c861e9">&#9670;&#160;</a></span>CacheVersion</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string? GWebCache.Reponses.PongResponse.CacheVersion</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This can contain which vendor the cache is running. </p>
+<p>It's only a minority of caches who fill this in</p>
+
+</div>
+</div>
+<a id="a854ba3c8d70b4ebf75824439eacc1b3f" name="a854ba3c8d70b4ebf75824439eacc1b3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a854ba3c8d70b4ebf75824439eacc1b3f">&#9670;&#160;</a></span>SupportedNet</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string? GWebCache.Reponses.PongResponse.SupportedNet</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The GnutellaNetwork the cache supports. </p>
+<p>Again it's a miniority of the caches who actually supply this info. Don't rely on it being there.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>GWebCache/Reponses/<b>PongResponse.cs</b></li>
 </ul>
