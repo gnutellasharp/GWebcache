@@ -3,7 +3,7 @@ using GWebCache.Reponses;
 
 namespace GWebCache.Test.Models;
 [TestClass]
-public class ResultTest {
+public class ResultTests {
 	[TestMethod]
 	public void VerifyErrorReflectedCorrectly() {
 		string errorMessage = "Something went wrong";

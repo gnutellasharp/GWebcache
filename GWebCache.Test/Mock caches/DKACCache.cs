@@ -1,17 +1,12 @@
 ﻿using GWebCache.Models.Enums;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace GWebCache.Test.Mock_caches;
-internal class BazookaCache : IMockCache {
+internal class DKACCache : IMockCache {
 	public string GetGetResponse(GnutellaNetwork? net) {
-		string result = "ERROR Unknown NOT Supported.";
-		 switch (net) {
-			case GnutellaNetwork.Gnutella:
-				result = "ERROR gnutella NOT Supported.";
-				break;
-			case GnutellaNetwork.Gnutella2:
-				result =
-			"h|127.0.218.247:37937|48419\r\n" +
+		if (net == null)
+			return "ERROR No network";
+
+		return "h|127.0.218.247:37937|48419\r\n" +
 			"h|127.190.57.33:15750|41184\r\n" +
 			"h|127.191.191.250:36594|45329\r\n" +
 			"h|127.67.13.167:43586|15199\r\n" +
@@ -21,33 +16,38 @@ internal class BazookaCache : IMockCache {
 			"u|http://test.net/skulls.php|76603\r\n" +
 			"u|http://test.net/g2/bazooka.php|31124\r\n" +
 			"u|http://test.net:3558/|83716\r\n";
-			break;
-		}
-
-		return result;
 	}
 
 	public string GetHostfileResponse() {
-		return "ERROR Invalid Command";
+		return "This is DKAC/Enticing-Enumon. Source\r\n";
 	}
 
 	public string GetPongRespone() {
-		return "i|pong|Bazooka 0.3.6b|Gnutella2";
+		return "i|pong|DKAC/Enticing-Enumon";
 	}
 
 	public string GetStatFileResponse() {
-		return "ERROR Invalid Command";
+		return "This is DKAC/Enticing-Enumon. Source\r\n";
 	}
 
 	public string GetUpdateReponse(GnutellaNetwork? net) {
-		return "i|update|OK";
+		string result = "ERROR No network";
+		switch (net) {
+			case GnutellaNetwork.Gnutella:
+				result = "ERROR unsupported network";
+				break;
+			case GnutellaNetwork.Gnutella2:
+				result = "i|update|OK\r\n";
+				break;
+		}
+		return result;
 	}
 
 	public string GetUrlfileResponse() {
-		return "ERROR Invalid Command";
+		return "This is DKAC/Enticing-Enumon. Source\r\n";
 	}
 
 	public string GetVersion() {
-		return "Bazooka 0.3.6b";
+		return "DKAC/Enticing-Enumon";
 	}
 }

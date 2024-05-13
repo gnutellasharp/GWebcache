@@ -1,12 +1,7 @@
 ﻿using GWebCache.Models.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+//http://dkac.trillinux.org/dkac/dkac.php
 namespace GWebCache.Test.Mock_caches;
-internal class GhostWhiteCrabCache : IMockCache {
+internal class SkullsCache : IMockCache {
 	public string GetGetResponse(GnutellaNetwork? net) {
 		return
 	"H|127.0.218.247:37937|48419\r\n" +
@@ -22,7 +17,7 @@ internal class GhostWhiteCrabCache : IMockCache {
 	}
 
 	public string GetHostfileResponse() {
-		return 
+		return
 			"127.193.147.7:45710\r\n" +
 			"127.33.201.187:19218\r\n" +
 			"127.195.122.147:4190\r\n" +
@@ -31,26 +26,29 @@ internal class GhostWhiteCrabCache : IMockCache {
 	}
 
 	public string GetPongRespone() {
-		return "PONG GhostWhiteCrab/0.9.7\r\n";
+		return "PONG Skulls 0.3.6\r\n" +
+			"I|pong|Skulls 0.3.6|gnutella2-gnutella-mute-antsnet-pastella-kad-foxy";
 	}
 
 	public string GetStatFileResponse() {
-		return "";
+		return "8896543\r\n" +
+			"46\r\n" +
+			"5";
 	}
 
-	public string GetUpdateReponse(GnutellaNetwork? net) {
-		return "WARNING: Unacceptable URL\r\n";
+	public string GetUpdateReponse(GnutellaNetwork? net){ 
+		return "I|update|OK|URL already updated\r\n";
 	}
 
 	public string GetUrlfileResponse() {
 		return
-			"http://test.net/skulls.php\n" +
-			"http://test.net:3558/\r\n" +
-			"http://test.net/skulls.php\r\n" +
-			"http://test.net/g2/bazooka.php\r\n";
+		"http://test.net/skulls.php\n" +
+		"http://test.net:3558/\r\n" +
+		"http://test.net/skulls.php\r\n" +
+		"http://test.net/g2/bazooka.php\r\n";
 	}
 
 	public string GetVersion() {
-		return "GhostWhiteCrab/0.9.7";
+		return "Skulls 0.3.6";
 	}
 }

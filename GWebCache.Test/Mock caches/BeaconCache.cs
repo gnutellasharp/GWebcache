@@ -40,7 +40,7 @@ internal class BeaconCache : IMockCache {
 			"2";
 	}
 
-	public string GetUpdateReponse() {
+	public string GetUpdateReponse(GnutellaNetwork? net) { 
 		return "I | OK ";
 	}
 
@@ -51,5 +51,9 @@ internal class BeaconCache : IMockCache {
 			"http://test.net/skulls.php\r\n" +
 			"http://test.net/g2/bazooka.php\r\n" +
 			"http://test.net:3558/\r\n";
+	}
+
+	public string GetVersion() {
+		return "Beacon Cache II 0.8.0.1";
 	}
 }
