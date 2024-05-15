@@ -7,13 +7,13 @@ namespace GWebCache.Reponses;
 /// <summary>
 /// A response class containing the Nodes and Webcache valid for V2 compliant webcaches.
 /// </summary>
-/// <remarks>This is basically the combination of a <see cref="HostfileResponse"/> and <see cref="UrlFileResponse"/></remarks>
+/// <remarks>This is basically the combination of a <see cref="UrlFileResponse"/> and <see cref="UrlFileResponse"/></remarks>
 public  class GetResponse : GWebCacheResponse {
 
 	/// <summary>
 	/// List of know gnutella nodes on the network
 	/// </summary>
-	public List<GnutellaNode> Nodes { get; set; } = [];
+	public List<GnutellaNode> GnutellaNodes { get; set; } = [];
 
 	/// <summary>
 	/// List of other webcaches
@@ -88,7 +88,7 @@ public  class GetResponse : GWebCacheResponse {
 				if (fields.Length >= 3 && double.TryParse(fields[2], out double seconds))
 					node.ActiveSince = TimeSpan.FromSeconds(seconds);
 
-				Nodes.Add(node);
+				GnutellaNodes.Add(node);
 			}
 		}
 	}

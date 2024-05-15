@@ -67,7 +67,7 @@ public class GWebCacheClient : IGWebCacheClient {
 				return result.WithException(response.ErrorMessage ?? "Something went wrong getting the correct response");
 
 			result.WasSuccessful = response.WasSuccessful;
-			result.ResultObject = new HostfileResponse() { GnutellaNodes = response.ResultObject!.Nodes};
+			result.ResultObject = new HostfileResponse() { GnutellaNodes = response.ResultObject!.GnutellaNodes };
 			return result;
 		}
 		return GetWithParam<HostfileResponse>("hostfile", "1");
@@ -82,7 +82,7 @@ public class GWebCacheClient : IGWebCacheClient {
 				return result.WithException(response.ErrorMessage ?? "Something went wrong getting the correct response");
 
 			result.WasSuccessful = response.WasSuccessful;
-			result.ResultObject = new UrlFileResponse() { WebCaches = response.ResultObject!.WebCacheNodes };
+			result.ResultObject = new UrlFileResponse() { WebCacheNodes = response.ResultObject!.WebCacheNodes };
 			return result;
 		}
 

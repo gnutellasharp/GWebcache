@@ -8,7 +8,7 @@ namespace GWebCache.Reponses;
 /// </summary>
 /// <remarks>For a V2 compliant webcache the <see cref="GetResponse"/> is being used</remarks>
 public class UrlFileResponse : GWebCacheResponse {
-	public List<GWebCacheNode> WebCaches { get; set; } = new();
+	public List<GWebCacheNode> WebCacheNodes { get; set; } = new();
 
 	/// <summary>
 	/// A message is valid if it complies with <see cref="GWebCacheResponse.IsValidResponse(HttpResponseMessage?)"/> 
@@ -38,7 +38,7 @@ public class UrlFileResponse : GWebCacheResponse {
 			if (!Uri.TryCreate(url, UriKind.Absolute, out Uri? uri))
 				continue;
 
-			WebCaches.Add(new GWebCacheNode(uri));
+			WebCacheNodes.Add(new GWebCacheNode(uri));
 		}
 	}
 
