@@ -8,7 +8,7 @@ var searchData=
   ['geturlfile_5',['GetUrlFile',['../d2/df6/classGWebCache_1_1GWebCacheClient.html#a770b5ff9a11a83803226b4bb1b19c37d',1,'GWebCache.GWebCacheClient.GetUrlFile()'],['../d5/d77/interfaceGWebCache_1_1IGWebCacheClient.html#abc771d1ab8028f7a55393de928264cc4',1,'GWebCache.IGWebCacheClient.GetUrlFile()']]],
   ['gnutellanetwork_6',['GnutellaNetwork',['../d0/db3/namespaceGWebCache_1_1Models_1_1Enums.html#a2f3f2bdb153befd358168dae9d2e828e',1,'GWebCache::Models::Enums']]],
   ['gnutellanode_7',['GnutellaNode',['../d6/dd8/classGWebCache_1_1Models_1_1GnutellaNode.html',1,'GWebCache.Models.GnutellaNode'],['../d6/dd8/classGWebCache_1_1Models_1_1GnutellaNode.html#af96a4ca663ae3f171d40398a78ce6cd7',1,'GWebCache.Models.GnutellaNode.GnutellaNode(string ipAddress, int port)'],['../d6/dd8/classGWebCache_1_1Models_1_1GnutellaNode.html#a7c77d40d4f69cab2e5f4b1bfffe0c597',1,'GWebCache.Models.GnutellaNode.GnutellaNode(IPAddress IPAddress, int port)']]],
-  ['gnutellanodes_8',['GnutellaNodes',['../d8/d5f/classGWebCache_1_1Reponses_1_1HostfileResponse.html#aa26317b69f3a958b1df76b13248651eb',1,'GWebCache::Reponses::HostfileResponse']]],
+  ['gnutellanodes_8',['GnutellaNodes',['../d0/df5/classGWebCache_1_1Reponses_1_1GetResponse.html#a969860801ddb1c72d4d3b6c5d379c06c',1,'GWebCache.Reponses.GetResponse.GnutellaNodes'],['../d8/d5f/classGWebCache_1_1Reponses_1_1HostfileResponse.html#aa26317b69f3a958b1df76b13248651eb',1,'GWebCache.Reponses.HostfileResponse.GnutellaNodes']]],
   ['gnutellanodetests_9',['GnutellaNodeTests',['../de/db6/classGWebCache_1_1Test_1_1Models_1_1GnutellaNodeTests.html',1,'GWebCache::Test::Models']]],
   ['gwebcache_10',['GWebCache',['../db/dea/namespaceGWebCache.html',1,'']]],
   ['gwebcache_11',['GWebcache',['../index.html',1,'']]],
