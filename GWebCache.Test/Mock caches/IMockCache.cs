@@ -16,4 +16,8 @@ public interface IMockCache  {
 	public string[] GetHosts();
 	public string[] GetUrls();
 	public bool SupportsV1();
+	public bool SupportsStats();
+	public int GetTotalNumberOfRequests();
+	public int GetNumberOfRequestsInLastHour();
+	public int GetNumberOfUpdatesInLastHour();
 }

@@ -34,6 +34,14 @@ internal class BazookaCache : IMockCache {
 		return ["127.0.218.247:37937", "127.190.57.33:15750", "127.191.191.250:36594", "127.67.13.167:43586", "127.202.152.57:5786"];
 	}
 
+	public int GetNumberOfRequestsInLastHour() {
+		return -1;
+	}
+
+	public int GetNumberOfUpdatesInLastHour() {
+		return -1;
+	}
+
 	public string GetPongRespone() {
 		return "i|pong|Bazooka 0.3.6b|Gnutella2";
 	}
@@ -44,6 +52,10 @@ internal class BazookaCache : IMockCache {
 
 	public string[] GetSupportedNetworks() {
 		return ["Gnutella2"];
+	}
+
+	public int GetTotalNumberOfRequests() {
+		return -1;
 	}
 
 	public string GetUpdateReponse(GnutellaNetwork? net) {
@@ -65,6 +77,10 @@ internal class BazookaCache : IMockCache {
 
 	public bool IsV2Cache() {
 		return true;
+	}
+
+	public bool SupportsStats() {
+		return false;
 	}
 
 	public bool SupportsV1() {

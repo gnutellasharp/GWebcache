@@ -48,9 +48,67 @@ public class RequestTests {
 			Assert.IsTrue(string.IsNullOrEmpty(result.ErrorMessage));
 			Assert.AreEqual(result.IsV2Response, mockCache.IsV2Cache());
 			Assert.IsTrue(Enumerable.SequenceEqual(mockCache.GetUrls(), result.ResultObject.WebCacheNodes.Select(s => s.ToString()).ToArray()));
-			Assert.IsTrue(Enumerable.SequenceEqual(mockCache.GetHosts(), result.ResultObject.Nodes.Select(s => s.ToString()).ToArray()));
+			Assert.IsTrue(Enumerable.SequenceEqual(mockCache.GetHosts(), result.ResultObject.GnutellaNodes.Select(s => s.ToString()).ToArray()));
 			return;
 		}
 		Assert.IsTrue(true);
+	}
+
+	[TestMethod]
+	[DynamicData(nameof(Caches))]
+	public void CheckIfHostFileParsedSuccesfully (IMockCache mockCache) {
+		if (!mockCache.SupportsV1())
+			return;
+
+		Result<HostfileResponse> result = new Result<HostfileResponse>();
+		HttpResponseMessage response = new HttpResponseMessage();
+		response.Content = new StringContent(mockCache.GetHostfileResponse());
+		result.Execute(response);
+		Assert.IsTrue(result.WasSuccessful);
+		Assert.IsNotNull(result.ResultObject);
+		Assert.IsTrue(string.IsNullOrEmpty(result.ErrorMessage));
+		Assert.IsFalse(result.IsV2Response);
+		Assert.IsTrue(Enumerable.SequenceEqual(mockCache.GetHosts(), result.ResultObject.GnutellaNodes.Select(s => s.ToString()).ToArray()));
+	}
+
+	[TestMethod]
+	[DynamicData(nameof(Caches))]
+	public void CheckIfUrlFileResponseParsedSuccesfully(IMockCache mockCache) {
+		if (!mockCache.SupportsV1())
+			return;
+
+		Result<UrlFileResponse> result = new();
+		HttpResponseMessage response = new() {
+			Content = new StringContent(mockCache.GetUrlfileResponse())
+		};
+		result.Execute(response);
+		Assert.IsTrue(result.WasSuccessful);
+		Assert.IsNotNull(result.ResultObject);
+		Assert.IsTrue(string.IsNullOrEmpty(result.ErrorMessage));
+		Assert.IsFalse(result.IsV2Response);
+		Assert.IsTrue(Enumerable.SequenceEqual(mockCache.GetUrls(), result.ResultObject.WebCacheNodes.Select(s => s.ToString()).ToArray()));
+	}
+
+	[TestMethod]
+	[DynamicData(nameof(Caches))]
+	public void CheckIfStatFileResponseParsedSuccesfully(IMockCache mockCache) {
+		Result<StatFileResponse> result = new();
+		HttpResponseMessage response = new() {
+			Content = new StringContent(mockCache.GetStatFileResponse())
+		};
+		result.Execute(response);
+
+		Assert.AreEqual(result.WasSuccessful, mockCache.SupportsStats());
+
+		if(mockCache.SupportsStats()) {
+			Assert.IsNotNull(result.ResultObject);
+			Assert.IsTrue(string.IsNullOrEmpty(result.ErrorMessage));
+			Assert.IsFalse(result.IsV2Response);
+			Assert.AreEqual(result.ResultObject.TotalNumberOfRequests, mockCache.GetTotalNumberOfRequests());
+			Assert.AreEqual(result.ResultObject.RequestsInLastHour, mockCache.GetNumberOfRequestsInLastHour());
+			Assert.AreEqual(result.ResultObject.UpdateRequestsInLastHour, mockCache.GetNumberOfUpdatesInLastHour());
+		} else {
+			Assert.IsNotNull(result.ErrorMessage);
+		}
 	}
 }

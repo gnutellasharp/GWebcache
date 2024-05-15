@@ -17,10 +17,10 @@ internal class SkullsCache : IMockCache {
 
 	public string GetHostfileResponse() {
 		return
-			"127.193.147.7:45710\r\n" +
-			"127.33.201.187:19218\r\n" +
-			"127.195.122.147:4190\r\n" +
+			"127.0.218.247:37937\r\n" +
+			"127.190.57.33:15750\r\n" +
 			"127.191.191.250:36594\r\n" +
+			"127.67.13.167:43586\r\n" +
 			"127.202.152.57:5786\r\n";
 	}
 	public string[] GetHosts() {
@@ -69,5 +69,21 @@ internal class SkullsCache : IMockCache {
 
 	public bool IsV2Cache() {
 		return true;
+	}
+
+	public bool SupportsStats() {
+		return true;
+	}
+
+	public int GetTotalNumberOfRequests() {
+		return 8896543;
+	}
+
+	public int GetNumberOfRequestsInLastHour() {
+		return 46;
+	}
+
+	public int GetNumberOfUpdatesInLastHour() {
+		return 5;
 	}
 }

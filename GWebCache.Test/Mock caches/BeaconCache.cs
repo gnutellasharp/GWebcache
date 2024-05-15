@@ -58,8 +58,7 @@ internal class BeaconCache : IMockCache {
 			"http://test.net/skulls.php\n" +
 			"http://test.net:3558/\r\n" +
 			"http://test.net/skulls.php\r\n" +
-			"http://test.net/g2/bazooka.php\r\n" +
-			"http://test.net:3558/\r\n";
+			"http://test.net/g2/bazooka.php\r\n";
 	}
 
 	public string[] GetUrls() {
@@ -73,5 +72,21 @@ internal class BeaconCache : IMockCache {
 
 	public bool IsV2Cache() {
 		return false;
+	}
+
+	public bool SupportsStats() {
+		return true;
+	}
+
+	public int GetTotalNumberOfRequests() {
+		return 784569;
+	}
+
+	public int GetNumberOfRequestsInLastHour() {
+		return 11;
+	}
+
+	public int GetNumberOfUpdatesInLastHour() {
+		return 2;
 	}
 }

@@ -71,4 +71,19 @@ internal class DKACCache : IMockCache {
 		return ["http://test.net/skulls.php", "http://test.net:3558/", "http://test.net/skulls.php", "http://test.net/g2/bazooka.php"];
 	}
 
+	public bool SupportsStats() {
+		return false;
+	}
+
+	public int GetTotalNumberOfRequests() {
+		return -1;
+	}
+
+	public int GetNumberOfRequestsInLastHour() {
+		return -1;
+	}
+
+	public int GetNumberOfUpdatesInLastHour() {
+		return -1;
+	}
 }
