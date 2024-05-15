@@ -12,8 +12,13 @@ public class StatFileResponse : GWebCacheResponse {
 			return false;
 
 		string[] lines = responseMessage!.ContentAsString().Split("\n").Select(l => l.Trim()).Where(l => !string.IsNullOrEmpty(l)).ToArray();
-		return lines.Length < 2 || lines.Any(line => !int.TryParse(line, out int _));
+		return lines.Length > 2 && lines.All(line => int.TryParse(line, out int _));
 	}
+
+	internal override bool IsValidV2Response(HttpResponseMessage? responseMessage) {
+		return false;
+	}
+
 	internal override void Parse(HttpResponseMessage response) {
 		string[] lines = response.ContentAsString().Split("\n").Select(l => l.Trim()).Where(l => !string.IsNullOrEmpty(l)).ToArray();
 		TotalNumberOfRequests = int.Parse(lines[0]);
