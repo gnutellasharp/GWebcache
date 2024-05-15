@@ -13,3 +13,17 @@ As a collaborator we ask that you provide [XML comments](https://learn.microsoft
 
 ## Examples
 You can find example code using the following [link](Examples.md)
+
+## Supported Caches
+
+There's a lot of different implementations of the GWebCache system out there.
+The following implementation we mocked and tested for so normally all functionality should work from these caches.
+We do follow the specification so other vendors should also work if they comply.
+
+| Vendor  | Version number |
+| ------------- | ------------- |
+| Bazooka | 0.3.6b |
+| DKAC/Enticing-Enumon  | /  |
+| Beacon Cache II | 0.8.0.1 |
+| GhostWhiteCrab | 0.9.7 |
+| Skulls | 0.3.6 |
