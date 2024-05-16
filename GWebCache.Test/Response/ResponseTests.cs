@@ -3,11 +3,11 @@ using GWebCache.ReponseProcessing;
 using GWebCache.Reponses;
 using GWebCache.Test.Mock_caches;
 
-namespace GWebCache.Test.Requests;
+namespace GWebCache.Test.Responses;
 
 
 [TestClass]
-public class RequestTests {
+public class ResponseTests {
 	public static IEnumerable<object[]> Caches {
 		get {
 			return new[] {
