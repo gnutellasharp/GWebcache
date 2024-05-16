@@ -23,7 +23,7 @@ var searchData=
   ['gwebcache_3a_3atest_3a_3aclients_20',['Clients',['../dd/d97/namespaceGWebCache_1_1Test_1_1Clients.html',1,'GWebCache::Test']]],
   ['gwebcache_3a_3atest_3a_3amock_5fcaches_21',['Mock_caches',['../d1/d19/namespaceGWebCache_1_1Test_1_1Mock__caches.html',1,'GWebCache::Test']]],
   ['gwebcache_3a_3atest_3a_3amodels_22',['Models',['../d8/de4/namespaceGWebCache_1_1Test_1_1Models.html',1,'GWebCache::Test']]],
-  ['gwebcache_3a_3atest_3a_3arequests_23',['Requests',['../dd/df7/namespaceGWebCache_1_1Test_1_1Requests.html',1,'GWebCache::Test']]],
+  ['gwebcache_3a_3atest_3a_3aresponses_23',['Responses',['../dc/d41/namespaceGWebCache_1_1Test_1_1Responses.html',1,'GWebCache::Test']]],
   ['gwebcacheclient_24',['GWebCacheClient',['../d2/df6/classGWebCache_1_1GWebCacheClient.html',1,'GWebCache.GWebCacheClient'],['../d2/df6/classGWebCache_1_1GWebCacheClient.html#a4bcc7193d784825a7505f652fd2c85eb',1,'GWebCache.GWebCacheClient.GWebCacheClient()']]],
   ['gwebcacheclientconfig_25',['GWebCacheClientConfig',['../dd/dde/classGWebCache_1_1Client_1_1GWebCacheClientConfig.html',1,'GWebCache::Client']]],
   ['gwebcachehttpclient_26',['GWebCacheHttpClient',['../dc/daa/classGWebCache_1_1Client_1_1GWebCacheHttpClient.html',1,'GWebCache::Client']]],

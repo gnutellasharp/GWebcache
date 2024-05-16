@@ -12,6 +12,6 @@ var searchData=
   ['gwebcache_3a_3atest_3a_3aclients_9',['Clients',['../dd/d97/namespaceGWebCache_1_1Test_1_1Clients.html',1,'GWebCache::Test']]],
   ['gwebcache_3a_3atest_3a_3amock_5fcaches_10',['Mock_caches',['../d1/d19/namespaceGWebCache_1_1Test_1_1Mock__caches.html',1,'GWebCache::Test']]],
   ['gwebcache_3a_3atest_3a_3amodels_11',['Models',['../d8/de4/namespaceGWebCache_1_1Test_1_1Models.html',1,'GWebCache::Test']]],
-  ['gwebcache_3a_3atest_3a_3arequests_12',['Requests',['../dd/df7/namespaceGWebCache_1_1Test_1_1Requests.html',1,'GWebCache::Test']]],
+  ['gwebcache_3a_3atest_3a_3aresponses_12',['Responses',['../dc/d41/namespaceGWebCache_1_1Test_1_1Responses.html',1,'GWebCache::Test']]],
   ['gwebcachetest_13',['GWebCacheTest',['../d6/da3/namespaceGWebCacheTest.html',1,'']]]
 ];
