@@ -9,7 +9,7 @@ public class UpdateResponse : GWebCacheResponse {
 		if (!base.IsValidResponse(responseMessage))
 			return false;
 		string content = responseMessage!.ContentAsString();
-		return !content.Contains("error", StringComparison.InvariantCultureIgnoreCase);
+		return content.Contains("ok", StringComparison.InvariantCultureIgnoreCase);
 	}
 
 	internal override bool IsValidV2Response(HttpResponseMessage? responseMessage) {
@@ -26,6 +26,6 @@ public class UpdateResponse : GWebCacheResponse {
 
 	internal override void ParseV2(HttpResponseMessage response) {
 		string[] fields = response!.SplitContentInFields();
-		Message = fields.Length > 2? fields[2] : "OK";
+		Message = fields.Last().Equals("ok", StringComparison.CurrentCultureIgnoreCase)? "": fields.Last() ;
 	}
 }

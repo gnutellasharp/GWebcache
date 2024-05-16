@@ -12,7 +12,7 @@ static class Extensions {
 	/// <see cref="ContentAsString(HttpResponseMessage)"/>
 	internal static string[] SplitContentInFields(this HttpResponseMessage response) {
 		string content = ContentAsString(response);
-		return [.. content.Split("|")];
+		return [.. content.Split("|").Select(field=>field.Trim())];
 	}
 
 	/// <summary>

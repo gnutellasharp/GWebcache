@@ -59,7 +59,7 @@ public class Result<T> where T : GWebCacheResponse {
 		IsV2Response = WasSuccessful && ResultObject!.IsValidV2Response(responseMessage);
 
 		if (!WasSuccessful) {
-			ErrorMessage = responseMessage?.Content?.ReadAsStringAsync()?.Result ?? "";
+			ErrorMessage = responseMessage?.Content?.ReadAsStringAsync()?.Result.Trim() ?? "";
 			return this;
 		}
 
