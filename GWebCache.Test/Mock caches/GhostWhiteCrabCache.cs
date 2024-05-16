@@ -92,4 +92,12 @@ internal class GhostWhiteCrabCache : IMockCache {
 	public int GetNumberOfUpdatesInLastHour() {
 		return -1;
 	}
+
+	public string GetUpdateMessage() {
+		return "WARNING: Unacceptable URL";
+	}
+
+	public bool UpdateCallSucceeeded() {
+		return false;
+	}
 }

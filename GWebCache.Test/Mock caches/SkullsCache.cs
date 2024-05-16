@@ -86,4 +86,12 @@ internal class SkullsCache : IMockCache {
 	public int GetNumberOfUpdatesInLastHour() {
 		return 5;
 	}
+
+	public string GetUpdateMessage() {
+		return "URL already updated";
+	}
+
+	public bool UpdateCallSucceeeded() {
+		return true;
+	}
 }

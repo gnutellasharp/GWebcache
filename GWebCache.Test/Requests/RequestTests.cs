@@ -111,4 +111,25 @@ public class RequestTests {
 			Assert.IsNotNull(result.ErrorMessage);
 		}
 	}
+
+	[TestMethod]
+	[DynamicData(nameof(Caches))]
+	public void CheckIfUpdateResponseParsedSuccesfully(IMockCache mockCache) {
+		Result<UpdateResponse> result = new();
+		HttpResponseMessage response = new() {
+			Content = new StringContent(mockCache.GetUpdateReponse(GnutellaNetwork.Gnutella2))
+		};
+		result.Execute(response);
+		Assert.AreEqual(result.WasSuccessful, mockCache.UpdateCallSucceeeded());
+
+		if(!mockCache.UpdateCallSucceeeded()) {
+			Assert.IsNotNull(result.ErrorMessage);
+			Assert.AreEqual(result.ErrorMessage, mockCache.GetUpdateMessage());
+			return;
+		}
+
+		Assert.IsNotNull(result.ResultObject);
+		Assert.IsTrue(string.IsNullOrEmpty(result.ErrorMessage));
+		Assert.AreEqual(result.ResultObject.Message, mockCache.GetUpdateMessage());
+	}
 }

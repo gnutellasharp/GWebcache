@@ -62,7 +62,6 @@ internal class DKACCache : IMockCache {
 		return true;
 	}
 
-
 	public bool SupportsV1() {
 		return false;
 	}
@@ -85,5 +84,13 @@ internal class DKACCache : IMockCache {
 
 	public int GetNumberOfUpdatesInLastHour() {
 		return -1;
+	}
+
+	public string GetUpdateMessage() {
+		return "";
+	}
+
+	public bool UpdateCallSucceeeded() {
+		return true;
 	}
 }

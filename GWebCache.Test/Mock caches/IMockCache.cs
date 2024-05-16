@@ -20,4 +20,6 @@ public interface IMockCache  {
 	public int GetTotalNumberOfRequests();
 	public int GetNumberOfRequestsInLastHour();
 	public int GetNumberOfUpdatesInLastHour();
+	public string GetUpdateMessage();
+	public bool UpdateCallSucceeeded();
 }

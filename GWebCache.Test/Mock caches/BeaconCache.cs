@@ -89,4 +89,12 @@ internal class BeaconCache : IMockCache {
 	public int GetNumberOfUpdatesInLastHour() {
 		return 2;
 	}
+
+	public string GetUpdateMessage() {
+		return "";
+	}
+
+	public bool UpdateCallSucceeeded() {
+		return true;
+	}
 }

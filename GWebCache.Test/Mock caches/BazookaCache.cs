@@ -1,5 +1,4 @@
 ﻿using GWebCache.Models.Enums;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace GWebCache.Test.Mock_caches;
 internal class BazookaCache : IMockCache {
@@ -58,6 +57,10 @@ internal class BazookaCache : IMockCache {
 		return -1;
 	}
 
+	public string GetUpdateMessage() {
+		return "";
+	}
+
 	public string GetUpdateReponse(GnutellaNetwork? net) {
 		return "i|update|OK";
 	}
@@ -85,5 +88,9 @@ internal class BazookaCache : IMockCache {
 
 	public bool SupportsV1() {
 		return false;
+	}
+
+	public bool UpdateCallSucceeeded() {
+		return true;
 	}
 }
