@@ -11,7 +11,7 @@ namespace GWebCache.Requests;
 public class UpdateRequest : GWebCacheRequest{
 
 	public GnutellaNode? GnutellaNode { get; set; }
-	public GWebCacheNode? GWebCacheNode { get; set; }
+	public GWebCacheNode? WebCacheNode { get; set; }
 
 	/// <value>Indicating which <see cref="GnutellaNetwork"/> the Webcache or Gnutella node belongs to.</value>
 	/// <remarks>Usually only necessary in case you're providing an update to a V2 cache.</remarks>
@@ -22,10 +22,10 @@ public class UpdateRequest : GWebCacheRequest{
 	/// If the GWebCacheNode is not null the Url must start with http.
 	/// </summary>
 	internal override bool IsValidRequest() {
-		bool result = GWebCacheNode != null || GnutellaNode != null;
+		bool result = WebCacheNode != null || GnutellaNode != null;
 
-		if (GWebCacheNode != null) {
-			result  = result && GWebCacheNode.Url != null && GWebCacheNode.Url.Scheme.Equals(Uri.UriSchemeHttp.ToLower());
+		if (WebCacheNode != null) {
+			result  = result && WebCacheNode.Url != null && WebCacheNode.Url.Scheme.Equals(Uri.UriSchemeHttp.ToLower());
 		}
 
 		return result;

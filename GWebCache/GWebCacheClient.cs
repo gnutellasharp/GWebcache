@@ -105,8 +105,8 @@ public class GWebCacheClient : IGWebCacheClient {
 			queryDict.Add("ip", HttpUtility.UrlEncode(updateRequest.GnutellaNode.ToString()));
 		
 		
-		if (updateRequest.GWebCacheNode != null) 
-			queryDict.Add("url", HttpUtility.UrlEncode(updateRequest.GWebCacheNode.ToString()));
+		if (updateRequest.WebCacheNode != null) 
+			queryDict.Add("url", HttpUtility.UrlEncode(updateRequest.WebCacheNode.ToString()));
 
 		return PreformGetWithQueryDict<UpdateResponse>(queryDict);
 	}
