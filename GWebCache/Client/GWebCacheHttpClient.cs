@@ -13,13 +13,21 @@ class GWebCacheHttpClient {
    /// <summary>
    /// Initializes the HttpClient and sets the <see cref="GWebCacheClientConfig.UserAgent"/> as the default User-Agent.
    /// </summary>
-	internal GWebCacheHttpClient(GWebCacheClientConfig config) : this(config, new HttpClient()) {
+	internal GWebCacheHttpClient(GWebCacheClientConfig config, Uri baseUri){
+		this.config = config;
+		_client = new() {
+			BaseAddress = baseUri
+		};
+		AddUserAgent();
 	}
 
+	/// <summary>
+	/// Constructor used for testing purposes (DI injection)
+	/// </summary>
 	internal GWebCacheHttpClient(GWebCacheClientConfig config, HttpClient client) {
 		this.config = config;
 		_client = client;
-		_client.DefaultRequestHeaders.Add("User-Agent", config.UserAgent);
+		AddUserAgent();
 	}
 
 	/// <summary>
@@ -61,5 +69,13 @@ class GWebCacheHttpClient {
 		string baseUrl = !string.IsNullOrEmpty(uri.Query) ? uri.AbsoluteUri.Replace(uri.Query, "") : uri.AbsoluteUri;
 		string url = QueryHelpers.AddQueryString(baseUrl, parameters.ToDictionary(x => x.Key, x => x.Value.First()));
 		return new Uri(url);
+	}
+
+	/// <summary>
+	/// Adds a user agent by default to the HTTP Client requests.
+	/// The user agent is defined in <see cref="GWebCacheClientConfig"/>
+	/// </summary>
+	private void AddUserAgent() {
+		_client.DefaultRequestHeaders.Add("User-Agent", config.UserAgent);
 	}
 }

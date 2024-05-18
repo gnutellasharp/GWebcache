@@ -4,6 +4,7 @@ using GWebCache.Models.Enums;
 using GWebCache.ReponseProcessing;
 using GWebCache.Reponses;
 using GWebCache.Requests;
+using System;
 using System.Web;
 
 namespace GWebCache;
@@ -27,18 +28,22 @@ public class GWebCacheClient : IGWebCacheClient {
 	/// <remarks>The constructor will also check if the webcache is a V2 webcache in case it's not explicitely provided in the configuration</remarks>
 	/// <see cref="DetermineIfCacheIsV2"/>
 	public GWebCacheClient(string host, GWebCacheClientConfig? config = null) {
-		if (!string.IsNullOrWhiteSpace(host) && Uri.TryCreate(host, new UriCreationOptions(), out Uri? uri)) {
-			this.gWebCacheClientConfig = config ?? GWebCacheClientConfig.Default;
-			gWebCacheHttpClient = new(config: this.gWebCacheClientConfig);
-			_host = uri;
+		//check that the host is valid
+		if (string.IsNullOrWhiteSpace(host) || !Uri.TryCreate(host, new(), out Uri? uri))
+			throw new ArgumentException("host was invalid");
 
-			//Determine cache version if the parameter is filled in not applicable
-			if (!this.gWebCacheClientConfig.IsV2.HasValue)
-				DetermineIfCacheIsV2();
-		} else {
-			throw new ArgumentException("Invalid host");
-		}
+		//initalizes fields
+		this.gWebCacheClientConfig = config ?? GWebCacheClientConfig.Default;
+		gWebCacheHttpClient = new(config: this.gWebCacheClientConfig);
+		_host = uri;
+
+		//Determine cache version if the parameter is filled in not applicable
+		if (!this.gWebCacheClientConfig.IsV2.HasValue)
+			DetermineIfCacheIsV2();
 	}
+
+	//constructor used for tests
+	internal GWebCacheClient() { }
 
 	private void DetermineIfCacheIsV2() {
 		Result<PongResponse> pingResult = Ping();
@@ -82,7 +87,7 @@ public class GWebCacheClient : IGWebCacheClient {
 				return result.WithException(response.ErrorMessage ?? "Something went wrong getting the correct response");
 
 			result.WasSuccessful = response.WasSuccessful;
-			result.ResultObject = new UrlFileResponse() { WebCacheNodes = response.ResultObject!.WebCacheNodes };
+			result.ResultObject = new UrlFileResponse() { WebCaches = response.ResultObject!.WebCacheNodes };
 			return result;
 		}
 
@@ -105,8 +110,8 @@ public class GWebCacheClient : IGWebCacheClient {
 			queryDict.Add("ip", HttpUtility.UrlEncode(updateRequest.GnutellaNode.ToString()));
 		
 		
-		if (updateRequest.WebCacheNode != null) 
-			queryDict.Add("url", HttpUtility.UrlEncode(updateRequest.WebCacheNode.ToString()));
+		if (updateRequest.GWebCacheNode != null) 
+			queryDict.Add("url", HttpUtility.UrlEncode(updateRequest.GWebCacheNode.ToString()));
 
 		return PreformGetWithQueryDict<UpdateResponse>(queryDict);
 	}

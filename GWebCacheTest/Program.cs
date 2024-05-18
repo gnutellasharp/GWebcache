@@ -36,7 +36,7 @@ internal class Program {
 
 				if (result.WasSuccessful) {
 					sw.WriteLine(url);
-					result.ResultObject.WebCacheNodes.ForEach(u => {
+					result.ResultObject.WebCaches.ForEach(u => {
 
 						toInvestigate.Push(u.Url?.ToString() ?? "");
 					});
