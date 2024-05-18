@@ -8,7 +8,8 @@ namespace GWebCache.Client;
 /// </summary>
 class GWebCacheHttpClient {
 	public readonly HttpClient _client;
-	private readonly GWebCacheClientConfig config;
+	public readonly GWebCacheClientConfig config;
+	public Uri? BaseUri => _client?.BaseAddress;
 
    /// <summary>
    /// Initializes the HttpClient and sets the <see cref="GWebCacheClientConfig.UserAgent"/> as the default User-Agent.

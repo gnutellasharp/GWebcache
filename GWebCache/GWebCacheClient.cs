@@ -4,7 +4,6 @@ using GWebCache.Models.Enums;
 using GWebCache.ReponseProcessing;
 using GWebCache.Reponses;
 using GWebCache.Requests;
-using System;
 using System.Web;
 
 namespace GWebCache;
@@ -14,8 +13,6 @@ namespace GWebCache;
 /// </summary>
 public class GWebCacheClient : IGWebCacheClient {
 	private readonly GWebCacheHttpClient gWebCacheHttpClient;
-	private readonly GWebCacheClientConfig gWebCacheClientConfig;
-	private readonly Uri _host;
 
 	/// <summary>
 	/// Constructor for the GWebCacheClient
@@ -33,21 +30,24 @@ public class GWebCacheClient : IGWebCacheClient {
 			throw new ArgumentException("host was invalid");
 
 		//initalizes fields
-		this.gWebCacheClientConfig = config ?? GWebCacheClientConfig.Default;
-		gWebCacheHttpClient = new(config: this.gWebCacheClientConfig);
-		_host = uri;
+		if (config == null)
+			config = GWebCacheClientConfig.Default;
+
 
 		//Determine cache version if the parameter is filled in not applicable
-		if (!this.gWebCacheClientConfig.IsV2.HasValue)
-			DetermineIfCacheIsV2();
+		config.IsV2 = config.IsV2.HasValue ? config.IsV2.Value : CheckIfCacheIsV2();
+
+		gWebCacheHttpClient = new(config,uri);
 	}
 
 	//constructor used for tests
-	internal GWebCacheClient() { }
+	internal GWebCacheClient(GWebCacheHttpClient client) {
+		gWebCacheHttpClient = client;
+	}
 
-	private void DetermineIfCacheIsV2() {
+	private bool CheckIfCacheIsV2() {
 		Result<PongResponse> pingResult = Ping();
-		gWebCacheClientConfig.IsV2 = pingResult.IsV2Response;
+		return pingResult.IsV2Response;
 	}
 
 	public bool CheckIfAlive() {
@@ -87,7 +87,7 @@ public class GWebCacheClient : IGWebCacheClient {
 				return result.WithException(response.ErrorMessage ?? "Something went wrong getting the correct response");
 
 			result.WasSuccessful = response.WasSuccessful;
-			result.ResultObject = new UrlFileResponse() { WebCaches = response.ResultObject!.WebCacheNodes };
+			result.ResultObject = new UrlFileResponse() { WebCacheNodes = response.ResultObject!.WebCacheNodes };
 			return result;
 		}
 
@@ -110,8 +110,8 @@ public class GWebCacheClient : IGWebCacheClient {
 			queryDict.Add("ip", HttpUtility.UrlEncode(updateRequest.GnutellaNode.ToString()));
 		
 		
-		if (updateRequest.GWebCacheNode != null) 
-			queryDict.Add("url", HttpUtility.UrlEncode(updateRequest.GWebCacheNode.ToString()));
+		if (updateRequest.WebCacheNode != null) 
+			queryDict.Add("url", HttpUtility.UrlEncode(updateRequest.WebCacheNode.ToString()));
 
 		return PreformGetWithQueryDict<UpdateResponse>(queryDict);
 	}
@@ -124,13 +124,16 @@ public class GWebCacheClient : IGWebCacheClient {
 	}
 
 	private Result<T> PreformGetWithQueryDict<T>(Dictionary<string, object> queryDict) where T : GWebCacheResponse, new() {
-		string url = _host.GetUrlWithQuery(queryDict);
+		if(gWebCacheHttpClient.BaseUri == null)
+			throw new InvalidOperationException("The base uri is not set");
+		
+		string url = gWebCacheHttpClient.BaseUri.GetUrlWithQuery(queryDict);
 		HttpResponseMessage? response = gWebCacheHttpClient.GetAsync(url).Result;
 		return new Result<T>().Execute(response);
 	}
 
 	public Result<GetResponse> Get(GnutellaNetwork? network) {
-		if (!gWebCacheClientConfig.IsV2!.Value) {
+		if (!WebCacheIsV2()) {
 			return new Result<GetResponse>().WithException("This method is not supported on a V1 WebCache");
 		}
 
@@ -145,6 +148,6 @@ public class GWebCacheClient : IGWebCacheClient {
 	}
 
 	public bool WebCacheIsV2() {
-		return gWebCacheClientConfig.IsV2 ?? false;
+		return gWebCacheHttpClient.config.IsV2 ?? false;
 	}
 }
