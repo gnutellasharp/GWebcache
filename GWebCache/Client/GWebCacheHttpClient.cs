@@ -23,6 +23,11 @@ class GWebCacheHttpClient {
 	}
 
 	/// <summary>
+	/// Parameterless constructor for mocking framework
+	/// </summary>
+	internal GWebCacheHttpClient() { }
+
+	/// <summary>
 	/// Constructor used for testing purposes (DI injection)
 	/// </summary>
 	internal GWebCacheHttpClient(GWebCacheClientConfig config, HttpClient client) {
@@ -35,7 +40,7 @@ class GWebCacheHttpClient {
 	/// Converts the url to a <see cref="Uri"/> and calls <see cref="GetAsync(Uri)"/>
 	/// </summary>
 	/// <param name="url">url to call in string format</param>
-	internal async Task<HttpResponseMessage?> GetAsync(string url) {
+	internal virtual async Task<HttpResponseMessage?> GetAsync(string url) {
 		if(!Uri.TryCreate(url, UriKind.Absolute, out Uri? uri))
 			throw new ArgumentException($"{url} is not a valid url");
 
@@ -47,7 +52,7 @@ class GWebCacheHttpClient {
 	/// </summary>
 	/// <returns>The <see cref="HttpResponseMessage"/> resulting from the get call.</returns>
 	/// <see cref="AddDefaultParamsIfNotExist(Uri)"/>
-	internal async Task<HttpResponseMessage?> GetAsync(Uri uri) {
+	internal virtual async Task<HttpResponseMessage?> GetAsync(Uri uri) {
 		Uri url = AddDefaultParamsIfNotExist(uri);
 		HttpResponseMessage response = await _client.GetAsync(url);
 		return response;

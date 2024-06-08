@@ -26,16 +26,14 @@ public class GWebCacheClient : IGWebCacheClient {
 	/// <see cref="DetermineIfCacheIsV2"/>
 	public GWebCacheClient(string host, GWebCacheClientConfig? config = null) {
 		//check that the host is valid
-		if (string.IsNullOrWhiteSpace(host) || !Uri.TryCreate(host, new(), out Uri? uri))
+		if (string.IsNullOrWhiteSpace(host) || !Uri.TryCreate(host, UriKind.Absolute, out Uri? uri))
 			throw new ArgumentException("host was invalid");
 
 		//initalizes fields
-		if (config == null)
-			config = GWebCacheClientConfig.Default;
-
+		config ??= GWebCacheClientConfig.Default;
 
 		//Determine cache version if the parameter is filled in not applicable
-		config.IsV2 = config.IsV2.HasValue ? config.IsV2.Value : CheckIfCacheIsV2();
+		config.IsV2 ??= CheckIfCacheIsV2();
 
 		gWebCacheHttpClient = new(config,uri);
 	}
