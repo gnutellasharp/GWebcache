@@ -33,6 +33,5 @@ var searchData=
   ['gwebcachenode_30',['GWebCacheNode',['../d1/da5/classGWebCache_1_1Models_1_1GWebCacheNode.html',1,'GWebCache.Models.GWebCacheNode'],['../d1/da5/classGWebCache_1_1Models_1_1GWebCacheNode.html#abf7522de8c32caae5545904c696ab3c6',1,'GWebCache.Models.GWebCacheNode.GWebCacheNode(string url)'],['../d1/da5/classGWebCache_1_1Models_1_1GWebCacheNode.html#abab9b9f063235fc3aab9e82884ba07fd',1,'GWebCache.Models.GWebCacheNode.GWebCacheNode(Uri uri)']]],
   ['gwebcachenodetests_31',['GWebCacheNodeTests',['../d6/dbb/classGWebCache_1_1Test_1_1Models_1_1GWebCacheNodeTests.html',1,'GWebCache::Test::Models']]],
   ['gwebcacherequest_32',['GWebCacheRequest',['../db/dc4/classGWebCache_1_1Requests_1_1GWebCacheRequest.html',1,'GWebCache::Requests']]],
-  ['gwebcacheresponse_33',['GWebCacheResponse',['../df/deb/classGWebCache_1_1Reponses_1_1GWebCacheResponse.html',1,'GWebCache::Reponses']]],
-  ['gwebcachetest_34',['GWebCacheTest',['../d6/da3/namespaceGWebCacheTest.html',1,'']]]
+  ['gwebcacheresponse_33',['GWebCacheResponse',['../df/deb/classGWebCache_1_1Reponses_1_1GWebCacheResponse.html',1,'GWebCache::Reponses']]]
 ];

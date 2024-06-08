@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['cache_0',['Cache',['../d3/dcb/md_Examples.html#autotoc_md1',1,'Querying a v1 cache'],['../d3/dcb/md_Examples.html#autotoc_md4',1,'Querying a V2 cache']]],
+  ['cache_0',['cache',['../d3/dcb/md_Examples.html#autotoc_md1',1,'Querying a v1 cache'],['../d3/dcb/md_Examples.html#autotoc_md4',1,'Querying a V2 cache']]],
   ['caches_1',['Supported Caches',['../index.html#autotoc_md9',1,'']]],
   ['cacheversion_2',['CacheVersion',['../d0/d39/classGWebCache_1_1Reponses_1_1PongResponse.html#af69ca89b0cbf57bb5e325de5c5c861e9',1,'GWebCache::Reponses::PongResponse']]],
   ['checkifalive_3',['CheckIfAlive',['../d2/df6/classGWebCache_1_1GWebCacheClient.html#a261d5f41070e02578b8e792fc627b29d',1,'GWebCache.GWebCacheClient.CheckIfAlive()'],['../d5/d77/interfaceGWebCache_1_1IGWebCacheClient.html#a80c5f8e1dc4fd13c2ef74cd478375068',1,'GWebCache.IGWebCacheClient.CheckIfAlive()']]],

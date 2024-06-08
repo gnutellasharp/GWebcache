@@ -45,4 +45,4 @@ var menudata={children:[
 {text:"w",url:"functions.html#index_w"}]},
 {text:"Functions",url:"functions_func.html"},
 {text:"Properties",url:"functions_prop.html"}]}]},
-{text:"Examples",url:"d3/dcb/md_Examples.html"}]}
+{text:"Examples",url:"@ref Examples.md"}]}
