@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['gnutellanodes_0',['GnutellaNodes',['../d0/df5/classGWebCache_1_1Reponses_1_1GetResponse.html#a969860801ddb1c72d4d3b6c5d379c06c',1,'GWebCache.Reponses.GetResponse.GnutellaNodes'],['../d8/d5f/classGWebCache_1_1Reponses_1_1HostfileResponse.html#aa26317b69f3a958b1df76b13248651eb',1,'GWebCache.Reponses.HostfileResponse.GnutellaNodes']]]
+  ['gnutellanodes_0',['GnutellaNodes',['../df/deb/classGWebCache_1_1Responses_1_1GetResponse.html#a5494039624687b82ccab574aad9fa6d2',1,'GWebCache.Responses.GetResponse.GnutellaNodes'],['../d9/d0d/classGWebCache_1_1Responses_1_1HostFileResponse.html#af5fee5974a78e65d9ce231fddfbd7402',1,'GWebCache.Responses.HostFileResponse.GnutellaNodes']]]
 ];

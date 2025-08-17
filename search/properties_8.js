@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['resultobject_0',['ResultObject',['../d0/d9d/classGWebCache_1_1ReponseProcessing_1_1Result.html#a94f744940adb29c5a4049c1733f98860',1,'GWebCache::ReponseProcessing::Result']]]
+  ['resultobject_0',['ResultObject',['../d3/db4/classGWebCache_1_1ResponseProcessing_1_1Result-1-g.html#a3d9eef873b9b3ee3c0b9017becea6efb',1,'GWebCache::ResponseProcessing::Result-1-g']]]
 ];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['wassuccessful_0',['WasSuccessful',['../d0/d9d/classGWebCache_1_1ReponseProcessing_1_1Result.html#ab4c28358fd3743e959bde73487463c57',1,'GWebCache::ReponseProcessing::Result']]],
-  ['webcachenodes_1',['WebCacheNodes',['../d0/df5/classGWebCache_1_1Reponses_1_1GetResponse.html#a04c44ae889c5f35899afbdf379829938',1,'GWebCache::Reponses::GetResponse']]]
+  ['wassuccessful_0',['WasSuccessful',['../d3/db4/classGWebCache_1_1ResponseProcessing_1_1Result-1-g.html#a1a9faba0816b923de3fb55da0b43b229',1,'GWebCache::ResponseProcessing::Result-1-g']]],
+  ['webcachenodes_1',['WebCacheNodes',['../df/deb/classGWebCache_1_1Responses_1_1GetResponse.html#a0ee12892c1d614cb6fd4c13f7fc4a822',1,'GWebCache::Responses::GetResponse']]]
 ];
