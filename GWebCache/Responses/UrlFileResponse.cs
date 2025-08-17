@@ -66,7 +66,7 @@ namespace GWebCache.Responses{
 		/// </summary>
 		/// <param name="response">The HTTP response from the server</param>
 		/// <returns>An array of string representing urls to other GWebCaches</returns>
-		internal string[] GetUrlsFromResponse(HttpResponseMessage response) {
+		private static string[] GetUrlsFromResponse(HttpResponseMessage response) {
 			return response!.ContentAsString().Split("\n").Select(l => l.Trim()).Where(l => !string.IsNullOrEmpty(l)).ToArray();
 		}
 	}

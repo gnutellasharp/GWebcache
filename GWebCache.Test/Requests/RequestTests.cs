@@ -26,10 +26,10 @@ public class RequestTests {
 		UpdateRequest request = new() { GnutellaNode = node};
 		Assert.IsTrue(request.IsValidRequest());
 
-		request = new() { WebCacheNode = gWebCacheNode };
+		request = new UpdateRequest { WebCacheNode = gWebCacheNode };
 		Assert.IsTrue(request.IsValidRequest());
 
-		request = new() { GnutellaNode = node, WebCacheNode = gWebCacheNode };
+		request = new UpdateRequest { GnutellaNode = node, WebCacheNode = gWebCacheNode };
 		Assert.IsTrue(request.IsValidRequest());
 	}
 

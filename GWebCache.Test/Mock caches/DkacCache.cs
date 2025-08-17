@@ -1,7 +1,7 @@
 ﻿using GWebCache.Models.Enums;
 
 namespace GWebCache.Test.Mock_caches;
-internal class DKACCache : IMockCache {
+internal class DkacCache : IMockCache {
 	public string GetGetResponse(GnutellaNetwork? net) {
 		if (net == null)
 			return "ERROR No network";

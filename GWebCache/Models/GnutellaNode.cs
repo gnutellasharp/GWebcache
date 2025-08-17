@@ -10,12 +10,13 @@ namespace GWebCache.Models{
 		/// <summary>
 		/// The ip address of the node
 		/// </summary>
-		public IPAddress IPAddress { get; set; }
+		// ReSharper disable once MemberCanBePrivate.Global
+		public IPAddress IpAddress { get; }
 
 		/// <summary>
 		/// Listening port of the node
 		/// </summary>
-		public int Port { get; set; }
+		public int Port { get; }
 
 		/// <summary>
 		/// When did the GWebCache get an update about this node.
@@ -37,7 +38,7 @@ namespace GWebCache.Models{
 			if (!parsed || ip == null)
 				throw new ArgumentException("Invalid IP address");
 
-			this.IPAddress = ip;
+			this.IpAddress = ip;
 			this.Port = port;
 		}
 
@@ -47,11 +48,11 @@ namespace GWebCache.Models{
 		/// <param name="ipAddress">IP-address of the node</param>
 		/// <param name="port">Listening port of the node</param>
 		/// <exception cref="ArgumentException">If the port number is below zero</exception>
-		public GnutellaNode(IPAddress IPAddress, int port) {
+		public GnutellaNode(IPAddress ipAddress, int port) {
 			if (port <= 0)
 				throw new ArgumentException("Port can't be negative");
 
-			this.IPAddress = IPAddress;
+			this.IpAddress = ipAddress;
 			Port = port;
 		}
 
@@ -59,17 +60,17 @@ namespace GWebCache.Models{
 		/// Returns the node as ip:port and url encodes it.
 		/// </summary>
 		/// <remarks>The reason for the url encoding is that we can then immediately send it on to the GWebCache</remarks>
-		override public string ToString() {
-			return $"{IPAddress}:{Port}";
+		public override string ToString() {
+			return $"{this.IpAddress}:{Port}";
 		}
 
 		/// <summary>
 		/// Two nodes are equal if their ips are the same and their ports are the same.
 		/// </summary>
 		/// <returns>An indication if two nodes are equal</returns>
-		override public bool Equals(object obj) {
-			if (obj != null && obj is GnutellaNode node)
-				return node.IPAddress!.Equals(IPAddress) && node.Port == Port;
+		public override bool Equals(object obj) {
+			if (obj is GnutellaNode node)
+				return node.IpAddress!.Equals(this.IpAddress) && node.Port == Port;
 
 			return false;
 		}

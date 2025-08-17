@@ -22,12 +22,12 @@ namespace GWebCache.ResponseProcessing{
 		/// </summary>
 		/// <remarks> mainly used internally for parsing the http response into the response object</remarks>
 		/// <see cref="GWebCacheResponse.IsValidV2Response(HttpResponseMessage?)"/>
-		public bool IsV2Response { get; set; }
+		public bool IsV2Response { get; private set; }
 
 		/// <summary>
 		/// Possible error message returned from the GWebCache.
 		/// </summary>
-		public string ErrorMessage { get; set; }
+		public string ErrorMessage { get; private set; }
 
 		/// <summary>
 		/// Parsed resulting object will be null in case of error.
@@ -61,7 +61,7 @@ namespace GWebCache.ResponseProcessing{
 			IsV2Response = WasSuccessful && ResultObject!.IsValidV2Response(responseMessage);
 
 			if (!WasSuccessful) {
-				ErrorMessage = responseMessage?.Content?.ReadAsStringAsync()?.Result.Trim() ?? "";
+				ErrorMessage = responseMessage?.Content?.ReadAsStringAsync().Result.Trim() ?? "";
 				return this;
 			}
 

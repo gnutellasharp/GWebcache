@@ -140,3 +140,4 @@ csharp_space_between_method_declaration_name_and_open_parenthesis = false
 dotnet_diagnostic.IDE0160.severity = none
 dotnet_diagnostic.IDE0161.severity = none
 dotnet_analyzer_diagnostic.category-Style.severity = none
+resharper_unused_auto_property_accessor_global_highlighting = none

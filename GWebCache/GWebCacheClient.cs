@@ -14,7 +14,7 @@ namespace GWebCache{
 	/// Concrete implementation of <see cref="IGWebCacheClient"/>
 	/// </summary>
 	public class GWebCacheClient : IGWebCacheClient {
-		private readonly GWebCacheHttpClient gWebCacheHttpClient;
+		private readonly GWebCacheHttpClient _gWebCacheHttpClient;
 
 		/// <summary>
 		/// Constructor for the GWebCacheClient
@@ -25,7 +25,7 @@ namespace GWebCache{
 		/// <remarks>It's recommended that you use http even if the GWebCache supports https.</remarks>
 		/// <remarks>The constructor will invoke the default configuration if not specified <see cref="GWebCacheClientConfig"/></remarks>
 		/// <remarks>The constructor will also check if the GWebCache follows the v2 standard in case it's not explicitly provided in the configuration</remarks>
-		/// <see cref="DetermineIfCacheIsV2"/>
+		/// <see cref="CheckIfCacheIsV2"/>
 		public GWebCacheClient(string host, GWebCacheClientConfig config = null) {
 			//check that the host is valid
 			if (string.IsNullOrWhiteSpace(host) || !Uri.TryCreate(host, UriKind.Absolute, out Uri uri))
@@ -37,12 +37,12 @@ namespace GWebCache{
 			//Determine cache version if the parameter is filled in not applicable
 			config.IsV2 ??= CheckIfCacheIsV2();
 
-			gWebCacheHttpClient = new GWebCacheHttpClient(config,uri);
+			_gWebCacheHttpClient = new GWebCacheHttpClient(config,uri);
 		}
 
 		//constructor used for tests
 		internal GWebCacheClient(GWebCacheHttpClient client) {
-			gWebCacheHttpClient = client;
+			_gWebCacheHttpClient = client;
 		}
 
 		private bool CheckIfCacheIsV2() {
@@ -112,7 +112,6 @@ namespace GWebCache{
 			if (updateRequest.GnutellaNode != null) 
 				queryDict.Add("ip", HttpUtility.UrlEncode(updateRequest.GnutellaNode.ToString()));
 			
-			
 			if (updateRequest.WebCacheNode != null) 
 				queryDict.Add("url", HttpUtility.UrlEncode(updateRequest.WebCacheNode.ToString()));
 
@@ -127,11 +126,11 @@ namespace GWebCache{
 		}
 
 		private Result<T> PreformGetWithQueryDict<T>(Dictionary<string, string> queryDict) where T : GWebCacheResponse, new() {
-			if(gWebCacheHttpClient.BaseUri == null)
+			if(_gWebCacheHttpClient.BaseUri == null)
 				throw new InvalidOperationException("The base uri is not set");
 			
-			string url = gWebCacheHttpClient.BaseUri.GetUrlWithQuery(queryDict);
-			HttpResponseMessage response = gWebCacheHttpClient.GetAsync(url).Result;
+			string url = _gWebCacheHttpClient.BaseUri.GetUrlWithQuery(queryDict);
+			HttpResponseMessage response = _gWebCacheHttpClient.GetAsync(url).Result;
 			return new Result<T>().Execute(response);
 		}
 
@@ -151,7 +150,7 @@ namespace GWebCache{
 		}
 
 		public bool WebCacheIsV2() {
-			return gWebCacheHttpClient.config.IsV2 ?? false;
+			return _gWebCacheHttpClient.HasV2WebCacheConfiguration;
 		}
 	}
 }

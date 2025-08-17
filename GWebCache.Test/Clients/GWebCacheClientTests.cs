@@ -1,55 +1,52 @@
 ﻿using GWebCache.Client;
-using GWebCache.Test.Mock_caches;
 using Moq;
 using Moq.Protected;
-using System;
 
 namespace GWebCache.Test.Clients;
 [TestClass]
 public class GWebCacheClientTests {
-	private readonly string baseUrl = "http://test.be";
-	private Mock<GWebCacheHttpClient>? httpClient;
-	private GWebCacheClient? client;
+	private const string BaseUrl = "http://test.be";
+	private Mock<GWebCacheHttpClient>? _httpClient;
+	private GWebCacheClient? _client;
 
 	[TestMethod]
 	[DataRow("ThisIsNotAValidUrl")]
 	[DataRow("")]
 	[DataRow(null)]
-	[ExpectedException(typeof(ArgumentException))]
 	public void ConstructorShouldThrowException(string url) {
-		GWebCacheClient client = new(url);
+		Assert.ThrowsExactly<ArgumentException>(()=> new GWebCacheClient(url));
 	}
 
 
 	private void Setup() {
-		httpClient = new([GWebCacheClientConfig.Default, new Uri(baseUrl)]);
-		client = new(httpClient.Object);
+		_httpClient = new Mock<GWebCacheHttpClient>([GWebCacheClientConfig.Default, new Uri(BaseUrl)]);
+		_client = new GWebCacheClient(_httpClient.Object);
 	}
 
 	[TestMethod]
 	public void TestPingCall() {
 		Setup();
-		string shouldCall = $"{baseUrl}/?ping=1";
+		const string shouldCall = $"{BaseUrl}/?ping=1";
 
-		client!.Ping();
-		httpClient!.Protected().Verify("GetAsync", Times.Once(),shouldCall);
+		_client!.Ping();
+		_httpClient!.Protected().Verify("GetAsync", Times.Once(),shouldCall);
 	}
 
 	[TestMethod]
 	public void TestCheckIfAlive() {
 		Setup();
-		string shouldCall = $"{baseUrl}/?ping=1";
+		const string shouldCall = $"{BaseUrl}/?ping=1";
 
-		client!.CheckIfAlive();
-		httpClient!.Protected().Verify("GetAsync", Times.Once(),shouldCall);
+		_client!.CheckIfAlive();
+		_httpClient!.Protected().Verify("GetAsync", Times.Once(),shouldCall);
 	}
 
 	[TestMethod]
 	public void TestStatsCall() {
 		Setup();
-		string shouldCall = $"{baseUrl}/?stats=1";
+		const string shouldCall = $"{BaseUrl}/?stats=1";
 
-		client!.GetStats();
-		httpClient!.Protected().Verify("GetAsync", Times.Once(), shouldCall);
+		_client!.GetStats();
+		_httpClient!.Protected().Verify("GetAsync", Times.Once(), shouldCall);
 	}
 }

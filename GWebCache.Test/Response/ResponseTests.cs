@@ -3,7 +3,7 @@ using GWebCache.ResponseProcessing;
 using GWebCache.Responses;
 using GWebCache.Test.Mock_caches;
 
-namespace GWebCache.Test.Responses;
+namespace GWebCache.Test.Response;
 
 
 [TestClass]
@@ -13,7 +13,7 @@ public class ResponseTests {
 			return new[] {
 				[new GhostWhiteCrabCache()],
 				[new BazookaCache()],
-				[new DKACCache()],
+				[new DkacCache()],
 				[new SkullsCache()],
 				new object[]{new BeaconCache()},
 			};
@@ -31,27 +31,25 @@ public class ResponseTests {
 		Assert.IsNotNull(result.ResultObject);
 		Assert.IsTrue(string.IsNullOrEmpty(result.ErrorMessage));
 		Assert.AreEqual(result.ResultObject.CacheVersion, mockCache.GetVersion());
-		Assert.IsTrue(Enumerable.SequenceEqual(result.ResultObject.SupportedNetworks, mockCache.GetSupportedNetworks()));
+		Assert.IsTrue(result.ResultObject.SupportedNetworks.SequenceEqual(mockCache.GetSupportedNetworks()));
 		Assert.AreEqual(result.IsV2Response, mockCache.IsV2Cache());
 	}
 
 	[TestMethod]
 	[DynamicData(nameof(Caches))]
 	public void CheckIfGetIsParsedSuccessfully(IMockCache mockCache) {
-		if (mockCache.IsV2Cache()) {
-			Result<GetResponse> result = new Result<GetResponse>();
-			HttpResponseMessage response = new HttpResponseMessage();
-			response.Content = new StringContent(mockCache.GetGetResponse(GnutellaNetwork.Gnutella2));
-			result.Execute(response);
-			Assert.IsTrue(result.WasSuccessful);
-			Assert.IsNotNull(result.ResultObject);
-			Assert.IsTrue(string.IsNullOrEmpty(result.ErrorMessage));
-			Assert.AreEqual(result.IsV2Response, mockCache.IsV2Cache());
-			Assert.IsTrue(Enumerable.SequenceEqual(mockCache.GetUrls(), result.ResultObject.WebCacheNodes.Select(s => s.ToString()).ToArray()));
-			Assert.IsTrue(Enumerable.SequenceEqual(mockCache.GetHosts(), result.ResultObject.GnutellaNodes.Select(s => s.ToString()).ToArray()));
-			return;
-		}
-		Assert.IsTrue(true);
+		if (!mockCache.IsV2Cache()) return;
+		
+		Result<GetResponse> result = new();
+		HttpResponseMessage response = new();
+		response.Content = new StringContent(mockCache.GetGetResponse(GnutellaNetwork.Gnutella2));
+		result.Execute(response);
+		Assert.IsTrue(result.WasSuccessful);
+		Assert.IsNotNull(result.ResultObject);
+		Assert.IsTrue(string.IsNullOrEmpty(result.ErrorMessage));
+		Assert.AreEqual(result.IsV2Response, mockCache.IsV2Cache());
+		Assert.IsTrue(mockCache.GetUrls().SequenceEqual(result.ResultObject.WebCacheNodes.Select(s => s.ToString()).ToArray()));
+		Assert.IsTrue(mockCache.GetHosts().SequenceEqual(result.ResultObject.GnutellaNodes.Select(s => s.ToString()).ToArray()));
 	}
 
 	[TestMethod]
@@ -60,15 +58,15 @@ public class ResponseTests {
 		if (!mockCache.SupportsV1())
 			return;
 
-		Result<HostFileResponse> result = new Result<HostFileResponse>();
-		HttpResponseMessage response = new HttpResponseMessage();
+		Result<HostFileResponse> result = new();
+		HttpResponseMessage response = new();
 		response.Content = new StringContent(mockCache.GetHostFileResponse());
 		result.Execute(response);
 		Assert.IsTrue(result.WasSuccessful);
 		Assert.IsNotNull(result.ResultObject);
 		Assert.IsTrue(string.IsNullOrEmpty(result.ErrorMessage));
 		Assert.IsFalse(result.IsV2Response);
-		Assert.IsTrue(Enumerable.SequenceEqual(mockCache.GetHosts(), result.ResultObject.GnutellaNodes.Select(s => s.ToString()).ToArray()));
+		Assert.IsTrue(mockCache.GetHosts().SequenceEqual(result.ResultObject.GnutellaNodes.Select(s => s.ToString()).ToArray()));
 	}
 
 	[TestMethod]
@@ -86,7 +84,7 @@ public class ResponseTests {
 		Assert.IsNotNull(result.ResultObject);
 		Assert.IsTrue(string.IsNullOrEmpty(result.ErrorMessage));
 		Assert.IsFalse(result.IsV2Response);
-		Assert.IsTrue(Enumerable.SequenceEqual(mockCache.GetUrls(), result.ResultObject.WebCacheNodes.Select(s => s.ToString()).ToArray()));
+		Assert.IsTrue(mockCache.GetUrls().SequenceEqual(result.ResultObject.WebCacheNodes.Select(s => s.ToString()).ToArray()));
 	}
 
 	[TestMethod]

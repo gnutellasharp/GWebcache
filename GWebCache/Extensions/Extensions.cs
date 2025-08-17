@@ -22,7 +22,7 @@ namespace GWebCache.Extensions{
 		/// </summary>
 		/// <returns>The content as a string or an empty string if content is null</returns>
 		internal static string ContentAsString(this HttpResponseMessage response) {
-			return response.Content?.ReadAsStringAsync()?.Result ?? "";
+			return response.Content?.ReadAsStringAsync().Result ?? "";
 		}
 
 		/// <summary>

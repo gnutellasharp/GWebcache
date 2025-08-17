@@ -5,6 +5,7 @@ using GWebCache.Extensions;
 using GWebCache.Models;
 using System.Net;
 using System.Net.Http;
+using GWebCache.Exceptions;
 
 namespace GWebCache.Responses{
 	/// <summary>
@@ -16,12 +17,12 @@ namespace GWebCache.Responses{
 		/// <summary>
 		/// List of know gnutella nodes on the network
 		/// </summary>
-		public List<GnutellaNode> GnutellaNodes { get; set; }  = new List<GnutellaNode>();
+		public List<GnutellaNode> GnutellaNodes { get; }  = new List<GnutellaNode>();
 
 		/// <summary>
 		/// List of other GWebCaches
 		/// </summary>
-		public List<GWebCacheNode> WebCacheNodes { get; set; } = new List<GWebCacheNode>();
+		public List<GWebCacheNode> WebCacheNodes { get; } = new List<GWebCacheNode>();
 
 		/// <summary>
 		/// A message is valid if it complies with <see cref="GWebCacheResponse.IsValidResponse(HttpResponseMessage?)"/> 
@@ -51,10 +52,10 @@ namespace GWebCache.Responses{
 		/// <summary>
 		/// Not relevant, Get Responses are only returned by GWebCaches following the V2 specification
 		/// </summary>
-		/// <param name="responseMessage">The HTTP response returned from the request</param>
-		/// <exception cref="NotImplementedException">Will always be thrown</exception>
+		/// <param name="response">The HTTP response returned from the request</param>
+		/// <exception cref="VersionMismatchException">Will always be thrown</exception>
 		internal override void Parse(HttpResponseMessage response) {
-			throw new NotImplementedException();
+			throw new VersionMismatchException();
 		}
 
 		/// <summary>
@@ -64,7 +65,7 @@ namespace GWebCache.Responses{
 		internal override void ParseV2(HttpResponseMessage response) {
 			string[] lines = response.ContentAsString().Split("\n").Select(l => l.Trim()).Where(l => !string.IsNullOrEmpty(l)).ToArray();
 			foreach(string line in lines) {
-				string[] fields = line.Split("|").ToArray();
+				string[] fields = line.Split("|");
 
 				if (fields.Length < 2)
 					continue;

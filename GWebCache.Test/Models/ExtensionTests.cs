@@ -48,13 +48,13 @@ public class ExtensionsTest {
 			Content = new StringContent(input)
 		};
 		
-		Assert.AreEqual(response.SplitContentInFields().Length, expectedOutputAmount);
+		Assert.AreEqual(expectedOutputAmount, response.SplitContentInFields().Length);
 	}
 
 
 	[TestMethod]
 	[DynamicData(nameof(ValidUrlData))]
 	public void AddingUrlParameters(Uri input, Dictionary<string,string> parameters, string expectedOutput) {
-		Assert.AreEqual(input.GetUrlWithQuery(parameters), expectedOutput);
+		Assert.AreEqual(expectedOutput, input.GetUrlWithQuery(parameters));
 	}
 }

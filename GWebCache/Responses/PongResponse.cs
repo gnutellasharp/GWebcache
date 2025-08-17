@@ -30,10 +30,7 @@ namespace GWebCache.Responses{
 		/// <param name="responseMessage">The HTTP response returned from the request</param>
 		/// <returns>Boolean indicating if the GWebCache response can be parsed successfully</returns>
 		internal override bool IsValidResponse(HttpResponseMessage responseMessage) {
-			if (!base.IsValidResponse(responseMessage))
-				return false;
-
-			return responseMessage!.ContentAsString().Contains("pong", StringComparison.InvariantCultureIgnoreCase);
+			return base.IsValidResponse(responseMessage) && responseMessage!.ContentAsString().Contains("pong", StringComparison.InvariantCultureIgnoreCase);
 		}
 
 		/// <summary>

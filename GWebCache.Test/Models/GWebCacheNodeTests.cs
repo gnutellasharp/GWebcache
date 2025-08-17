@@ -15,7 +15,7 @@ public class GWebCacheNodeTests {
 		Assert.IsNotNull(node);
 		Assert.AreEqual(node.Url, uri);
 
-		node = new(uri);
+		node = new GWebCacheNode(uri);
 		Assert.IsNotNull(node);
 		Assert.AreEqual(node.Url, uri);
 	}
@@ -24,9 +24,8 @@ public class GWebCacheNodeTests {
 	[DataRow("ThisIsNotAValidUrl")]
 	[DataRow("")]
 	[DataRow(null)]
-	[ExpectedException(typeof(ArgumentException))]
 	public void TestConstructorShouldThrowException(string url) {
-		GWebCacheNode node = new(url);
+		Assert.ThrowsExactly<ArgumentException>(() => new GWebCacheNode(url));
 	}
 
 

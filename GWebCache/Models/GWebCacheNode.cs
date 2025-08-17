@@ -8,7 +8,7 @@ namespace GWebCache.Models{
 		/// <summary>
 		/// The url of the GWebCache
 		/// </summary>
-		public Uri Url { get; set; }
+		public Uri Url { get; }
 
 		/// <summary>
 		/// When did the GWebCache first gain knowledge about the other GWebCache.
@@ -49,7 +49,7 @@ namespace GWebCache.Models{
 		/// </summary>
 		/// <returns>A boolean indicating if two GWebCaches are the same</returns>
 		public override bool Equals(object obj) {
-			if (obj != null && obj is GWebCacheNode node)
+			if (obj is GWebCacheNode node)
 				return node.Url == Url;
 
 			return false;

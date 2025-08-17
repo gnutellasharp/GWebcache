@@ -18,7 +18,6 @@ namespace GWebCache.Responses{
 		/// </summary>
 		public List<GnutellaNode> GnutellaNodes { get; set; } = new List<GnutellaNode>();
 
-
 		/// <summary>
 		/// A message is valid if it complies with <see cref="GWebCacheResponse.IsValidResponse(HttpResponseMessage?)"/> 
 		/// and the content doesn't start with error
@@ -48,7 +47,7 @@ namespace GWebCache.Responses{
 					if (!IPAddress.TryParse(parts[0], out IPAddress ip) || !int.TryParse(parts[1], out int port) || port < 0)
 						continue;
 
-					GnutellaNodes.Add(new GnutellaNode(parts[0], int.Parse(parts[1])));
+					GnutellaNodes.Add(new GnutellaNode(ip, int.Parse(parts[1])));
 				}
 			}
 		}

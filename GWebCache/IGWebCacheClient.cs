@@ -14,13 +14,13 @@ namespace GWebCache{
 		/// Preforms a ping request to the server to check if it is alive.
 		/// </summary>
 		/// <returns>Boolean indicating if the server successfully answered the ping request</returns>
-		/// <remarks>A successful pong response is defined in <typeparamref name="PongResponse"/></remarks>
+		/// <remarks>A successful pong response is defined in <see cref="PongResponse"/></remarks>
 		/// <see cref="Ping"/>
 		/// <seealso cref="PongResponse"/>
 		bool CheckIfAlive();
 
 		/// <summary>
-		/// Returns the property <typeparamref name="GWebCacheClientConfig.IsV2"/>
+		/// Returns the property <see cref="GWebCacheClientConfig.IsV2"/>
 		/// </summary>
 		/// <remarks>If this property wasn't specified, a ping request is made when creating the client to fill in this property.</remarks>
 		/// <see cref="GWebCacheClientConfig.IsV2"/>
@@ -30,7 +30,6 @@ namespace GWebCache{
 		/// <summary>
 		/// Preforms a ping request to the GWebCache. Mainly used to check if the server is alive.
 		/// </summary>
-		/// <returns>A <typeparamref name="Result"/> with <typeparamref name="Pongresponse"/></returns>
 		/// <see cref="Result{T}"/>
 		/// <seealso cref="PongResponse"/>
 		Result<PongResponse> Ping();
@@ -38,7 +37,6 @@ namespace GWebCache{
 		/// <summary>
 		/// Returns the stats of the GWebCache server. 
 		/// </summary>
-		/// <returns>A <typeparamref name="Result"/> with <typeparamref name="StatFileResponse"/></returns>
 		/// <remarks>Not all GWebCache servers actually implement this. So don't assume you will get a successful result.</remarks>
 		/// <see cref="Result{T}"/>
 		/// <seealso cref="StatFileResponse"/>
@@ -51,14 +49,13 @@ namespace GWebCache{
 		/// The network you want to get the nodes from.
 		/// Will not be specified by default.
 		/// </param>
-		/// <returns>A <typeparamref name="Result"/> with <typeparamref name="HostFileResponse"/></returns>
 		/// <remarks>
 		/// V1 caches typically don't include gnutella 2 or the network parameter.
 		/// However, they will ignore it so it's always best to specify.
 		/// </remarks>
 		/// <remarks>
 		/// You can use this method on both versions. 
-		/// It is however recommended to use the <typeparamref name="Get(GnutellaNetwork?)"/> method for version 2 of the specification.
+		/// It is however recommended to use the <see cref="Get(GnutellaNetwork?)"/> method for version 2 of the specification.
 		/// </remarks>
 		/// <example>
 		/// <code>
@@ -80,7 +77,6 @@ namespace GWebCache{
 		/// The network you want to get the nodes from.
 		/// Will not be specified by default.
 		/// </param>
-		/// <returns>A <typeparamref name="Result"/> with <typeparamref name="UrlFileResponse"/></returns>
 		/// <remarks>
 		/// While the network parameter doesn't make a difference in V2 caches a lot of them require it and will return the same result regardless.
 		/// </remarks>
@@ -101,7 +97,6 @@ namespace GWebCache{
 		/// Retrieves a list of Gnutella Nodes and GWebCaches urls from a V2 compliant GWebCache. This is only valid on a V2 cache! 
 		/// </summary>
 		/// <param name="network">The network you want to get the nodes and urls from.</param>
-		/// <returns>A <typeparamref name="Result"/> with <typeparamref name="GetResponse"/></returns>
 		/// <see cref="GetResponse"/>
 		/// <seealso cref="Result{T}"/>
 		/// <seealso cref="GnutellaNetwork"/>
@@ -111,7 +106,6 @@ namespace GWebCache{
 		/// <summary>
 		/// Sends an Update request to the GWebCache. Indicating a new gnutella node, or GWebCache urls or both.
 		/// </summary>
-		/// <returns>A <typeparamref name="Result"/> with <typeparamref name="UpdateResponse"/></returns>
 		/// <remarks>Note that there's a network parameter in the update request.</remarks>
 		/// <remarks>The update response might also contain warnings when for example you're being rate limited.</remarks>
 		/// <example>

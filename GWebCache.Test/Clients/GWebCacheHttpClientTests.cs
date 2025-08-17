@@ -1,69 +1,69 @@
 ﻿using GWebCache.Client;
 using Moq;
 using Moq.Protected;
-using System;
 using System.Net;
 
 namespace GWebCache.Test.Clients;
 [TestClass]
 public class GWebCacheHttpClientTests {
-	Mock<HttpMessageHandler> mockHttpMessageHandler = new();
-	private readonly GWebCacheClientConfig config = new() { 
+	private readonly Mock<HttpMessageHandler> _mockHttpMessageHandler = new();
+	private readonly GWebCacheHttpClient _client;
+	private readonly GWebCacheClientConfig _config = new() { 
 		ClientName = "TestClient",
 		Version = "test"
 	};
-	private GWebCacheHttpClient client;
 
-
-	public void SetupGenericCalls() {
-		mockHttpMessageHandler.Protected()
+	public GWebCacheHttpClientTests() {
+		_mockHttpMessageHandler.Protected()
 			.Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(), ItExpr.IsAny<CancellationToken>())
 			.ReturnsAsync(new HttpResponseMessage { StatusCode = HttpStatusCode.OK });
-
-		client = new GWebCacheHttpClient(config, new HttpClient(mockHttpMessageHandler.Object));
+		
+		_client = new GWebCacheHttpClient(_config, new HttpClient(_mockHttpMessageHandler.Object));
 	}
 
 	[TestMethod]
 	public void TestThatHttpClientIsCalled() {
-		SetupGenericCalls();
-		client.GetAsync("http://test.com").Wait();
-		mockHttpMessageHandler.Protected().Verify("SendAsync", Times.Once(), ItExpr.IsAny<HttpRequestMessage>(), ItExpr.IsAny<CancellationToken>());
+		_client.GetAsync("http://test.com").RunSynchronously();
+		_mockHttpMessageHandler.Protected().Verify("SendAsync", Times.Once(), ItExpr.IsAny<HttpRequestMessage>(), ItExpr.IsAny<CancellationToken>());
 	}
 
 	[TestMethod]
 	public void TestThatThereIsQueryParameters() {
-		SetupGenericCalls();
-		client.GetAsync("http://test.com").Wait();
-		HttpRequestMessage message = mockHttpMessageHandler.Invocations.Last().Arguments[0] as HttpRequestMessage;
+		_client.GetAsync("http://test.com").RunSynchronously();
+		HttpRequestMessage? message = _mockHttpMessageHandler.Invocations.Last().Arguments[0] as HttpRequestMessage;
 		Assert.IsFalse(string.IsNullOrEmpty(message?.RequestUri?.Query));
 	}
 
 	[TestMethod]
 	public void TestThatClientParameterIsAdded() {
-		SetupGenericCalls();
-		client.GetAsync("http://test.com").Wait();
-		HttpRequestMessage message = mockHttpMessageHandler.Invocations.Last().Arguments[0] as HttpRequestMessage;
-		Dictionary<string,string> queryParams = ParseQuery(message.RequestUri.Query);
+		_client.GetAsync("http://test.com").RunSynchronously();
+		HttpRequestMessage? message = _mockHttpMessageHandler.Invocations[^1].Arguments[0] as HttpRequestMessage;
+		
+		Dictionary<string,string> queryParams = string.IsNullOrEmpty(message?.RequestUri?.Query)?
+				new Dictionary<string, string>() : ParseQuery(message.RequestUri.Query);		
+		
+		Assert.IsNotNull(message?.RequestUri);
 		Assert.IsTrue(queryParams.ContainsKey("client"));	
-		Assert.AreEqual(config.ClientName, queryParams["client"].ToString());
+		Assert.AreEqual(_config.ClientName, queryParams["client"]);
 	}
 
 	[TestMethod]
 	public void TestThatVersionParameterIsAdded() {
-		SetupGenericCalls();
-		client.GetAsync("http://test.com").Wait();
-		HttpRequestMessage message = mockHttpMessageHandler.Invocations.Last().Arguments[0] as HttpRequestMessage;
-		Dictionary<string, string> queryParams = ParseQuery(message.RequestUri.Query);
+		_client.GetAsync("http://test.com").RunSynchronously();
+		HttpRequestMessage? message = _mockHttpMessageHandler.Invocations[^1].Arguments[0] as HttpRequestMessage;
+		
+		Dictionary<string,string> queryParams = string.IsNullOrEmpty(message?.RequestUri?.Query)?
+			new Dictionary<string, string>() : ParseQuery(message.RequestUri.Query);		
+		
 		Assert.IsTrue(queryParams.ContainsKey("version"));
-		Assert.AreEqual(config.Version, queryParams["version"].ToString());
+		Assert.AreEqual(_config.Version, queryParams["version"]);
 	}
 
 	[TestMethod]
 	public void TestThatUserAgentIsSet() {
-		SetupGenericCalls();
-		client.GetAsync("http://test.com").Wait();
-		HttpRequestMessage message = mockHttpMessageHandler.Invocations.Last().Arguments[0] as HttpRequestMessage;
-		Assert.AreEqual(config.UserAgent, message.Headers.UserAgent.ToString());
+		_client.GetAsync("http://test.com").RunSynchronously();
+		HttpRequestMessage? message = _mockHttpMessageHandler.Invocations[^1].Arguments[0] as HttpRequestMessage;
+		Assert.AreEqual(_config.UserAgent, message?.Headers.UserAgent.ToString());
 	}
 
 	[TestMethod]
@@ -71,11 +71,10 @@ public class GWebCacheHttpClientTests {
 	[DataRow("ThisIsNotAValidUrl")]
 	[DataRow(null)]
 	public void CallWithBadUrlThrowsException(string url) {
-		SetupGenericCalls();
-		Assert.ThrowsException<AggregateException>(() => client.GetAsync(url).Wait());
+		Assert.ThrowsExactly<AggregateException>(() => _client.GetAsync(url).RunSynchronously());
 	}
 	
-	private Dictionary<string,string> ParseQuery(string query) {
+	private static Dictionary<string,string> ParseQuery(string query) {
 		return query.TrimStart('?')
 			.Split('&', StringSplitOptions.RemoveEmptyEntries)
 			.Select(part => part.Split('='))
