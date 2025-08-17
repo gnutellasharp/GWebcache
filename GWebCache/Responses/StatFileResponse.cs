@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Net.Http;
+using GWebCache.Exceptions;
 using GWebCache.Extensions;
 namespace GWebCache.Responses{
 	public class StatFileResponse : GWebCacheResponse {
@@ -31,7 +32,7 @@ namespace GWebCache.Responses{
 		}
 
 		internal override void ParseV2(HttpResponseMessage response) {
-			throw new NotImplementedException();
+			throw new VersionMismatchException();
 		}
 	}
 }

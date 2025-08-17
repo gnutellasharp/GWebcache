@@ -80,7 +80,7 @@ namespace GWebCache.Models{
 		/// </summary>
 		/// <exception cref="NotImplementedException"></exception>
 		public override int GetHashCode() {
-			throw new NotImplementedException();
+			return this.IpAddress.GetHashCode() + this.Port.GetHashCode();
 		}
 	}
 }

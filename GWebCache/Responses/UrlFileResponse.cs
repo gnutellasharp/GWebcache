@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using GWebCache.Exceptions;
 using GWebCache.Extensions;
 using GWebCache.Models;
 
@@ -58,7 +59,7 @@ namespace GWebCache.Responses{
 		/// <param name="response">The HTTP response from the server</param>
 		/// <exception cref="NotImplementedException">Will always be thrown</exception>
 		internal override void ParseV2(HttpResponseMessage response) {
-			throw new NotImplementedException();
+			throw new VersionMismatchException();
 		}
 
 		/// <summary>
