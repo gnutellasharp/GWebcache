@@ -2,18 +2,18 @@
 
 namespace GWebCache.Models;
 /// <summary>
-/// A model representing a webcache
+/// A model representing a GWebCache
 /// </summary>
 public class GWebCacheNode {
 	/// <summary>
-	/// The url of the webcache
+	/// The url of the GWebCache
 	/// </summary>
 	public Uri? Url { get; set; }
 
 	/// <summary>
-	/// When did the webcache first gain knowledge about the other webcache.
+	/// When did the GWebCache first gain knowledge about the other GWebCache.
 	/// </summary>
-	/// <remarks>This is exclusively provided by V2 webcaches so always check if this is not filled in</remarks>
+	/// <remarks>This is exclusively provided by V2 GWebCache so always check if this is not filled in</remarks>
 	public TimeSpan ActiveSince { get; set; }
 
 	/// <summary>
@@ -39,15 +39,15 @@ public class GWebCacheNode {
 	/// <summary>
 	/// Converts the GWebCacheNode to a string representation
 	/// </summary>
-	/// <returns>UrlEncoded Url of the webcache</returns>
+	/// <returns>UrlEncoded Url of the GWebCache</returns>
 	public override string ToString() {
 		return Url?.ToString() ?? "";
 	}
 
 	/// <summary>
-	/// Two webcaches are equal if the url is the same.
+	/// Two GWebCaches are equal if the url is the same.
 	/// </summary>
-	/// <returns>A boolean indicating if two webcaches are the same</returns>
+	/// <returns>A boolean indicating if two GWebCaches are the same</returns>
 	public override bool Equals(object? obj) {
 		if (obj != null && obj is GWebCacheNode node)
 			return node.Url == Url;

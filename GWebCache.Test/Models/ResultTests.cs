@@ -1,5 +1,5 @@
-﻿using GWebCache.ReponseProcessing;
-using GWebCache.Reponses;
+﻿using GWebCache.ResponseProcessing;
+using GWebCache.Responses;
 
 namespace GWebCache.Test.Models;
 [TestClass]

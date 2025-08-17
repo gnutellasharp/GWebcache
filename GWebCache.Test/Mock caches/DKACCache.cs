@@ -21,11 +21,11 @@ internal class DKACCache : IMockCache {
 		return ["127.0.218.247:37937", "127.190.57.33:15750", "127.191.191.250:36594", "127.67.13.167:43586", "127.202.152.57:5786"];
 	}
 
-	public string GetHostfileResponse() {
+	public string GetHostFileResponse() {
 		return "This is DKAC/Enticing-Enumon. Source\r\n";
 	}
 
-	public string GetPongRespone() {
+	public string GetPongResponse() {
 		return "i|pong|DKAC/Enticing-Enumon";
 	}
 
@@ -37,7 +37,7 @@ internal class DKACCache : IMockCache {
 		return [];
 	}
 
-	public string GetUpdateReponse(GnutellaNetwork? net) {
+	public string GetUpdateResponse(GnutellaNetwork? net) {
 		string result = "ERROR No network";
 		switch (net) {
 			case GnutellaNetwork.Gnutella:
@@ -50,7 +50,7 @@ internal class DKACCache : IMockCache {
 		return result;
 	}
 
-	public string GetUrlfileResponse() {
+	public string GetUrlFileResponse() {
 		return "This is DKAC/Enticing-Enumon. Source\r\n";
 	}
 
@@ -90,7 +90,7 @@ internal class DKACCache : IMockCache {
 		return "";
 	}
 
-	public bool UpdateCallSucceeeded() {
+	public bool UpdateCallSucceeded() {
 		return true;
 	}
 }

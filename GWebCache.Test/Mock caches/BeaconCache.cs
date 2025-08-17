@@ -17,7 +17,7 @@ internal class BeaconCache : IMockCache {
 			"I|access|period|3300";
 	}
 
-	public string GetHostfileResponse() {
+	public string GetHostFileResponse() {
 		return "127.0.218.247:37937\r\n" +
 			"127.190.57.33:15750\r\n" +
 			"127.191.191.250:36594\r\n" +
@@ -29,7 +29,7 @@ internal class BeaconCache : IMockCache {
 		return ["127.0.218.247:37937", "127.190.57.33:15750", "127.191.191.250:36594", "127.67.13.167:43586", "127.202.152.57:5786"];
 	}
 
-	public string GetPongRespone() {
+	public string GetPongResponse() {
 		return "PONG Beacon Cache II 0.8.0.1";
 	}
 
@@ -49,11 +49,11 @@ internal class BeaconCache : IMockCache {
 		return [];
 	}
 
-	public string GetUpdateReponse(GnutellaNetwork? net) { 
+	public string GetUpdateResponse(GnutellaNetwork? net) { 
 		return "I | OK ";
 	}
 
-	public string GetUrlfileResponse() {
+	public string GetUrlFileResponse() {
 		return
 			"http://test.net/skulls.php\n" +
 			"http://test.net:3558/\r\n" +
@@ -94,7 +94,7 @@ internal class BeaconCache : IMockCache {
 		return "";
 	}
 
-	public bool UpdateCallSucceeeded() {
+	public bool UpdateCallSucceeded() {
 		return true;
 	}
 }

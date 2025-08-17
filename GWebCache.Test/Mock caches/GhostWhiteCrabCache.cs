@@ -21,7 +21,7 @@ internal class GhostWhiteCrabCache : IMockCache {
 	"U|http://test.net:3558/|83716";
 	}
 
-	public string GetHostfileResponse() {
+	public string GetHostFileResponse() {
 		return
 			"127.0.218.247:37937\r\n" +
 			"127.190.57.33:15750\r\n" +
@@ -45,7 +45,7 @@ internal class GhostWhiteCrabCache : IMockCache {
 		return true;
 	}
 
-	public string GetPongRespone() {
+	public string GetPongResponse() {
 		return "PONG GhostWhiteCrab/0.9.7\r\n";
 	}
 
@@ -57,11 +57,11 @@ internal class GhostWhiteCrabCache : IMockCache {
 		return [];
 	}
 
-	public string GetUpdateReponse(GnutellaNetwork? net) {
+	public string GetUpdateResponse(GnutellaNetwork? net) {
 		return "WARNING: Unacceptable URL\r\n";
 	}
 
-	public string GetUrlfileResponse() {
+	public string GetUrlFileResponse() {
 		return
 			"http://test.net/skulls.php\n" +
 			"http://test.net:3558/\r\n" +
@@ -97,7 +97,7 @@ internal class GhostWhiteCrabCache : IMockCache {
 		return "WARNING: Unacceptable URL";
 	}
 
-	public bool UpdateCallSucceeeded() {
+	public bool UpdateCallSucceeded() {
 		return false;
 	}
 }

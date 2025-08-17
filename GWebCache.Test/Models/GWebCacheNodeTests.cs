@@ -21,7 +21,7 @@ public class GWebCacheNodeTests {
 	}
 
 	[TestMethod]
-	[DataRow("sdffff")]
+	[DataRow("ThisIsNotAValidUrl")]
 	[DataRow("")]
 	[DataRow(null)]
 	[ExpectedException(typeof(ArgumentException))]

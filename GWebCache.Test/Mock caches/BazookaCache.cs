@@ -25,7 +25,7 @@ internal class BazookaCache : IMockCache {
 		return result;
 	}
 
-	public string GetHostfileResponse() {
+	public string GetHostFileResponse() {
 		return "ERROR Invalid Command";
 	}
 
@@ -41,7 +41,7 @@ internal class BazookaCache : IMockCache {
 		return -1;
 	}
 
-	public string GetPongRespone() {
+	public string GetPongResponse() {
 		return "i|pong|Bazooka 0.3.6b|Gnutella2";
 	}
 
@@ -61,11 +61,11 @@ internal class BazookaCache : IMockCache {
 		return "";
 	}
 
-	public string GetUpdateReponse(GnutellaNetwork? net) {
+	public string GetUpdateResponse(GnutellaNetwork? net) {
 		return "i|update|OK";
 	}
 
-	public string GetUrlfileResponse() {
+	public string GetUrlFileResponse() {
 		return "ERROR Invalid Command";
 	}
 
@@ -90,7 +90,7 @@ internal class BazookaCache : IMockCache {
 		return false;
 	}
 
-	public bool UpdateCallSucceeeded() {
+	public bool UpdateCallSucceeded() {
 		return true;
 	}
 }

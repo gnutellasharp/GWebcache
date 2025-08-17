@@ -2,17 +2,17 @@
 using GWebCache.Extensions;
 using System.Net;
 
-namespace GWebCache.Reponses;
+namespace GWebCache.Responses;
 
 
 /// <summary>
-/// A response class containing the Nodes known to the webcache.
+/// A response class containing the Nodes known to the GWebCache.
 /// </summary>
-/// <remarks>For a V2 compliant webcache the <see cref="GetResponse"/> is being used</remarks>
-public class HostfileResponse : GWebCacheResponse {
+/// <remarks>For a V2 compliant GWebCache the <see cref="GetResponse"/> is being used</remarks>
+public class HostFileResponse : GWebCacheResponse {
 
 	/// <summary>
-	/// The list of nodes known to the webcache
+	/// The list of nodes known to the GWebCache
 	/// </summary>
 	public List<GnutellaNode> GnutellaNodes { get; set; } = new List<GnutellaNode>();
 
@@ -22,7 +22,7 @@ public class HostfileResponse : GWebCacheResponse {
 	/// and the content doesn't start with error
 	/// </summary>
 	/// <param name="responseMessage">The HTTP response returned from the request</param>
-	/// <returns>Boolean indicating if the webresponse can be parsed</returns>
+	/// <returns>Boolean indicating if the response can be parsed successfully</returns>
 	internal override bool IsValidResponse(HttpResponseMessage? responseMessage) {
 		if (!base.IsValidResponse(responseMessage))
 			return false;
@@ -62,7 +62,7 @@ public class HostfileResponse : GWebCacheResponse {
 	/// Not used, internally the <see cref="GetResponse"/> is used for forwards compatibility
 	/// </summary>
 	/// <param name="response">The HTTP response from the server</param>
-	/// <exception cref="NotImplementedException">Will alwats be thrown</exception>
+	/// <exception cref="NotImplementedException">Will always be thrown</exception>
 	internal override void ParseV2(HttpResponseMessage response) {
 		throw new NotImplementedException();
 	}

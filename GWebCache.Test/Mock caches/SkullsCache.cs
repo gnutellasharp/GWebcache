@@ -15,7 +15,7 @@ internal class SkullsCache : IMockCache {
 	"U|http://test.net/g2/bazooka.php|31124\r\n";
 	}
 
-	public string GetHostfileResponse() {
+	public string GetHostFileResponse() {
 		return
 			"127.0.218.247:37937\r\n" +
 			"127.190.57.33:15750\r\n" +
@@ -28,7 +28,7 @@ internal class SkullsCache : IMockCache {
 	}
 
 
-	public string GetPongRespone() {
+	public string GetPongResponse() {
 		return "PONG Skulls 0.3.6\r\n" +
 			"I|pong|Skulls 0.3.6|gnutella2-gnutella-mute-antsnet-pastella-kad-foxy";
 	}
@@ -47,11 +47,11 @@ internal class SkullsCache : IMockCache {
 		return ["gnutella2", "gnutella", "mute", "antsnet", "pastella", "kad", "foxy"];
 	}
 
-	public string GetUpdateReponse(GnutellaNetwork? net){ 
+	public string GetUpdateResponse(GnutellaNetwork? net){ 
 		return "I|update|OK|URL already updated\r\n";
 	}
 
-	public string GetUrlfileResponse() {
+	public string GetUrlFileResponse() {
 		return
 		"http://test.net/skulls.php\n" +
 		"http://test.net:3558/\r\n" +
@@ -91,7 +91,7 @@ internal class SkullsCache : IMockCache {
 		return "URL already updated";
 	}
 
-	public bool UpdateCallSucceeeded() {
+	public bool UpdateCallSucceeded() {
 		return true;
 	}
 }

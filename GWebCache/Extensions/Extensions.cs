@@ -7,7 +7,7 @@ namespace GWebCache.Extensions;
 /// </summary>
 static class Extensions {
 	/// <summary>
-	/// Gets the Content from an HTTP Response as a string and splits it up with | as a seperator
+	/// Gets the Content from an HTTP Response as a string and splits it up with | as a separator
 	/// </summary>
 	/// <see cref="ContentAsString(HttpResponseMessage)"/>
 	internal static string[] SplitContentInFields(this HttpResponseMessage response) {
@@ -29,7 +29,7 @@ static class Extensions {
 	/// <param name="uri">The base uri</param>
 	/// <param name="queryParams">A dictionary containing the query parameters as key value pairs</param>
 	/// <returns>A url with the query parameters appended</returns>
-	/// <remarks>If the queryparameter is already part of the uri it will not add it a second time.</remarks>
+	/// <remarks>If the query parameter is already part of the uri it will not add it a second time.</remarks>
 	internal static string GetUrlWithQuery(this Uri uri, Dictionary<string, object> queryParams) {
 		Dictionary<string, string?> parameters = QueryHelpers.ParseQuery(uri.Query).ToDictionary(x => x.Key, x => x.Value.First());
 		foreach (KeyValuePair<string, object> param in queryParams) {

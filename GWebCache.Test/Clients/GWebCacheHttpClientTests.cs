@@ -70,7 +70,7 @@ public class GWebCacheHttpClientTests {
 
 	[TestMethod]
 	[DataRow("")]
-	[DataRow("sdfsdfdsf")]
+	[DataRow("ThisIsNotAValidUrl")]
 	[DataRow(null)]
 	public void CallWithBadUrlThrowsException(string url) {
 		SetupGenericCalls();

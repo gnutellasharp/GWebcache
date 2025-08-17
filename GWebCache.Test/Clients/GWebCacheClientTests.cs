@@ -12,7 +12,7 @@ public class GWebCacheClientTests {
 	private GWebCacheClient? client;
 
 	[TestMethod]
-	[DataRow("sdffff")]
+	[DataRow("ThisIsNotAValidUrl")]
 	[DataRow("")]
 	[DataRow(null)]
 	[ExpectedException(typeof(ArgumentException))]

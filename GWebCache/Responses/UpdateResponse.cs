@@ -1,6 +1,6 @@
 ﻿using GWebCache.Extensions;
 
-namespace GWebCache.Reponses;
+namespace GWebCache.Responses;
 
 public class UpdateResponse : GWebCacheResponse {
 	public string? Message { get; set; }

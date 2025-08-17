@@ -1,8 +1,8 @@
 ﻿using GWebCache.Client;
 using GWebCache.Extensions;
 using GWebCache.Models.Enums;
-using GWebCache.ReponseProcessing;
-using GWebCache.Reponses;
+using GWebCache.ResponseProcessing;
+using GWebCache.Responses;
 using GWebCache.Requests;
 using System.Web;
 
@@ -17,19 +17,19 @@ public class GWebCacheClient : IGWebCacheClient {
 	/// <summary>
 	/// Constructor for the GWebCacheClient
 	/// </summary>
-	/// <param name="host">The url of the webcache in string format</param>
+	/// <param name="host">The url of the GWebCache in string format</param>
 	/// <param name="config">Optional configuration object</param>
 	/// <exception cref="ArgumentException">If the url can't be parsed an argument exception is thrown</exception>
-	/// <remarks>It's recommended that you use http even if the webcache supports https.</remarks>
+	/// <remarks>It's recommended that you use http even if the GWebCache supports https.</remarks>
 	/// <remarks>The constructor will invoke the default configuration if not specified <see cref="GWebCacheClientConfig"/></remarks>
-	/// <remarks>The constructor will also check if the webcache is a V2 webcache in case it's not explicitely provided in the configuration</remarks>
+	/// <remarks>The constructor will also check if the GWebCache follows the v2 standard in case it's not explicitly provided in the configuration</remarks>
 	/// <see cref="DetermineIfCacheIsV2"/>
 	public GWebCacheClient(string host, GWebCacheClientConfig? config = null) {
 		//check that the host is valid
 		if (string.IsNullOrWhiteSpace(host) || !Uri.TryCreate(host, UriKind.Absolute, out Uri? uri))
 			throw new ArgumentException("host was invalid");
 
-		//initalizes fields
+		//initializes fields
 		config ??= GWebCacheClientConfig.Default;
 
 		//Determine cache version if the parameter is filled in not applicable
@@ -61,19 +61,21 @@ public class GWebCacheClient : IGWebCacheClient {
 		return GetWithParam<StatFileResponse>("stats", "1");
 	}
 
-	public Result<HostfileResponse> GetHostfile(GnutellaNetwork? gnutellaNetwork = null) {
+	public Result<HostFileResponse> GetHostFile(GnutellaNetwork? gnutellaNetwork = null) {
 		if (WebCacheIsV2()) {
-			Result<HostfileResponse> result = new();
+			Result<HostFileResponse> result = new();
 			Result<GetResponse> response = Get(gnutellaNetwork);
 
 			if (!response.WasSuccessful || response.ResultObject == null)
 				return result.WithException(response.ErrorMessage ?? "Something went wrong getting the correct response");
 
 			result.WasSuccessful = response.WasSuccessful;
-			result.ResultObject = new HostfileResponse() { GnutellaNodes = response.ResultObject!.GnutellaNodes };
+			result.ResultObject = new HostFileResponse() { GnutellaNodes = response.ResultObject!.GnutellaNodes };
 			return result;
 		}
-		return GetWithParam<HostfileResponse>("hostfile", "1");
+		
+		// ReSharper disable once StringLiteralTypo
+		return GetWithParam<HostFileResponse>("hostfile", "1");
 	}
 
 	public Result<UrlFileResponse> GetUrlFile(GnutellaNetwork? network = null) {
@@ -89,6 +91,7 @@ public class GWebCacheClient : IGWebCacheClient {
 			return result;
 		}
 
+		// ReSharper disable once StringLiteralTypo
 		return GetWithParam<UrlFileResponse>("urlfile", "1");
 	}
 

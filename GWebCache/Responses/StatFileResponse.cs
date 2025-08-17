@@ -1,5 +1,5 @@
 ﻿using GWebCache.Extensions;
-namespace GWebCache.Reponses;
+namespace GWebCache.Responses;
 
 public class StatFileResponse : GWebCacheResponse {
 	public int TotalNumberOfRequests { get; set; }

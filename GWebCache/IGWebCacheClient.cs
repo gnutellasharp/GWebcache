@@ -1,6 +1,6 @@
 ﻿using GWebCache.Models.Enums;
-using GWebCache.ReponseProcessing;
-using GWebCache.Reponses;
+using GWebCache.ResponseProcessing;
+using GWebCache.Responses;
 using GWebCache.Requests;
 using GWebCache.Client;
 using GWebCache.Models;
@@ -13,8 +13,8 @@ public interface IGWebCacheClient {
 	/// <summary>
 	/// Preforms a ping request to the server to check if it is alive.
 	/// </summary>
-	/// <returns>Boolean indicating if the server succesfully anwsered the ping request</returns>
-	/// <remarks>A succesfull pong response is defined in <typeparamref name="PongResponse"/></remarks>
+	/// <returns>Boolean indicating if the server successfully answered the ping request</returns>
+	/// <remarks>A successful pong response is defined in <typeparamref name="PongResponse"/></remarks>
 	/// <see cref="Ping"/>
 	/// <seealso cref="PongResponse"/>
 	bool CheckIfAlive();
@@ -28,7 +28,7 @@ public interface IGWebCacheClient {
 	bool WebCacheIsV2();
 
 	/// <summary>
-	/// Preforms a ping request to the webcache. Mainly used to check if the server is alive.
+	/// Preforms a ping request to the GWebCache. Mainly used to check if the server is alive.
 	/// </summary>
 	/// <returns>A <typeparamref name="Result"/> with <typeparamref name="Pongresponse"/></returns>
 	/// <see cref="Result{T}"/>
@@ -36,16 +36,16 @@ public interface IGWebCacheClient {
 	Result<PongResponse> Ping();
 
 	/// <summary>
-	/// Returns the stats of the webcache server. 
+	/// Returns the stats of the GWebCache server. 
 	/// </summary>
 	/// <returns>A <typeparamref name="Result"/> with <typeparamref name="StatFileResponse"/></returns>
-	/// <remarks>Not all webcache servers actually implement this. So don't assume you will get a successfull result.</remarks>
+	/// <remarks>Not all GWebCache servers actually implement this. So don't assume you will get a successful result.</remarks>
 	/// <see cref="Result{T}"/>
 	/// <seealso cref="StatFileResponse"/>
 	Result<StatFileResponse> GetStats();
 
 	/// <summary>
-	/// Retrieves a list of Gnutella Nodes from the webcache. 
+	/// Retrieves a list of Gnutella Nodes from the GWebCache. 
 	/// </summary>
 	/// <param name="network">
 	/// The network you want to get the nodes from.
@@ -54,27 +54,27 @@ public interface IGWebCacheClient {
 	/// <returns>A <typeparamref name="Result"/> with <typeparamref name="HostFileResponse"/></returns>
 	/// <remarks>
 	/// V1 caches typically don't include gnutella 2 or the network parameter.
-	/// However they will ignore it so it's always best to specify.
+	/// However, they will ignore it so it's always best to specify.
 	/// </remarks>
 	/// <remarks>
 	/// You can use this method on both versions. 
 	/// It is however recommended to use the <typeparamref name="Get(GnutellaNetwork?)"/> method for version 2 of the specification.
 	/// </remarks>
-	/// <example
+	/// <example>
 	/// <code>
 	/// IGWebCacheClient client = new GWebCacheClient("url");
-	/// client.GetHostfile(GnutellaNetwork.Gnutella2);
+	/// client.GetHostFile(GnutellaNetwork.Gnutella2);
 	/// </code>
 	/// </example>
 	/// <see cref="Result{T}"/>
-	/// <seealso cref="HostfileResponse"/>
+	/// <seealso cref="HostFileResponse"/>
 	/// <seealso cref="GnutellaNetwork"/>
 	/// <seealso cref="Get(GnutellaNetwork?)"/>
 	/// <seealso cref="GnutellaNode"/>
-	Result<HostfileResponse> GetHostfile(GnutellaNetwork? network = null);
+	Result<HostFileResponse> GetHostFile(GnutellaNetwork? network = null);
 
 	/// <summary>
-	/// Retrieves a list of Urls to other webcaches from the webcache.
+	/// Retrieves a list of Urls to other GWebCaches.
 	/// </summary>
 	/// <param name="network">
 	/// The network you want to get the nodes from.
@@ -98,9 +98,9 @@ public interface IGWebCacheClient {
 
 
 	/// <summary>
-	/// Retrieves a list of Gnutella Nodes and webcache urls from a V2 webache. This is only valid on a V2 cache! 
+	/// Retrieves a list of Gnutella Nodes and GWebCaches urls from a V2 compliant GWebCache. This is only valid on a V2 cache! 
 	/// </summary>
-	/// <param name="network">The network you want to get the nodes and webcache urls from.</param>
+	/// <param name="network">The network you want to get the nodes and urls from.</param>
 	/// <returns>A <typeparamref name="Result"/> with <typeparamref name="GetResponse"/></returns>
 	/// <see cref="GetResponse"/>
 	/// <seealso cref="Result{T}"/>
@@ -109,7 +109,7 @@ public interface IGWebCacheClient {
 	Result<GetResponse> Get(GnutellaNetwork? network);
 
 	/// <summary>
-	/// Sends an Update request to the webcache. Indicating a new gnutella node, or webcache url or both.
+	/// Sends an Update request to the GWebCache. Indicating a new gnutella node, or GWebCache urls or both.
 	/// </summary>
 	/// <returns>A <typeparamref name="Result"/> with <typeparamref name="UpdateResponse"/></returns>
 	/// <remarks>Note that there's a network parameter in the update request.</remarks>

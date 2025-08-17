@@ -1,6 +1,6 @@
 ﻿using GWebCache.Extensions;
-using GWebCache.ReponseProcessing;
-namespace GWebCache.Reponses;
+using GWebCache.ResponseProcessing;
+namespace GWebCache.Responses;
 
 /// <summary>
 /// Base class for all GWebCache responses.
@@ -11,7 +11,7 @@ public abstract class GWebCacheResponse{
 	/// All messages are only valid if they had a success status code and their content is not null (can be empty)
 	/// </summary>
 	/// <param name="responseMessage">The HTTP response of the server</param>
-	/// <returns>A boolean indicating if the HTTP response is a valid GWebcache response</returns>
+	/// <returns>A boolean indicating if the HTTP response is a valid GWebCache response</returns>
 	internal virtual bool IsValidResponse(HttpResponseMessage? responseMessage) {
 		return responseMessage != null && responseMessage.IsSuccessStatusCode && responseMessage.Content != null;
 	}

@@ -2,11 +2,11 @@
 
 namespace GWebCache.Test.Mock_caches;
 public interface IMockCache  {
-	public string GetPongRespone();
+	public string GetPongResponse();
 	public string GetGetResponse(GnutellaNetwork? net);
-	public string GetHostfileResponse();
-	public string GetUrlfileResponse();
-	public string GetUpdateReponse(GnutellaNetwork? net);
+	public string GetHostFileResponse();
+	public string GetUrlFileResponse();
+	public string GetUpdateResponse(GnutellaNetwork? net);
 	public string GetStatFileResponse();
 
 	//property for test
@@ -21,5 +21,5 @@ public interface IMockCache  {
 	public int GetNumberOfRequestsInLastHour();
 	public int GetNumberOfUpdatesInLastHour();
 	public string GetUpdateMessage();
-	public bool UpdateCallSucceeeded();
+	public bool UpdateCallSucceeded();
 }

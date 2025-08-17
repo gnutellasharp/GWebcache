@@ -1,6 +1,6 @@
 ﻿using GWebCache.Models.Enums;
-using GWebCache.ReponseProcessing;
-using GWebCache.Reponses;
+using GWebCache.ResponseProcessing;
+using GWebCache.Responses;
 using GWebCache.Test.Mock_caches;
 
 namespace GWebCache.Test.Responses;
@@ -22,10 +22,10 @@ public class ResponseTests {
 
 	[TestMethod]
 	[DynamicData(nameof(Caches))]
-	public void CheckIfPingIsParsedSuccesfully(IMockCache mockCache) {
+	public void CheckIfPingIsParsedSuccessfully(IMockCache mockCache) {
 		Result<PongResponse> result = new Result<PongResponse>();
 		HttpResponseMessage response = new HttpResponseMessage();
-		response.Content = new StringContent(mockCache.GetPongRespone());
+		response.Content = new StringContent(mockCache.GetPongResponse());
 		result.Execute(response);
 		Assert.IsTrue(result.WasSuccessful);
 		Assert.IsNotNull(result.ResultObject);
@@ -37,7 +37,7 @@ public class ResponseTests {
 
 	[TestMethod]
 	[DynamicData(nameof(Caches))]
-	public void CheckIfGetIsParsedSuccesfully(IMockCache mockCache) {
+	public void CheckIfGetIsParsedSuccessfully(IMockCache mockCache) {
 		if (mockCache.IsV2Cache()) {
 			Result<GetResponse> result = new Result<GetResponse>();
 			HttpResponseMessage response = new HttpResponseMessage();
@@ -56,13 +56,13 @@ public class ResponseTests {
 
 	[TestMethod]
 	[DynamicData(nameof(Caches))]
-	public void CheckIfHostFileParsedSuccesfully (IMockCache mockCache) {
+	public void CheckIfHostFileParsedSuccessfully (IMockCache mockCache) {
 		if (!mockCache.SupportsV1())
 			return;
 
-		Result<HostfileResponse> result = new Result<HostfileResponse>();
+		Result<HostFileResponse> result = new Result<HostFileResponse>();
 		HttpResponseMessage response = new HttpResponseMessage();
-		response.Content = new StringContent(mockCache.GetHostfileResponse());
+		response.Content = new StringContent(mockCache.GetHostFileResponse());
 		result.Execute(response);
 		Assert.IsTrue(result.WasSuccessful);
 		Assert.IsNotNull(result.ResultObject);
@@ -73,13 +73,13 @@ public class ResponseTests {
 
 	[TestMethod]
 	[DynamicData(nameof(Caches))]
-	public void CheckIfUrlFileResponseParsedSuccesfully(IMockCache mockCache) {
+	public void CheckIfUrlFileResponseParsedSuccessfully(IMockCache mockCache) {
 		if (!mockCache.SupportsV1())
 			return;
 
 		Result<UrlFileResponse> result = new();
 		HttpResponseMessage response = new() {
-			Content = new StringContent(mockCache.GetUrlfileResponse())
+			Content = new StringContent(mockCache.GetUrlFileResponse())
 		};
 		result.Execute(response);
 		Assert.IsTrue(result.WasSuccessful);
@@ -91,7 +91,7 @@ public class ResponseTests {
 
 	[TestMethod]
 	[DynamicData(nameof(Caches))]
-	public void CheckIfStatFileResponseParsedSuccesfully(IMockCache mockCache) {
+	public void CheckIfStatFileResponseParsedSuccessfully(IMockCache mockCache) {
 		Result<StatFileResponse> result = new();
 		HttpResponseMessage response = new() {
 			Content = new StringContent(mockCache.GetStatFileResponse())
@@ -114,15 +114,15 @@ public class ResponseTests {
 
 	[TestMethod]
 	[DynamicData(nameof(Caches))]
-	public void CheckIfUpdateResponseParsedSuccesfully(IMockCache mockCache) {
+	public void CheckIfUpdateResponseParsedSuccessfully(IMockCache mockCache) {
 		Result<UpdateResponse> result = new();
 		HttpResponseMessage response = new() {
-			Content = new StringContent(mockCache.GetUpdateReponse(GnutellaNetwork.Gnutella2))
+			Content = new StringContent(mockCache.GetUpdateResponse(GnutellaNetwork.Gnutella2))
 		};
 		result.Execute(response);
-		Assert.AreEqual(result.WasSuccessful, mockCache.UpdateCallSucceeeded());
+		Assert.AreEqual(result.WasSuccessful, mockCache.UpdateCallSucceeded());
 
-		if(!mockCache.UpdateCallSucceeeded()) {
+		if(!mockCache.UpdateCallSucceeded()) {
 			Assert.IsNotNull(result.ErrorMessage);
 			Assert.AreEqual(result.ErrorMessage, mockCache.GetUpdateMessage());
 			return;

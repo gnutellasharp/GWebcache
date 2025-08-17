@@ -9,7 +9,7 @@ namespace GWebCache.Models;
 public class GnutellaNode {
 
 	/// <summary>
-	/// The ip adress of the node
+	/// The ip address of the node
 	/// </summary>
 	public IPAddress IPAddress { get; set; }
 
@@ -19,9 +19,9 @@ public class GnutellaNode {
 	public int Port { get; set; }
 
 	/// <summary>
-	/// When did the webcache get an update about this node.
+	/// When did the GWebCache get an update about this node.
 	/// </summary>
-	/// <remarks>This is exclusively provided by V2 webcaches so always check if this is not filled in</remarks>
+	/// <remarks>This is exclusively provided by V2 GWebCaches so always check if this is not filled in</remarks>
 	public TimeSpan ActiveSince { get; set; }
 
 	/// <summary>
@@ -29,7 +29,7 @@ public class GnutellaNode {
 	/// </summary>
 	/// <param name="ipAddress">string representation of the IP</param>
 	/// <param name="port">Listening port of the node</param>
-	/// <exception cref="ArgumentException">If the ipadress is not valid or the port number is below zero</exception>
+	/// <exception cref="ArgumentException">If the IP-address is not valid or the port number is below zero</exception>
 	public GnutellaNode(string ipAddress, int port) {
 		if (port <= 0)
 			throw new ArgumentException("Port can't be negative");
@@ -45,7 +45,7 @@ public class GnutellaNode {
 	/// <summary>
 	/// Constructs a new Gnutella Node
 	/// </summary>
-	/// <param name="ipAddress">IPaddress of the node</param>
+	/// <param name="ipAddress">IP-address of the node</param>
 	/// <param name="port">Listening port of the node</param>
 	/// <exception cref="ArgumentException">If the port number is below zero</exception>
 	public GnutellaNode(IPAddress IPAddress, int port) {
@@ -59,7 +59,7 @@ public class GnutellaNode {
 	/// <summary>
 	/// Returns the node as ip:port and url encodes it.
 	/// </summary>
-	/// <remarks>The reason for the url encoding is that we can then immeaditely send it on to the webcache</remarks>
+	/// <remarks>The reason for the url encoding is that we can then immediately send it on to the GWebCache</remarks>
 	override public string ToString() {
 		return $"{IPAddress}:{Port}";
 	}

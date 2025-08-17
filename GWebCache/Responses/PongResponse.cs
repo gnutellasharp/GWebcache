@@ -1,9 +1,9 @@
 ﻿using GWebCache.Extensions;
-namespace GWebCache.Reponses;
+namespace GWebCache.Responses;
 
 /// <summary>
 /// Represents a pong response from a GWebCache server. This is mainly used to check if the server is alive.
-/// In rare cases this also provides suplimental information about the cache.
+/// In rare cases this also provides supplemental information about the cache.
 /// </summary>
 public class PongResponse : GWebCacheResponse {
 
@@ -16,7 +16,7 @@ public class PongResponse : GWebCacheResponse {
 	/// <summary>
 	/// The <see cref="GnutellaNetwork"/> the cache supports
 	/// </summary>
-	/// <remarks>Again it's a miniority of the caches who actually supply this info. Don't rely on it being there.</remarks>
+	/// <remarks>Again it's a minority of the caches who actually supply this info. Don't rely on it being there.</remarks>
 	public string[] SupportedNetworks { get; set; } = [];
 
 	/// <summary>
@@ -24,7 +24,7 @@ public class PongResponse : GWebCacheResponse {
 	/// and the response contains pong as a string.
 	/// </summary>
 	/// <param name="responseMessage">The HTTP response returned from the request</param>
-	/// <returns>Boolean indicating if the webresponse can be parsed</returns>
+	/// <returns>Boolean indicating if the GWebCache response can be parsed successfully</returns>
 	internal override bool IsValidResponse(HttpResponseMessage? responseMessage) {
 		if (!base.IsValidResponse(responseMessage))
 			return false;
