@@ -111,18 +111,18 @@ Inheritance diagram for GWebCache.Responses.PongResponse:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:ac43bc4f0e89452a61f0bf33341922c0b" id="r_ac43bc4f0e89452a61f0bf33341922c0b"><td class="memItemLeft" align="right" valign="top">string?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac43bc4f0e89452a61f0bf33341922c0b">CacheVersion</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:ac43bc4f0e89452a61f0bf33341922c0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This can contain which vendor the cache is running.  <br /></td></tr>
-<tr class="separator:ac43bc4f0e89452a61f0bf33341922c0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8999d4d47fddca48c1a97187924598a" id="r_ac8999d4d47fddca48c1a97187924598a"><td class="memItemLeft" align="right" valign="top">string[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac8999d4d47fddca48c1a97187924598a">SupportedNetworks</a> = []<code> [get, set]</code></td></tr>
-<tr class="memdesc:ac8999d4d47fddca48c1a97187924598a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The GnutellaNetwork the cache supports.  <br /></td></tr>
+<tr class="memitem:aea4e127785ec1ed287c03c908093852b" id="r_aea4e127785ec1ed287c03c908093852b"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aea4e127785ec1ed287c03c908093852b">CacheVersion</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:aea4e127785ec1ed287c03c908093852b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This can contain which vendor the cache is running.  <br /></td></tr>
+<tr class="separator:aea4e127785ec1ed287c03c908093852b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8999d4d47fddca48c1a97187924598a" id="r_ac8999d4d47fddca48c1a97187924598a"><td class="memItemLeft" align="right" valign="top">string[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac8999d4d47fddca48c1a97187924598a">SupportedNetworks</a> = Array.Empty&lt;string&gt;()<code> [get, set]</code></td></tr>
+<tr class="memdesc:ac8999d4d47fddca48c1a97187924598a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="../../d0/db3/namespaceGWebCache_1_1Models_1_1Enums.html#a2f3f2bdb153befd358168dae9d2e828e" title="There&#39;s two versions of Gnutella V1 and V2 some methods require you to specify which version is used....">GnutellaNetwork</a> the cache supports.  <br /></td></tr>
 <tr class="separator:ac8999d4d47fddca48c1a97187924598a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a pong response from a <a class="el" href="../../db/dea/namespaceGWebCache.html">GWebCache</a> server. This is mainly used to check if the server is alive. In rare cases this also provides supplemental information about the cache. </p>
 </div><h2 class="groupheader">Property Documentation</h2>
-<a id="ac43bc4f0e89452a61f0bf33341922c0b" name="ac43bc4f0e89452a61f0bf33341922c0b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac43bc4f0e89452a61f0bf33341922c0b">&#9670;&#160;</a></span>CacheVersion</h2>
+<a id="aea4e127785ec1ed287c03c908093852b" name="aea4e127785ec1ed287c03c908093852b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea4e127785ec1ed287c03c908093852b">&#9670;&#160;</a></span>CacheVersion</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -131,7 +131,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">string? GWebCache.Responses.PongResponse.CacheVersion</td>
+          <td class="memname">string GWebCache.Responses.PongResponse.CacheVersion</td>
         </tr>
       </table>
   </td>
@@ -156,7 +156,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">string [] GWebCache.Responses.PongResponse.SupportedNetworks = []</td>
+          <td class="memname">string [] GWebCache.Responses.PongResponse.SupportedNetworks = Array.Empty&lt;string&gt;()</td>
         </tr>
       </table>
   </td>
@@ -166,7 +166,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The GnutellaNetwork the cache supports. </p>
+<p>The <a class="el" href="../../d0/db3/namespaceGWebCache_1_1Models_1_1Enums.html#a2f3f2bdb153befd358168dae9d2e828e" title="There&#39;s two versions of Gnutella V1 and V2 some methods require you to specify which version is used....">GnutellaNetwork</a> the cache supports. </p>
 <p>Again it's a minority of the caches who actually supply this info. Don't rely on it being there.</p>
 
 </div>

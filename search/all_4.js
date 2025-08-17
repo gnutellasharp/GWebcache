@@ -18,7 +18,7 @@ var searchData=
   ['gwebcache_3a_3arequests_15',['Requests',['../db/df8/namespaceGWebCache_1_1Requests.html',1,'GWebCache']]],
   ['gwebcache_3a_3aresponseprocessing_16',['ResponseProcessing',['../db/da9/namespaceGWebCache_1_1ResponseProcessing.html',1,'GWebCache']]],
   ['gwebcache_3a_3aresponses_17',['Responses',['../d6/d47/namespaceGWebCache_1_1Responses.html',1,'GWebCache']]],
-  ['gwebcacheclient_18',['GWebCacheClient',['../d2/df6/classGWebCache_1_1GWebCacheClient.html',1,'GWebCache.GWebCacheClient'],['../d2/df6/classGWebCache_1_1GWebCacheClient.html#a4bcc7193d784825a7505f652fd2c85eb',1,'GWebCache.GWebCacheClient.GWebCacheClient()']]],
+  ['gwebcacheclient_18',['GWebCacheClient',['../d2/df6/classGWebCache_1_1GWebCacheClient.html',1,'GWebCache.GWebCacheClient'],['../d2/df6/classGWebCache_1_1GWebCacheClient.html#a981c9364b1edcfa863a48e63b5ba428a',1,'GWebCache.GWebCacheClient.GWebCacheClient()']]],
   ['gwebcacheclientconfig_19',['GWebCacheClientConfig',['../dd/dde/classGWebCache_1_1Client_1_1GWebCacheClientConfig.html',1,'GWebCache::Client']]],
   ['gwebcachehttpclient_20',['GWebCacheHttpClient',['../dc/daa/classGWebCache_1_1Client_1_1GWebCacheHttpClient.html',1,'GWebCache::Client']]],
   ['gwebcachenode_21',['GWebCacheNode',['../d1/da5/classGWebCache_1_1Models_1_1GWebCacheNode.html',1,'GWebCache.Models.GWebCacheNode'],['../d1/da5/classGWebCache_1_1Models_1_1GWebCacheNode.html#abf7522de8c32caae5545904c696ab3c6',1,'GWebCache.Models.GWebCacheNode.GWebCacheNode(string url)'],['../d1/da5/classGWebCache_1_1Models_1_1GWebCacheNode.html#abab9b9f063235fc3aab9e82884ba07fd',1,'GWebCache.Models.GWebCacheNode.GWebCacheNode(Uri uri)']]],
