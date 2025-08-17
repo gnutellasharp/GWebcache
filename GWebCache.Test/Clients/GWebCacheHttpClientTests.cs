@@ -1,6 +1,4 @@
 ﻿using GWebCache.Client;
-using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.Extensions.Primitives;
 using Moq;
 using Moq.Protected;
 using System;
@@ -45,7 +43,7 @@ public class GWebCacheHttpClientTests {
 		SetupGenericCalls();
 		client.GetAsync("http://test.com").Wait();
 		HttpRequestMessage message = mockHttpMessageHandler.Invocations.Last().Arguments[0] as HttpRequestMessage;
-		Dictionary<string,StringValues> queryParams = QueryHelpers.ParseQuery(message.RequestUri.Query);
+		Dictionary<string,string> queryParams = ParseQuery(message.RequestUri.Query);
 		Assert.IsTrue(queryParams.ContainsKey("client"));	
 		Assert.AreEqual(config.ClientName, queryParams["client"].ToString());
 	}
@@ -55,7 +53,7 @@ public class GWebCacheHttpClientTests {
 		SetupGenericCalls();
 		client.GetAsync("http://test.com").Wait();
 		HttpRequestMessage message = mockHttpMessageHandler.Invocations.Last().Arguments[0] as HttpRequestMessage;
-		Dictionary<string, StringValues> queryParams = QueryHelpers.ParseQuery(message.RequestUri.Query);
+		Dictionary<string, string> queryParams = ParseQuery(message.RequestUri.Query);
 		Assert.IsTrue(queryParams.ContainsKey("version"));
 		Assert.AreEqual(config.Version, queryParams["version"].ToString());
 	}
@@ -75,5 +73,12 @@ public class GWebCacheHttpClientTests {
 	public void CallWithBadUrlThrowsException(string url) {
 		SetupGenericCalls();
 		Assert.ThrowsException<AggregateException>(() => client.GetAsync(url).Wait());
+	}
+	
+	private Dictionary<string,string> ParseQuery(string query) {
+		return query.TrimStart('?')
+			.Split('&', StringSplitOptions.RemoveEmptyEntries)
+			.Select(part => part.Split('='))
+			.ToDictionary(parts => parts[0], parts => parts.Length > 1 ? parts[1] : string.Empty);
 	}
 }

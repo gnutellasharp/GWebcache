@@ -1,69 +1,72 @@
-﻿using GWebCache.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using GWebCache.Models;
 using GWebCache.Extensions;
 using System.Net;
+using System.Net.Http;
 
-namespace GWebCache.Responses;
-
-
-/// <summary>
-/// A response class containing the Nodes known to the GWebCache.
-/// </summary>
-/// <remarks>For a V2 compliant GWebCache the <see cref="GetResponse"/> is being used</remarks>
-public class HostFileResponse : GWebCacheResponse {
-
+namespace GWebCache.Responses{
 	/// <summary>
-	/// The list of nodes known to the GWebCache
+	/// A response class containing the Nodes known to the GWebCache.
 	/// </summary>
-	public List<GnutellaNode> GnutellaNodes { get; set; } = new List<GnutellaNode>();
+	/// <remarks>For a V2 compliant GWebCache the <see cref="GetResponse"/> is being used</remarks>
+	public class HostFileResponse : GWebCacheResponse {
+
+		/// <summary>
+		/// The list of nodes known to the GWebCache
+		/// </summary>
+		public List<GnutellaNode> GnutellaNodes { get; set; } = new List<GnutellaNode>();
 
 
-	/// <summary>
-	/// A message is valid if it complies with <see cref="GWebCacheResponse.IsValidResponse(HttpResponseMessage?)"/> 
-	/// and the content doesn't start with error
-	/// </summary>
-	/// <param name="responseMessage">The HTTP response returned from the request</param>
-	/// <returns>Boolean indicating if the response can be parsed successfully</returns>
-	internal override bool IsValidResponse(HttpResponseMessage? responseMessage) {
-		if (!base.IsValidResponse(responseMessage))
-			return false;
+		/// <summary>
+		/// A message is valid if it complies with <see cref="GWebCacheResponse.IsValidResponse(HttpResponseMessage?)"/> 
+		/// and the content doesn't start with error
+		/// </summary>
+		/// <param name="responseMessage">The HTTP response returned from the request</param>
+		/// <returns>Boolean indicating if the response can be parsed successfully</returns>
+		internal override bool IsValidResponse(HttpResponseMessage responseMessage) {
+			if (!base.IsValidResponse(responseMessage))
+				return false;
 
-		// If the response contains the word "error" then it is not a valid response
-		string content = responseMessage!.ContentAsString();
-		return !content.Contains("error", StringComparison.InvariantCultureIgnoreCase);
-	}
+			// If the response contains the word "error" then it is not a valid response
+			string content = responseMessage!.ContentAsString();
+			return !content.Contains("error", StringComparison.InvariantCultureIgnoreCase);
+		}
 
-	/// <summary>
-	/// Parses the HTTP response from the server into a list of gnutella nodes
-	/// </summary>
-	/// <param name="response">The HTTP response from the server</param>
-	internal override void Parse(HttpResponseMessage response) {
-		string content = response.Content?.ReadAsStringAsync().Result ?? "";
-		string[] lines = content.Split("\n").Select(l => l.Trim()).Where(l => !string.IsNullOrEmpty(l)).ToArray();
+		/// <summary>
+		/// Parses the HTTP response from the server into a list of gnutella nodes
+		/// </summary>
+		/// <param name="response">The HTTP response from the server</param>
+		internal override void Parse(HttpResponseMessage response) {
+			string content = response.Content?.ReadAsStringAsync().Result ?? "";
+			string[] lines = content.Split("\n").Select(l => l.Trim()).Where(l => !string.IsNullOrEmpty(l)).ToArray();
 
-		foreach (string line in lines) {
-			string[] parts = line.Split(":");
-			if (parts.Length == 2) {
-				if (!IPAddress.TryParse(parts[0], out IPAddress? ip) || !int.TryParse(parts[1], out int port) || port < 0)
-					continue;
+			foreach (string line in lines) {
+				string[] parts = line.Split(":");
+				if (parts.Length == 2) {
+					if (!IPAddress.TryParse(parts[0], out IPAddress ip) || !int.TryParse(parts[1], out int port) || port < 0)
+						continue;
 
-				GnutellaNodes.Add(new GnutellaNode(parts[0], int.Parse(parts[1])));
+					GnutellaNodes.Add(new GnutellaNode(parts[0], int.Parse(parts[1])));
+				}
 			}
 		}
-	}
 
-	/// <summary>
-	/// Is never V2 so will return false. <see cref="GetResponse"/>
-	/// </summary>
-	internal override bool IsValidV2Response(HttpResponseMessage? responseMessage) {
-		return false;
-	}
+		/// <summary>
+		/// Is never V2 so will return false. <see cref="GetResponse"/>
+		/// </summary>
+		internal override bool IsValidV2Response(HttpResponseMessage responseMessage) {
+			return false;
+		}
 
-	/// <summary>
-	/// Not used, internally the <see cref="GetResponse"/> is used for forwards compatibility
-	/// </summary>
-	/// <param name="response">The HTTP response from the server</param>
-	/// <exception cref="NotImplementedException">Will always be thrown</exception>
-	internal override void ParseV2(HttpResponseMessage response) {
-		throw new NotImplementedException();
+		/// <summary>
+		/// Not used, internally the <see cref="GetResponse"/> is used for forwards compatibility
+		/// </summary>
+		/// <param name="response">The HTTP response from the server</param>
+		/// <exception cref="NotImplementedException">Will always be thrown</exception>
+		internal override void ParseV2(HttpResponseMessage response) {
+			throw new NotImplementedException();
+		}
 	}
 }

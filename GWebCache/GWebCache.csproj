@@ -1,8 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
     <PackageId>GnutellaSharp.GWebcache</PackageId>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>GnutellaSharp GWebcache</Title>
@@ -16,12 +14,11 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>gnutella;peerdiscovery;gwebcache;p2p;initialpeerproblem</PackageTags>
     <PackAsTool>False</PackAsTool>
-    <AssemblyVersion></AssemblyVersion>
     <PackageProjectUrl>https://gnutellasharp.github.io/GWebcache/</PackageProjectUrl>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <IncludeSymbols>False</IncludeSymbols>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>net8.0;netstandard2.1</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,10 +30,6 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="8.0.3" />
   </ItemGroup>
 
 </Project>

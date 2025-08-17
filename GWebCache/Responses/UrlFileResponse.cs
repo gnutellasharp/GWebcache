@@ -1,69 +1,73 @@
-﻿using GWebCache.Extensions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using GWebCache.Extensions;
 using GWebCache.Models;
 
-namespace GWebCache.Responses;
-
-/// <summary>
-/// A response class containing the other GWebCaches known
-/// </summary>
-/// <remarks>For a V2 compliant GWebCache the <see cref="GetResponse"/> is being used</remarks>
-public class UrlFileResponse : GWebCacheResponse {
-	public List<GWebCacheNode> WebCacheNodes { get; set; } = new();
-
+namespace GWebCache.Responses{
 	/// <summary>
-	/// A message is valid if it complies with <see cref="GWebCacheResponse.IsValidResponse(HttpResponseMessage?)"/> 
-	/// and the content doesn't contain error. All urls also have to be http 
+	/// A response class containing the other GWebCaches known
 	/// </summary>
-	/// <param name="responseMessage">The HTTP response returned from the request</param>
-	/// <returns>Boolean indicating if the response can be parsed successfully</returns>
-	internal override bool IsValidResponse(HttpResponseMessage? responseMessage) {
-		if (!base.IsValidResponse(responseMessage))
-			return false;
+	/// <remarks>For a V2 compliant GWebCache the <see cref="GetResponse"/> is being used</remarks>
+	public class UrlFileResponse : GWebCacheResponse {
+		public List<GWebCacheNode> WebCacheNodes { get; set; } =  new List<GWebCacheNode>();
 
-		string content = responseMessage!.ContentAsString();
-		if (content.Contains("error", StringComparison.InvariantCultureIgnoreCase))
-			return false;
+		/// <summary>
+		/// A message is valid if it complies with <see cref="GWebCacheResponse.IsValidResponse(HttpResponseMessage?)"/> 
+		/// and the content doesn't contain error. All urls also have to be http 
+		/// </summary>
+		/// <param name="responseMessage">The HTTP response returned from the request</param>
+		/// <returns>Boolean indicating if the response can be parsed successfully</returns>
+		internal override bool IsValidResponse(HttpResponseMessage responseMessage) {
+			if (!base.IsValidResponse(responseMessage))
+				return false;
 
-		//validate that all urls are http
-		return GetUrlsFromResponse(responseMessage!).All(uri => uri.StartsWith("http://", StringComparison.InvariantCultureIgnoreCase));
-	}
+			string content = responseMessage!.ContentAsString();
+			if (content.Contains("error", StringComparison.InvariantCultureIgnoreCase))
+				return false;
 
-
-	/// <summary>
-	/// Parses the HTTP response from the server into a list of other GWebCaches
-	/// </summary>
-	/// <param name="response">The HTTP response from the server</param>
-	internal override void Parse(HttpResponseMessage response) {
-		foreach(string url in GetUrlsFromResponse(response)) {
-			if (!Uri.TryCreate(url, UriKind.Absolute, out Uri? uri))
-				continue;
-
-			WebCacheNodes.Add(new GWebCacheNode(uri));
+			//validate that all urls are http
+			return GetUrlsFromResponse(responseMessage!).All(uri => uri.StartsWith("http://", StringComparison.InvariantCultureIgnoreCase));
 		}
-	}
 
-	/// <summary>
-	/// Is never V2 so will return false. <see cref="GetResponse"/>
-	/// </summary>
-	internal override bool IsValidV2Response(HttpResponseMessage? responseMessage) {
-		return false;
-	}
 
-	/// <summary>
-	/// Not used, internally the <see cref="GetResponse"/> is used for forwards compatibility
-	/// </summary>
-	/// <param name="response">The HTTP response from the server</param>
-	/// <exception cref="NotImplementedException">Will always be thrown</exception>
-	internal override void ParseV2(HttpResponseMessage response) {
-		throw new NotImplementedException();
-	}
+		/// <summary>
+		/// Parses the HTTP response from the server into a list of other GWebCaches
+		/// </summary>
+		/// <param name="response">The HTTP response from the server</param>
+		internal override void Parse(HttpResponseMessage response) {
+			foreach(string url in GetUrlsFromResponse(response)) {
+				if (!Uri.TryCreate(url, UriKind.Absolute, out Uri uri))
+					continue;
 
-	/// <summary>
-	/// Parses the body of the response to a string, splits it on new lines and removes empty lines
-	/// </summary>
-	/// <param name="response">The HTTP response from the server</param>
-	/// <returns>An array of string representing urls to other GWebCaches</returns>
-	internal string[] GetUrlsFromResponse(HttpResponseMessage response) {
-		return response!.ContentAsString().Split("\n").Select(l => l.Trim()).Where(l => !string.IsNullOrEmpty(l)).ToArray();
+				WebCacheNodes.Add(new GWebCacheNode(uri));
+			}
+		}
+
+		/// <summary>
+		/// Is never V2 so will return false. <see cref="GetResponse"/>
+		/// </summary>
+		internal override bool IsValidV2Response(HttpResponseMessage responseMessage) {
+			return false;
+		}
+
+		/// <summary>
+		/// Not used, internally the <see cref="GetResponse"/> is used for forwards compatibility
+		/// </summary>
+		/// <param name="response">The HTTP response from the server</param>
+		/// <exception cref="NotImplementedException">Will always be thrown</exception>
+		internal override void ParseV2(HttpResponseMessage response) {
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
+		/// Parses the body of the response to a string, splits it on new lines and removes empty lines
+		/// </summary>
+		/// <param name="response">The HTTP response from the server</param>
+		/// <returns>An array of string representing urls to other GWebCaches</returns>
+		internal string[] GetUrlsFromResponse(HttpResponseMessage response) {
+			return response!.ContentAsString().Split("\n").Select(l => l.Trim()).Where(l => !string.IsNullOrEmpty(l)).ToArray();
+		}
 	}
 }

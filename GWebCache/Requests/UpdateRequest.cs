@@ -1,33 +1,34 @@
-﻿using GWebCache.Models;
+﻿using System;
+using GWebCache.Models;
 using GWebCache.Models.Enums;
 
-namespace GWebCache.Requests;
-
-/// <summary>
-/// Request model to update the GWebCache with a new gnutella node or a GWebCache Url.
-/// </summary>
-/// <see cref="GnutellaNode"/>
-/// <seealso cref="GWebCacheNode"/>
-public class UpdateRequest : GWebCacheRequest{
-
-	public GnutellaNode? GnutellaNode { get; set; }
-	public GWebCacheNode? WebCacheNode { get; set; }
-
-	/// <value>Indicating which <see cref="GnutellaNetwork"/> the GWebCache or Gnutella node belongs to.</value>
-	/// <remarks>Usually only necessary in case you're providing an update to a V2 cache.</remarks>
-	public GnutellaNetwork? Network { get; set; }
-
+namespace GWebCache.Requests{
 	/// <summary>
-	/// Request is valid if either the GnutellaNode or GWebCacheNode is not null.
-	/// If the GWebCacheNode is not null the Url must start with http.
+	/// Request model to update the GWebCache with a new gnutella node or a GWebCache Url.
 	/// </summary>
-	internal override bool IsValidRequest() {
-		bool result = WebCacheNode != null || GnutellaNode != null;
+	/// <see cref="GnutellaNode"/>
+	/// <seealso cref="GWebCacheNode"/>
+	public class UpdateRequest : GWebCacheRequest{
 
-		if (WebCacheNode != null) {
-			result  = result && WebCacheNode.Url != null && WebCacheNode.Url.Scheme.Equals(Uri.UriSchemeHttp.ToLower());
+		public GnutellaNode GnutellaNode { get; set; }
+		public GWebCacheNode WebCacheNode { get; set; }
+
+		/// <value>Indicating which <see cref="GnutellaNetwork"/> the GWebCache or Gnutella node belongs to.</value>
+		/// <remarks>Usually only necessary in case you're providing an update to a V2 cache.</remarks>
+		public GnutellaNetwork? Network { get; set; }
+
+		/// <summary>
+		/// Request is valid if either the GnutellaNode or GWebCacheNode is not null.
+		/// If the GWebCacheNode is not null the Url must start with http.
+		/// </summary>
+		internal override bool IsValidRequest() {
+			bool result = WebCacheNode != null || GnutellaNode != null;
+
+			if (WebCacheNode != null) {
+				result  = result && WebCacheNode.Url != null && WebCacheNode.Url.Scheme.Equals(Uri.UriSchemeHttp.ToLower());
+			}
+
+			return result;
 		}
-
-		return result;
 	}
 }

@@ -54,7 +54,7 @@ public class ExtensionsTest {
 
 	[TestMethod]
 	[DynamicData(nameof(ValidUrlData))]
-	public void AddingUrlParameters(Uri input, Dictionary<string,object> parameters, string expectedOutput) {
+	public void AddingUrlParameters(Uri input, Dictionary<string,string> parameters, string expectedOutput) {
 		Assert.AreEqual(input.GetUrlWithQuery(parameters), expectedOutput);
 	}
 }
