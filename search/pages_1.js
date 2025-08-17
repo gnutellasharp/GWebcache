@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['gwebcache_0',['GWebcache',['../index.html',1,'']]]
+  ['gwebcache_0',['GWebCache',['../index.html',1,'']]]
 ];

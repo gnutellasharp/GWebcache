@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>GWebCache: GWebCache.Responses.GetResponse Class Reference</title>
+<title>GWebCache: GWebCache.Exceptions.VersionMismatchException Class Reference</title>
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
@@ -85,46 +85,29 @@ $(function(){ initResizable(false); });
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="../../db/dea/namespaceGWebCache.html">GWebCache</a></li><li class="navelem"><a class="el" href="../../d6/d47/namespaceGWebCache_1_1Responses.html">Responses</a></li><li class="navelem"><a class="el" href="../../df/deb/classGWebCache_1_1Responses_1_1GetResponse.html">GetResponse</a></li>  </ul>
+<li class="navelem"><a class="el" href="../../db/dea/namespaceGWebCache.html">GWebCache</a></li><li class="navelem"><a class="el" href="../../d0/dc2/namespaceGWebCache_1_1Exceptions.html">Exceptions</a></li><li class="navelem"><a class="el" href="../../da/dd1/classGWebCache_1_1Exceptions_1_1VersionMismatchException.html">VersionMismatchException</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#properties">Properties</a> &#124;
-<a href="../../d0/d31/classGWebCache_1_1Responses_1_1GetResponse-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">GWebCache.Responses.GetResponse Class Reference</div></div>
+<a href="../../dc/d0f/classGWebCache_1_1Exceptions_1_1VersionMismatchException-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">GWebCache.Exceptions.VersionMismatchException Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>A response class containing the Nodes and <a class="el" href="../../db/dea/namespaceGWebCache.html">GWebCache</a> valid for V2 compliant GWebCaches.  
+<p>This exception is thrown when a V1 method is called on a V2 <a class="el" href="../../db/dea/namespaceGWebCache.html">GWebCache</a> object or vice versa.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
-Inheritance diagram for GWebCache.Responses.GetResponse:</div>
+Inheritance diagram for GWebCache.Exceptions.VersionMismatchException:</div>
 <div class="dyncontent">
  <div class="center">
-  <img src="../../df/deb/classGWebCache_1_1Responses_1_1GetResponse.png" usemap="#GWebCache.Responses.GetResponse_map" alt=""/>
-  <map id="GWebCache.Responses.GetResponse_map" name="GWebCache.Responses.GetResponse_map">
-<area href="../../d1/d13/classGWebCache_1_1Responses_1_1GWebCacheResponse.html" title="Base class for all GWebCache responses." alt="GWebCache.Responses.GWebCacheResponse" shape="rect" coords="0,0,278,24"/>
-  </map>
-</div></div>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
-Properties</h2></td></tr>
-<tr class="memitem:a5494039624687b82ccab574aad9fa6d2" id="r_a5494039624687b82ccab574aad9fa6d2"><td class="memItemLeft" align="right" valign="top"><a id="a5494039624687b82ccab574aad9fa6d2" name="a5494039624687b82ccab574aad9fa6d2"></a>
-List&lt; <a class="el" href="../../d6/dd8/classGWebCache_1_1Models_1_1GnutellaNode.html">GnutellaNode</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GnutellaNodes</b> = new List&lt;<a class="el" href="../../d6/dd8/classGWebCache_1_1Models_1_1GnutellaNode.html">GnutellaNode</a>&gt;()<code> [get]</code></td></tr>
-<tr class="memdesc:a5494039624687b82ccab574aad9fa6d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of know gnutella nodes on the network. <br /></td></tr>
-<tr class="separator:a5494039624687b82ccab574aad9fa6d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ee12892c1d614cb6fd4c13f7fc4a822" id="r_a0ee12892c1d614cb6fd4c13f7fc4a822"><td class="memItemLeft" align="right" valign="top"><a id="a0ee12892c1d614cb6fd4c13f7fc4a822" name="a0ee12892c1d614cb6fd4c13f7fc4a822"></a>
-List&lt; <a class="el" href="../../d1/da5/classGWebCache_1_1Models_1_1GWebCacheNode.html">GWebCacheNode</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>WebCacheNodes</b> = new List&lt;<a class="el" href="../../d1/da5/classGWebCache_1_1Models_1_1GWebCacheNode.html">GWebCacheNode</a>&gt;()<code> [get]</code></td></tr>
-<tr class="memdesc:a0ee12892c1d614cb6fd4c13f7fc4a822"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of other GWebCaches. <br /></td></tr>
-<tr class="separator:a0ee12892c1d614cb6fd4c13f7fc4a822"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
+  <img src="../../da/dd1/classGWebCache_1_1Exceptions_1_1VersionMismatchException.png" alt=""/>
+ </div></div>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A response class containing the Nodes and <a class="el" href="../../db/dea/namespaceGWebCache.html">GWebCache</a> valid for V2 compliant GWebCaches. </p>
-<p>This is basically the combination of a <a class="el" href="../../d2/dcd/classGWebCache_1_1Responses_1_1UrlFileResponse.html" title="A response class containing the other GWebCaches known.">UrlFileResponse</a> and <a class="el" href="../../d2/dcd/classGWebCache_1_1Responses_1_1UrlFileResponse.html" title="A response class containing the other GWebCaches known.">UrlFileResponse</a></p>
+<div class="textblock"><p>This exception is thrown when a V1 method is called on a V2 <a class="el" href="../../db/dea/namespaceGWebCache.html">GWebCache</a> object or vice versa. </p>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
-<li>GWebCache/Responses/<b>GetResponse.cs</b></li>
+<li>GWebCache/Exceptions/<b>VersionMismatchException.cs</b></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

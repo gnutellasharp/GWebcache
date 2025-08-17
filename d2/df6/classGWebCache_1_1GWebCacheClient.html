@@ -136,7 +136,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a93f6eae9e5ad0edd6c63bd1b858cd0d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a list of Gnutella Nodes and GWebCaches urls from a V2 compliant <a class="el" href="../../db/dea/namespaceGWebCache.html">GWebCache</a>. This is only valid on a V2 cache!  <br /></td></tr>
 <tr class="separator:a93f6eae9e5ad0edd6c63bd1b858cd0d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58ef2616695f4e0f50d12c0f5e2b98bf" id="r_a58ef2616695f4e0f50d12c0f5e2b98bf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a58ef2616695f4e0f50d12c0f5e2b98bf">WebCacheIsV2</a> ()</td></tr>
-<tr class="memdesc:a58ef2616695f4e0f50d12c0f5e2b98bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the property <em>GWebCacheClientConfig.IsV2</em>   <br /></td></tr>
+<tr class="memdesc:a58ef2616695f4e0f50d12c0f5e2b98bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the property <a class="el" href="../../dd/dde/classGWebCache_1_1Client_1_1GWebCacheClientConfig.html#aeabd8743ab21d1f88286ccd79155bfdd" title="Indicates if the GWebCache is a V2 cache.">GWebCacheClientConfig.IsV2</a>  <br /></td></tr>
 <tr class="separator:a58ef2616695f4e0f50d12c0f5e2b98bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -186,7 +186,7 @@ Public Member Functions</h2></td></tr>
 <p>It's recommended that you use http even if the <a class="el" href="../../db/dea/namespaceGWebCache.html">GWebCache</a> supports https.</p>
 <p>The constructor will invoke the default configuration if not specified <a class="el" href="../../dd/dde/classGWebCache_1_1Client_1_1GWebCacheClientConfig.html" title="Configuration for when preforming requests to the WebCache. Used by GWebCacheClient.">GWebCacheClientConfig</a></p>
 <p>The constructor will also check if the <a class="el" href="../../db/dea/namespaceGWebCache.html">GWebCache</a> follows the v2 standard in case it's not explicitly provided in the configuration</p>
-<p>DetermineIfCacheIsV2 </p>
+<p>CheckIfCacheIsV2 </p>
 
 </div>
 </div>
@@ -216,7 +216,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Preforms a ping request to the server to check if it is alive. </p>
 <dl class="section return"><dt>Returns</dt><dd>Boolean indicating if the server successfully answered the ping request</dd></dl>
-<p>A successful pong response is defined in <em>PongResponse</em> </p>
+<p>A successful pong response is defined in <a class="el" href="../../d4/d47/classGWebCache_1_1Responses_1_1PongResponse.html" title="Represents a pong response from a GWebCache server. This is mainly used to check if the server is ali...">PongResponse</a></p>
 <p><a class="el" href="#afd09036d47440c034b19eccee246efb1" title="Preforms a ping request to the GWebCache. Mainly used to check if the server is alive.">Ping</a> </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="../../d4/d47/classGWebCache_1_1Responses_1_1PongResponse.html" title="Represents a pong response from a GWebCache server. This is mainly used to check if the server is ali...">PongResponse</a></dd></dl>
 
 <p>Implements <a class="el" href="../../d5/d77/interfaceGWebCache_1_1IGWebCacheClient.html#a80c5f8e1dc4fd13c2ef74cd478375068">GWebCache.IGWebCacheClient</a>.</p>
@@ -253,7 +253,6 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A <em>Result</em>  with <em>GetResponse</em> </dd></dl>
 <p><a class="el" href="../../df/deb/classGWebCache_1_1Responses_1_1GetResponse.html" title="A response class containing the Nodes and GWebCache valid for V2 compliant GWebCaches.">GetResponse</a> </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="../../d3/db4/classGWebCache_1_1ResponseProcessing_1_1Result-1-g.html" title="A wrapper object to gracefully handle errors.">Result&lt;T&gt;</a>, <a class="el" href="../../d0/db3/namespaceGWebCache_1_1Models_1_1Enums.html#a2f3f2bdb153befd358168dae9d2e828e" title="There&#39;s two versions of Gnutella V1 and V2 some methods require you to specify which version is used....">GnutellaNetwork</a>, <a class="el" href="../../d1/da5/classGWebCache_1_1Models_1_1GWebCacheNode.html" title="A model representing a GWebCache.">GWebCacheNode</a></dd></dl>
 
 <p>Implements <a class="el" href="../../d5/d77/interfaceGWebCache_1_1IGWebCacheClient.html#a11ff8192bc81774dfb02f48a5faf5aae">GWebCache.IGWebCacheClient</a>.</p>
@@ -290,9 +289,8 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A <em>Result</em>  with <em>HostFileResponse</em> </dd></dl>
 <p>V1 caches typically don't include gnutella 2 or the network parameter. However, they will ignore it so it's always best to specify. </p>
-<p>You can use this method on both versions. It is however recommended to use the <em>Get(GnutellaNetwork?)</em>  method for version 2 of the specification. </p>
+<p>You can use this method on both versions. It is however recommended to use the <a class="el" href="#a93f6eae9e5ad0edd6c63bd1b858cd0d1" title="Retrieves a list of Gnutella Nodes and GWebCaches urls from a V2 compliant GWebCache....">Get(GnutellaNetwork?)</a> method for version 2 of the specification. </p>
 <div class="fragment"><div class="line"><a class="code hl_interface" href="../../d5/d77/interfaceGWebCache_1_1IGWebCacheClient.html">IGWebCacheClient</a> client = <span class="keyword">new</span> <a class="code hl_function" href="#a981c9364b1edcfa863a48e63b5ba428a">GWebCacheClient</a>(<span class="stringliteral">&quot;url&quot;</span>);</div>
 <div class="line">client.<a class="code hl_function" href="../../d5/d77/interfaceGWebCache_1_1IGWebCacheClient.html#a64fdb604834c6673df438ef256eeb596">GetHostFile</a>(<a class="code hl_enumeration" href="../../d0/db3/namespaceGWebCache_1_1Models_1_1Enums.html#a2f3f2bdb153befd358168dae9d2e828e">GnutellaNetwork</a>.Gnutella2);</div>
 <div class="ttc" id="aclassGWebCache_1_1GWebCacheClient_html_a981c9364b1edcfa863a48e63b5ba428a"><div class="ttname"><a href="#a981c9364b1edcfa863a48e63b5ba428a">GWebCache.GWebCacheClient.GWebCacheClient</a></div><div class="ttdeci">GWebCacheClient(string host, GWebCacheClientConfig config=null)</div><div class="ttdoc">Constructor for the GWebCacheClient.</div><div class="ttdef"><b>Definition</b> GWebCacheClient.cs:29</div></div>
@@ -329,7 +327,6 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the stats of the <a class="el" href="../../db/dea/namespaceGWebCache.html">GWebCache</a> server. </p>
-<dl class="section return"><dt>Returns</dt><dd>A <em>Result</em>  with <em>StatFileResponse</em> </dd></dl>
 <p>Not all <a class="el" href="../../db/dea/namespaceGWebCache.html">GWebCache</a> servers actually implement this. So don't assume you will get a successful result.</p>
 <p><a class="el" href="../../d3/db4/classGWebCache_1_1ResponseProcessing_1_1Result-1-g.html" title="A wrapper object to gracefully handle errors.">Result&lt;T&gt;</a> </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="../../d5/d39/classGWebCache_1_1Responses_1_1StatFileResponse.html">StatFileResponse</a></dd></dl>
 
@@ -367,7 +364,6 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A <em>Result</em>  with <em>UrlFileResponse</em> </dd></dl>
 <p>While the network parameter doesn't make a difference in V2 caches a lot of them require it and will return the same result regardless. </p>
 <div class="fragment"><div class="line"><a class="code hl_interface" href="../../d5/d77/interfaceGWebCache_1_1IGWebCacheClient.html">IGWebCacheClient</a> client = <span class="keyword">new</span> <a class="code hl_function" href="#a981c9364b1edcfa863a48e63b5ba428a">GWebCacheClient</a>(<span class="stringliteral">&quot;url&quot;</span>);</div>
 <div class="line">client.<a class="code hl_function" href="../../d5/d77/interfaceGWebCache_1_1IGWebCacheClient.html#abc771d1ab8028f7a55393de928264cc4">GetUrlFile</a>(<a class="code hl_enumeration" href="../../d0/db3/namespaceGWebCache_1_1Models_1_1Enums.html#a2f3f2bdb153befd358168dae9d2e828e">GnutellaNetwork</a>.Gnutella2);</div>
@@ -402,7 +398,6 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Preforms a ping request to the <a class="el" href="../../db/dea/namespaceGWebCache.html">GWebCache</a>. Mainly used to check if the server is alive. </p>
-<dl class="section return"><dt>Returns</dt><dd>A <em>Result</em>  with <em>Pongresponse</em> </dd></dl>
 <p><a class="el" href="../../d3/db4/classGWebCache_1_1ResponseProcessing_1_1Result-1-g.html" title="A wrapper object to gracefully handle errors.">Result&lt;T&gt;</a> </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="../../d4/d47/classGWebCache_1_1Responses_1_1PongResponse.html" title="Represents a pong response from a GWebCache server. This is mainly used to check if the server is ali...">PongResponse</a></dd></dl>
 
 <p>Implements <a class="el" href="../../d5/d77/interfaceGWebCache_1_1IGWebCacheClient.html#af9968ee75824eb20eb55eb666b57d73e">GWebCache.IGWebCacheClient</a>.</p>
@@ -433,7 +428,6 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Sends an Update request to the <a class="el" href="../../db/dea/namespaceGWebCache.html">GWebCache</a>. Indicating a new gnutella node, or <a class="el" href="../../db/dea/namespaceGWebCache.html">GWebCache</a> urls or both. </p>
-<dl class="section return"><dt>Returns</dt><dd>A <em>Result</em>  with <em>UpdateResponse</em> </dd></dl>
 <p>Note that there's a network parameter in the update request.</p>
 <p>The update response might also contain warnings when for example you're being rate limited.</p>
 <div class="fragment"><div class="line"><a class="code hl_interface" href="../../d5/d77/interfaceGWebCache_1_1IGWebCacheClient.html">IGWebCacheClient</a> client = <span class="keyword">new</span> <a class="code hl_function" href="#a981c9364b1edcfa863a48e63b5ba428a">GWebCacheClient</a>(<span class="stringliteral">&quot;V2 url&quot;</span>);</div>
@@ -482,7 +476,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Returns the property <em>GWebCacheClientConfig.IsV2</em>  </p>
+<p>Returns the property <a class="el" href="../../dd/dde/classGWebCache_1_1Client_1_1GWebCacheClientConfig.html#aeabd8743ab21d1f88286ccd79155bfdd" title="Indicates if the GWebCache is a V2 cache.">GWebCacheClientConfig.IsV2</a> </p>
 <p>If this property wasn't specified, a ping request is made when creating the client to fill in this property.</p>
 <p><a class="el" href="../../dd/dde/classGWebCache_1_1Client_1_1GWebCacheClientConfig.html#aeabd8743ab21d1f88286ccd79155bfdd" title="Indicates if the GWebCache is a V2 cache.">GWebCacheClientConfig.IsV2</a> </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="#afd09036d47440c034b19eccee246efb1" title="Preforms a ping request to the GWebCache. Mainly used to check if the server is alive.">Ping</a></dd></dl>
 
